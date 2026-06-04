@@ -1,0 +1,10 @@
+HOW TO DOWNLOAD
+
+1. im assuming you already figured out how to download the zip file on the github repo
+2. unzip the file to somewhere you can find it easily (documents or desktop is fine)
+3. navigate thru the unzipped file until you see index.htm
+4. open it
+5. BOOM Profit
+
+
+Enjoy <3 -cuh
