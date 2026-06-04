@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marathon Godsheet</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Interactive tracker</p>
+      <h1>Marathon Godsheet</h1>
+      <p class="subtext">Dashboard matches the Excel totals-left sheet, with dropdown entry sorted by rarity color.</p>
+    </div>
+    <div class="top-actions">
+      <button id="exportSaveBtn" class="secondary">Export Save</button>
+      <label class="secondary import-label">Import Save<input id="importSave" type="file" accept="application/json" /></label>
+      <button id="exportCsvBtn" class="secondary">Export CSV</button>
+      <button id="resetBtn" class="danger">Reset Totals</button>
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label="Main tabs">
+    <button class="tab active" data-tab="dashboard">Dashboard</button>
+    <button class="tab" data-tab="upgrade">Upgrade Tracking</button>
+  </nav>
+
+  <main>
+    <section id="dashboardTab" class="tab-panel active">
+      <section class="summary-grid" aria-label="Summary totals">
+        <div class="summary-card"><span>Materials</span><strong id="materialCount">0</strong></div>
+        <div class="summary-card"><span>Starting Total</span><strong id="startingTotal">0</strong></div>
+        <div class="summary-card"><span>Total Left</span><strong id="leftTotal">0</strong></div>
+              </section>
+
+      <section class="excel-panel">
+        <div class="section-title">
+          <h2>TOTALS LEFT</h2>
+          <p>Updates live from manual entries and upgrade tracker selections.</p>
+        </div>
+        <div class="table-scroll">
+          <table id="totalsTable" class="excel-table"></table>
+        </div>
+      </section>
+
+      <section class="entry-layout">
+        <article class="entry-card">
+          <div class="section-title compact">
+            <h2>IN VAULT</h2>
+            <p>Reserve materials for upgrades. Adding to the vault subtracts from TOTALS LEFT; upgrades spend vault materials first.</p>
+          </div>
+
+          <div class="entry-form">
+            <label>
+              Rarity / Color
+              <select id="raritySelect"></select>
+            </label>
+            <label>
+              Material
+              <select id="materialSelect"></select>
+            </label>
+            <label>
+              Amount
+              <input id="amountInput" type="number" min="0" step="1" placeholder="ex: 5" />
+            </label>
+            <div class="button-row">
+              <button id="useBtn">Add to Vault</button>
+              <button id="addBackBtn" class="secondary">Remove from Vault</button>
+            </div>
+          </div>
+
+          <div class="selected-readout" id="selectedReadout"></div>
+          <div class="vault-list" id="vaultList"></div>
+        </article>
+
+        <article class="dropdown-card">
+          <div class="section-title compact">
+            <h2>Material Dropdowns by Rarity</h2>
+            <p>Material lists stay locked to the original workbook order and names.</p>
+          </div>
+          <div id="rarityDropdowns" class="rarity-dropdowns"></div>
+        </article>
+      </section>
+
+      <section class="history-panel">
+        <div class="section-title">
+          <h2>Transaction History</h2>
+          <p>Newest changes show first.</p>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+    </section>
+
+    <section id="upgradeTab" class="tab-panel">
+      <section class="upgrade-layout">
+        <aside class="faction-panel">
+          <div class="section-title compact">
+            <h2>Upgrade Tracking</h2>
+            <p>Select a faction, then click any node on the tree to set its current tier.</p>
+          </div>
+
+          <div class="faction-picker" id="factionList"></div>
+
+          <div class="upgrade-help">
+            <strong>How it works</strong>
+            <p>Click any upgrade node on the screenshot, choose the tier you currently have, and the tracker saves that progress. Known selected upgrade material costs subtract from the Dashboard TOTALS LEFT table. Credits and VIP nodes are ignored until VIP requirements are known.</p>
+          </div>
+
+          <div class="needed-panel">
+            <div class="mini-title">
+              <h3>Selected Upgrade Materials</h3>
+              <div class="mini-actions"><button id="maxUpgradeBtn" class="secondary small-btn">Set Faction to Max</button><button id="resetUpgradeBtn" class="secondary small-btn">Reset This Faction</button></div>
+            </div>
+            <div id="upgradeNeededList" class="needed-list"></div>
+          </div>
+        </aside>
+
+        <article class="tree-panel">
+          <div class="tree-header">
+            <div>
+              <p class="eyebrow">Faction Tree</p>
+              <h2 id="activeFactionTitle">Cyberacme</h2>
+            </div>
+            <div class="tree-stats">
+              <span id="upgradeProgressText">0 / 0 nodes started</span>
+            </div>
+          </div>
+
+          <div class="tree-stage">
+            <img id="treeImage" src="assets/cyberacme-tree.png" alt="Cyberacme upgrade tree screenshot" />
+            <div id="treeNodeLayer" class="tree-node-layer" aria-label="Clickable upgrade nodes"></div>
+          </div>
+        </article>
+      </section>
+
+      <dialog id="tierDialog" class="tier-dialog">
+        <form method="dialog" id="tierForm">
+          <div class="dialog-head">
+            <div>
+              <p class="eyebrow">Upgrade Node</p>
+              <h2 id="dialogNodeName">Node</h2>
+            </div>
+            <button value="cancel" class="secondary icon-btn" aria-label="Close dialog">×</button>
+          </div>
+          <p id="dialogNodeHint" class="dialog-hint"></p>
+          <label class="tier-select-label">
+            Current Tier
+            <select id="tierSelect"></select>
+          </label>
+          <div id="tierCostPreview" class="tier-cost-preview"></div>
+          <menu class="dialog-actions">
+            <button value="cancel" class="secondary">Cancel</button>
+            <button id="saveTierBtn" value="default">Save Tier</button>
+          </menu>
+        </form>
+      </dialog>
+    </section>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
