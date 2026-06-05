@@ -1,8 +1,8 @@
-const STORAGE_KEY = "marathon-godsheet-v19-state";
-const HISTORY_KEY = "marathon-godsheet-v19-history";
-const VAULT_KEY = "marathon-godsheet-v19-vault";
-const UPGRADE_ALLOCATIONS_KEY = "marathon-godsheet-v19-upgrade-allocations";
-const UI_STATE_KEY = "marathon-godsheet-v19-ui";
+const STORAGE_KEY = "marathon-godsheet-v27-state";
+const HISTORY_KEY = "marathon-godsheet-v27-history";
+const VAULT_KEY = "marathon-godsheet-v27-vault";
+const UPGRADE_ALLOCATIONS_KEY = "marathon-godsheet-v27-upgrade-allocations";
+const UI_STATE_KEY = "marathon-godsheet-v27-ui";
 const CATEGORIES = ["Grey", "Green", "Blue", "Purple", "Gold"];
 
 const rarityClass = { Grey: "grey", Green: "green", Blue: "blue", Purple: "purple", Gold: "gold" };
@@ -496,7 +496,7 @@ renderAll();
 // ------------------------------
 // Upgrade Tracking - Faction Trees
 // ------------------------------
-const UPGRADE_STORAGE_KEY = "marathon-godsheet-v19-upgrades";
+const UPGRADE_STORAGE_KEY = "marathon-godsheet-v27-upgrades";
 const FACTIONS = [
   {
     "id": "cyberacme",
@@ -508,60 +508,187 @@ const FACTIONS = [
       {
         "id": "cyberacme-expansion",
         "name": "Expansion",
-        "x": 30.9,
-        "y": 7.0,
-        "w": 10.8,
-        "h": 13.5,
+        "x": 30.15,
+        "y": 7.05,
+        "w": 10.25,
+        "h": 14.65,
         "maxTier": 5,
         "costs": []
       },
       {
         "id": "cyberacme-informant",
         "name": "Informant.exe",
-        "x": 43.4,
-        "y": 10.3,
-        "w": 7.0,
-        "h": 8.5,
+        "x": 43.35,
+        "y": 10.05,
+        "w": 6.05,
+        "h": 9.1,
         "maxTier": 2,
         "costs": []
       },
       {
         "id": "cyberacme-credit-limit",
         "name": "Credit Limit",
-        "x": 53.8,
-        "y": 7.8,
-        "w": 8.6,
-        "h": 12.4,
+        "x": 53.65,
+        "y": 9.0,
+        "w": 8.15,
+        "h": 11.25,
         "maxTier": 5,
         "costs": []
       },
       {
-        "id": "cyberacme-implant-stock",
-        "name": "Implant Stock",
-        "x": 86.6,
-        "y": 7.8,
-        "w": 8.9,
-        "h": 12.6,
+        "id": "cyberacme-sponsorship",
+        "name": "Sponsorship / Sponsored Kit [Cyberacme]",
+        "x": 86.1,
+        "y": 7.7,
+        "w": 9.25,
+        "h": 13.05,
         "maxTier": 2,
-        "costs": []
+        "costs": [],
+        "tierLabels": {
+          "1": "Sponsorship",
+          "2": "Sponsorship+"
+        }
       },
       {
-        "id": "cyberacme-locksmith",
-        "name": "Locksmith",
-        "x": 31.3,
-        "y": 25.1,
-        "w": 6.3,
-        "h": 9.1,
+        "id": "cyberacme-carrier-barter",
+        "name": "Carrier Barter",
+        "x": 32.4,
+        "y": 26.0,
+        "w": 6.0,
+        "h": 9.15,
         "maxTier": 1,
-        "costs": []
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Biomass",
+            "amount": 7
+          },
+          {
+            "tier": 1,
+            "material": "Gunmetal",
+            "amount": 3
+          }
+        ]
       },
       {
-        "id": "cyberacme-keymaker",
-        "name": "Keymaker",
-        "x": 42.5,
-        "y": 25.1,
-        "w": 6.3,
-        "h": 9.1,
+        "id": "cyberacme-carrier-plus-barter",
+        "name": "Carrier+ Barter",
+        "x": 43.6,
+        "y": 26.0,
+        "w": 6.05,
+        "h": 9.15,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Diodes",
+            "amount": 14
+          },
+          {
+            "tier": 1,
+            "material": "Biomass",
+            "amount": 6
+          }
+        ]
+      },
+      {
+        "id": "cyberacme-max-looter-barter",
+        "name": "Max Looter Barter",
+        "x": 54.45,
+        "y": 26.05,
+        "w": 6.15,
+        "h": 9.25,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Lead",
+            "amount": 56
+          },
+          {
+            "tier": 1,
+            "material": "Gunmetal",
+            "amount": 24
+          }
+        ]
+      },
+      {
+        "id": "cyberacme-carrier",
+        "name": "Carrier",
+        "x": 30.95,
+        "y": 39.55,
+        "w": 9.0,
+        "h": 13.35,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Gel",
+            "amount": 11
+          },
+          {
+            "tier": 1,
+            "material": "Diodes",
+            "amount": 4
+          }
+        ]
+      },
+      {
+        "id": "cyberacme-carrier-plus",
+        "name": "Carrier+",
+        "x": 42.3,
+        "y": 39.55,
+        "w": 9.05,
+        "h": 13.35,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Diodes",
+            "amount": 21
+          },
+          {
+            "tier": 1,
+            "material": "Biomass",
+            "amount": 9
+          }
+        ]
+      },
+      {
+        "id": "cyberacme-vip-1",
+        "name": "VIP Node 1",
+        "x": 64.15,
+        "y": 24.35,
+        "w": 8.8,
+        "h": 12.5,
+        "maxTier": 1,
+        "costs": [],
+        "isVip": true,
+        "tierLabels": {
+          "1": "VIP 1"
+        }
+      },
+      {
+        "id": "cyberacme-vip-2",
+        "name": "VIP Node 2",
+        "x": 75.55,
+        "y": 40.25,
+        "w": 8.8,
+        "h": 12.5,
+        "maxTier": 1,
+        "costs": [],
+        "isVip": true,
+        "tierLabels": {
+          "1": "VIP 2"
+        }
+      },
+      {
+        "id": "cyberacme-locksmith-keymaker",
+        "name": "Locksmith / Keymaker",
+        "x": 30.35,
+        "y": 57.15,
+        "w": 8.35,
+        "h": 10.45,
         "maxTier": 3,
         "costs": [
           {
@@ -584,136 +711,44 @@ const FACTIONS = [
             "material": "Diodes",
             "amount": 24
           }
-        ]
+        ],
+        "tierLabels": {
+          "1": "Locksmith",
+          "2": "Keymaker",
+          "3": "Keymaker+"
+        }
       },
       {
-        "id": "cyberacme-max-looter-barter",
-        "name": "Max Looter Barter",
-        "x": 53.6,
-        "y": 25.1,
-        "w": 6.3,
-        "h": 9.1,
+        "id": "cyberacme-vip-3",
+        "name": "VIP Node 3",
+        "x": 43.0,
+        "y": 57.35,
+        "w": 6.15,
+        "h": 9.5,
         "maxTier": 1,
-        "costs": [
-          {
-            "tier": 1,
-            "material": "Lead",
-            "amount": 56
-          },
-          {
-            "tier": 1,
-            "material": "Gunmetal",
-            "amount": 24
-          }
-        ]
-      },
-      {
-        "id": "cyberacme-vip-1",
-        "name": "VIP Node 1",
-        "x": 64.4,
-        "y": 24.2,
-        "w": 8.8,
-        "h": 11.8,
-        "maxTier": 1,
+        "costs": [],
         "isVip": true,
         "tierLabels": {
-          "1": "VIP 1"
-        },
-        "costs": []
+          "1": "VIP 3"
+        }
       },
       {
-        "id": "cyberacme-vip-2",
-        "name": "VIP Node 2",
-        "x": 75.5,
-        "y": 40.2,
-        "w": 8.8,
-        "h": 11.8,
-        "maxTier": 1,
-        "isVip": true,
-        "tierLabels": {
-          "1": "VIP 2"
-        },
-        "costs": []
-      },
-      {
-        "id": "cyberacme-carrier",
-        "name": "Carrier",
-        "x": 31.0,
-        "y": 40.0,
-        "w": 8.9,
-        "h": 13.0,
-        "maxTier": 2,
-        "costs": [
-          {
-            "tier": 1,
-            "material": "Gel",
-            "amount": 11
-          },
-          {
-            "tier": 1,
-            "material": "Diodes",
-            "amount": 4
-          },
-          {
-            "tier": 2,
-            "material": "Diodes",
-            "amount": 21
-          },
-          {
-            "tier": 2,
-            "material": "Biomass",
-            "amount": 9
-          }
-        ]
-      },
-      {
-        "id": "cyberacme-carrier-barter",
-        "name": "Carrier Barter",
-        "x": 42.1,
-        "y": 40.0,
-        "w": 8.9,
-        "h": 13.0,
-        "maxTier": 2,
-        "costs": [
-          {
-            "tier": 1,
-            "material": "Biomass",
-            "amount": 7
-          },
-          {
-            "tier": 1,
-            "material": "Gunmetal",
-            "amount": 3
-          },
-          {
-            "tier": 2,
-            "material": "Diodes",
-            "amount": 14
-          },
-          {
-            "tier": 2,
-            "material": "Biomass",
-            "amount": 6
-          }
-        ]
-      },
-      {
-        "id": "cyberacme-sponsorship",
-        "name": "Sponsorship [Cyberacme]",
-        "x": 30.7,
-        "y": 57.0,
-        "w": 9.7,
-        "h": 10.3,
+        "id": "cyberacme-implant-stock",
+        "name": "Implant Stock",
+        "x": 53.65,
+        "y": 57.25,
+        "w": 6.45,
+        "h": 9.55,
         "maxTier": 2,
         "costs": []
       },
       {
         "id": "cyberacme-pinata",
         "name": "Pinata",
-        "x": 43.0,
-        "y": 57.2,
-        "w": 6.5,
-        "h": 9.5,
+        "x": 63.65,
+        "y": 56.8,
+        "w": 8.95,
+        "h": 10.6,
         "maxTier": 2,
         "costs": [
           {
@@ -736,10 +771,10 @@ const FACTIONS = [
       {
         "id": "cyberacme-petty-theft",
         "name": "Petty Theft",
-        "x": 54.1,
-        "y": 57.2,
-        "w": 6.5,
-        "h": 9.5,
+        "x": 75.25,
+        "y": 56.8,
+        "w": 8.15,
+        "h": 10.6,
         "maxTier": 2,
         "costs": [
           {
@@ -762,10 +797,10 @@ const FACTIONS = [
       {
         "id": "cyberacme-lucky-looter",
         "name": "Lucky Looter",
-        "x": 64.7,
-        "y": 57.0,
-        "w": 6.8,
-        "h": 9.8,
+        "x": 86.45,
+        "y": 56.5,
+        "w": 8.7,
+        "h": 11.1,
         "maxTier": 1,
         "costs": [
           {
@@ -779,26 +814,6 @@ const FACTIONS = [
             "amount": 9
           }
         ]
-      },
-      {
-        "id": "cyberacme-sponsorship-plus",
-        "name": "Sponsorship+ [Cyberacme]",
-        "x": 75.8,
-        "y": 57.0,
-        "w": 6.8,
-        "h": 9.8,
-        "maxTier": 1,
-        "costs": []
-      },
-      {
-        "id": "cyberacme-capstone-vi",
-        "name": "Capstone VI",
-        "x": 86.8,
-        "y": 56.6,
-        "w": 7.2,
-        "h": 10.5,
-        "maxTier": 1,
-        "costs": []
       }
     ]
   },
@@ -809,62 +824,578 @@ const FACTIONS = [
     "color": "#ff2a94",
     "rgb": "255, 42, 148",
     "nodes": [
-      { "id": "nucaloric-safeguard", "name": "Safeguard", "x": 31.35, "y": 10.57, "w": 6.17, "h": 9.35, "maxTier": 3,
-        "costs": [{ "tier": 1, "material": "Biomass", "amount": 10 }] },
-      { "id": "nucaloric-advanced-shields", "name": "Advanced Shields", "x": 40.85, "y": 8.54, "w": 8.99, "h": 14.23, "maxTier": 3,
-        "costs": [{ "tier": 1, "material": "Sparkleaf", "amount": 12 }, { "tier": 1, "material": "Reclaimed Biostripping", "amount": 4 }] },
-      { "id": "nucaloric-shield-stock", "name": "Shield Stock", "x": 52.42, "y": 10.57, "w": 6.42, "h": 9.35, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Tarax Seed", "amount": 3 }, { "tier": 1, "material": "Reclaimed Biostripping", "amount": 19 }] },
-      { "id": "nucaloric-panacea-kit", "name": "Panacea Kit", "x": 62.95, "y": 8.54, "w": 8.99, "h": 14.23, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Tarax Seed", "amount": 9 }, { "tier": 1, "material": "Neurochem Pack", "amount": 4 }] },
-      { "id": "nucaloric-vip-1", "name": "VIP Node 1", "x": 74.25, "y": 8.54, "w": 8.99, "h": 14.23, "maxTier": 1, "isVip": true, "tierLabels": { "1": "VIP 1" }, "costs": [] },
-      { "id": "nucaloric-sponsorship", "name": "Sponsorship [Nucaloric]", "x": 84.53, "y": 8.54, "w": 8.22, "h": 13.82, "maxTier": 2, "costs": [] },
-      { "id": "nucaloric-restore", "name": "Restore", "x": 31.35, "y": 28.46, "w": 6.42, "h": 9.35, "maxTier": 3,
-        "costs": [{ "tier": 1, "material": "Biomass", "amount": 10 }] },
-      { "id": "nucaloric-advanced-patch", "name": "Advanced Patch", "x": 40.85, "y": 26.02, "w": 8.99, "h": 13.41, "maxTier": 3,
-        "costs": [{ "tier": 1, "material": "Reclaimed Biostripping", "amount": 11 }, { "tier": 1, "material": "Sparkleaf", "amount": 5 }] },
-      { "id": "nucaloric-patch-stock", "name": "Patch Stock", "x": 52.67, "y": 28.46, "w": 6.42, "h": 9.35, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Tarax Seed", "amount": 4 }, { "tier": 1, "material": "Dermachem Pack", "amount": 17 }] },
-      { "id": "nucaloric-self-revive", "name": "Self-Revive", "x": 62.69, "y": 26.02, "w": 8.99, "h": 13.41, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Biolens Seed", "amount": 1 }, { "tier": 1, "material": "Neurochem Pack", "amount": 15 }] },
-      { "id": "nucaloric-mercy-kit", "name": "Mercy Kit", "x": 74.77, "y": 28.46, "w": 6.17, "h": 9.35, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Biomass", "amount": 17 }] },
-      { "id": "nucaloric-shielded-armored-barter", "name": "Shielded / Armored Barter", "x": 84.79, "y": 26.02, "w": 8.22, "h": 14.23, "maxTier": 2,
-        "tierLabels": { "1": "Shielded Barter", "2": "Armored Barter" },
-        "costs": [{ "tier": 1, "material": "Reclaimed Biostripping", "amount": 10 }, { "tier": 1, "material": "Sparkleaf", "amount": 4 }, { "tier": 2, "material": "Tarax Seed", "amount": 12 }, { "tier": 2, "material": "Neurochem Pack", "amount": 5 }] },
-      { "id": "nucaloric-advanced-mch-os", "name": "Advanced MCH / Advanced OS", "x": 85.3, "y": 45.12, "w": 6.68, "h": 10.57, "maxTier": 2,
-        "tierLabels": { "1": "Advanced MCH", "2": "Advanced OS" },
-        "costs": [{ "tier": 1, "material": "Biomass", "amount": 13 }, { "tier": 2, "material": "Biomass", "amount": 15 }] },
-      { "id": "nucaloric-implant-stock", "name": "Implant Stock", "x": 31.35, "y": 45.53, "w": 6.42, "h": 10.16, "maxTier": 2,
-        "costs": [{ "tier": 1, "material": "Biomass", "amount": 22 }] },
-      { "id": "nucaloric-second-wind", "name": "Second Wind", "x": 41.11, "y": 45.12, "w": 8.99, "h": 10.16, "maxTier": 4,
-        "tierLabels": { "1": "Second Wind", "2": "Second Wind+", "3": "VIP 1", "4": "VIP 2" },
-        "costs": [{ "tier": 1, "material": "Biomass", "amount": 12 }, { "tier": 2, "material": "Sparkleaf", "amount": 29 }, { "tier": 2, "material": "Reclaimed Biostripping", "amount": 10 }, { "tier": 3, "vip": true }, { "tier": 4, "vip": true }] },
-      { "id": "nucaloric-back-in-action", "name": "Back in Action", "x": 52.42, "y": 45.12, "w": 6.68, "h": 10.16, "maxTier": 4,
-        "tierLabels": { "1": "Back in Action", "2": "Back in Action+", "3": "VIP 1", "4": "VIP 2" },
-        "costs": [{ "tier": 1, "material": "Biomass", "amount": 13 }, { "tier": 2, "material": "Tarax Seed", "amount": 3 }, { "tier": 2, "material": "Reclaimed Biostripping", "amount": 14 }, { "tier": 3, "vip": true }, { "tier": 4, "vip": true }] },
-      { "id": "nucaloric-neural-stabilizer", "name": "Neural Stabilizer", "x": 62.95, "y": 45.12, "w": 6.94, "h": 10.16, "maxTier": 4,
-        "tierLabels": { "1": "Neural Stabilizer", "2": "Neural Stabilizer+", "3": "VIP 1", "4": "VIP 2" },
-        "costs": [{ "tier": 1, "material": "Biomass", "amount": 15 }, { "tier": 2, "material": "Tarax Seed", "amount": 10 }, { "tier": 2, "material": "Neurochem Pack", "amount": 5 }, { "tier": 3, "vip": true }, { "tier": 4, "vip": true }] },
-      { "id": "nucaloric-shielded-armored", "name": "Shielded / Armored", "x": 74.61, "y": 45.12, "w": 6.17, "h": 10.16, "maxTier": 2,
-        "tierLabels": { "1": "Shielded", "2": "Armored" },
-        "costs": [{ "tier": 1, "material": "Sparkleaf", "amount": 17 }, { "tier": 1, "material": "Reclaimed Biostripping", "amount": 6 }, { "tier": 2, "material": "Biolens Seed", "amount": 1 }, { "tier": 2, "material": "Neurochem Pack", "amount": 15 }] },
-      { "id": "nucaloric-evasive-maneuvers", "name": "Evasive Maneuvers", "x": 40.45, "y": 58.85, "w": 9.05, "h": 16.1, "maxTier": 3,
-        "tierLabels": { "2": "VIP 1", "3": "VIP 2" },
-        "costs": [{ "tier": 1, "material": "Strerilized Biostripping", "amount": 9 }, { "tier": 1, "material": "Neurochem Pack", "amount": 6 }, { "tier": 2, "vip": true }, { "tier": 3, "vip": true }] },
-      { "id": "nucaloric-escape-artist", "name": "Escape Artist", "x": 51.65, "y": 58.85, "w": 9.05, "h": 16.1, "maxTier": 3,
-        "tierLabels": { "2": "VIP 1", "3": "VIP 2" },
-        "costs": [{ "tier": 1, "material": "Strerilized Biostripping", "amount": 10 }, { "tier": 1, "material": "Neurochem Pack", "amount": 8 }, { "tier": 2, "vip": true }, { "tier": 3, "vip": true }] },
-      { "id": "nucaloric-counterintel", "name": "Counterintel", "x": 62.75, "y": 58.85, "w": 9.05, "h": 16.1, "maxTier": 3,
-        "tierLabels": { "2": "VIP 1", "3": "VIP 2" },
-        "costs": [{ "tier": 1, "material": "Nueral Insulation", "amount": 1 }, { "tier": 1, "material": "Strerilized Biostripping", "amount": 18 }, { "tier": 2, "vip": true }, { "tier": 3, "vip": true }] },
-      { "id": "nucaloric-anti-virus-packs", "name": "Anti-Virus Packs", "x": 74.85, "y": 64.9, "w": 6.45, "h": 10.35, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Sparkleaf", "amount": 12 }, { "tier": 1, "material": "Reclaimed Biostripping", "amount": 4 }] },
-      { "id": "nucaloric-signal-jammer", "name": "Signal Jammer", "x": 86.2, "y": 64.9, "w": 6.75, "h": 10.35, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Reclaimed Biostripping", "amount": 12 }, { "tier": 1, "material": "Sparkleaf", "amount": 7 }] }
+      {
+        "id": "nucaloric-safeguard",
+        "name": "Safeguard",
+        "x": 31.35,
+        "y": 10.57,
+        "w": 6.17,
+        "h": 9.35,
+        "maxTier": 3,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Biomass",
+            "amount": 10
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-advanced-shields",
+        "name": "Advanced Shields",
+        "x": 40.85,
+        "y": 8.54,
+        "w": 8.99,
+        "h": 14.23,
+        "maxTier": 3,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Sparkleaf",
+            "amount": 12
+          },
+          {
+            "tier": 1,
+            "material": "Reclaimed Biostripping",
+            "amount": 4
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-shield-stock",
+        "name": "Shield Stock",
+        "x": 52.42,
+        "y": 10.57,
+        "w": 6.42,
+        "h": 9.35,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Tarax Seed",
+            "amount": 3
+          },
+          {
+            "tier": 1,
+            "material": "Reclaimed Biostripping",
+            "amount": 19
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-panacea-kit",
+        "name": "Panacea Kit",
+        "x": 62.95,
+        "y": 8.54,
+        "w": 8.99,
+        "h": 14.23,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Tarax Seed",
+            "amount": 9
+          },
+          {
+            "tier": 1,
+            "material": "Neurochem Pack",
+            "amount": 4
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-vip-1",
+        "name": "VIP Node 1",
+        "x": 74.25,
+        "y": 8.54,
+        "w": 8.99,
+        "h": 14.23,
+        "maxTier": 1,
+        "isVip": true,
+        "tierLabels": {
+          "1": "VIP 1"
+        },
+        "costs": []
+      },
+      {
+        "id": "nucaloric-sponsorship",
+        "name": "Sponsorship [Nucaloric]",
+        "x": 84.53,
+        "y": 8.54,
+        "w": 8.22,
+        "h": 13.82,
+        "maxTier": 2,
+        "costs": []
+      },
+      {
+        "id": "nucaloric-restore",
+        "name": "Restore",
+        "x": 31.35,
+        "y": 28.46,
+        "w": 6.42,
+        "h": 9.35,
+        "maxTier": 3,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Biomass",
+            "amount": 10
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-advanced-patch",
+        "name": "Advanced Patch",
+        "x": 40.85,
+        "y": 26.02,
+        "w": 8.99,
+        "h": 13.41,
+        "maxTier": 3,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Reclaimed Biostripping",
+            "amount": 11
+          },
+          {
+            "tier": 1,
+            "material": "Sparkleaf",
+            "amount": 5
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-patch-stock",
+        "name": "Patch Stock",
+        "x": 52.67,
+        "y": 28.46,
+        "w": 6.42,
+        "h": 9.35,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Tarax Seed",
+            "amount": 4
+          },
+          {
+            "tier": 1,
+            "material": "Dermachem Pack",
+            "amount": 17
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-self-revive",
+        "name": "Self-Revive",
+        "x": 62.69,
+        "y": 26.02,
+        "w": 8.99,
+        "h": 13.41,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Biolens Seed",
+            "amount": 1
+          },
+          {
+            "tier": 1,
+            "material": "Neurochem Pack",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-mercy-kit",
+        "name": "Mercy Kit",
+        "x": 74.77,
+        "y": 28.46,
+        "w": 6.17,
+        "h": 9.35,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Biomass",
+            "amount": 17
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-shielded-armored-barter",
+        "name": "Shielded / Armored Barter",
+        "x": 84.79,
+        "y": 26.02,
+        "w": 8.22,
+        "h": 14.23,
+        "maxTier": 2,
+        "tierLabels": {
+          "1": "Shielded Barter",
+          "2": "Armored Barter"
+        },
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Reclaimed Biostripping",
+            "amount": 10
+          },
+          {
+            "tier": 1,
+            "material": "Sparkleaf",
+            "amount": 4
+          },
+          {
+            "tier": 2,
+            "material": "Tarax Seed",
+            "amount": 12
+          },
+          {
+            "tier": 2,
+            "material": "Neurochem Pack",
+            "amount": 5
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-advanced-mch-os",
+        "name": "Advanced MCH / Advanced OS",
+        "x": 85.3,
+        "y": 45.12,
+        "w": 6.68,
+        "h": 10.57,
+        "maxTier": 2,
+        "tierLabels": {
+          "1": "Advanced MCH",
+          "2": "Advanced OS"
+        },
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Biomass",
+            "amount": 13
+          },
+          {
+            "tier": 2,
+            "material": "Biomass",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-implant-stock",
+        "name": "Implant Stock",
+        "x": 31.35,
+        "y": 45.53,
+        "w": 6.42,
+        "h": 10.16,
+        "maxTier": 2,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Biomass",
+            "amount": 22
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-second-wind",
+        "name": "Second Wind",
+        "x": 41.11,
+        "y": 45.12,
+        "w": 8.99,
+        "h": 10.16,
+        "maxTier": 4,
+        "tierLabels": {
+          "1": "Second Wind",
+          "2": "Second Wind+",
+          "3": "VIP 1",
+          "4": "VIP 2"
+        },
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Biomass",
+            "amount": 12
+          },
+          {
+            "tier": 2,
+            "material": "Sparkleaf",
+            "amount": 29
+          },
+          {
+            "tier": 2,
+            "material": "Reclaimed Biostripping",
+            "amount": 10
+          },
+          {
+            "tier": 3,
+            "vip": true
+          },
+          {
+            "tier": 4,
+            "vip": true
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-back-in-action",
+        "name": "Back in Action",
+        "x": 52.42,
+        "y": 45.12,
+        "w": 6.68,
+        "h": 10.16,
+        "maxTier": 4,
+        "tierLabels": {
+          "1": "Back in Action",
+          "2": "Back in Action+",
+          "3": "VIP 1",
+          "4": "VIP 2"
+        },
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Biomass",
+            "amount": 13
+          },
+          {
+            "tier": 2,
+            "material": "Tarax Seed",
+            "amount": 3
+          },
+          {
+            "tier": 2,
+            "material": "Reclaimed Biostripping",
+            "amount": 14
+          },
+          {
+            "tier": 3,
+            "vip": true
+          },
+          {
+            "tier": 4,
+            "vip": true
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-neural-stabilizer",
+        "name": "Neural Stabilizer",
+        "x": 62.95,
+        "y": 45.12,
+        "w": 6.94,
+        "h": 10.16,
+        "maxTier": 4,
+        "tierLabels": {
+          "1": "Neural Stabilizer",
+          "2": "Neural Stabilizer+",
+          "3": "VIP 1",
+          "4": "VIP 2"
+        },
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Biomass",
+            "amount": 15
+          },
+          {
+            "tier": 2,
+            "material": "Tarax Seed",
+            "amount": 10
+          },
+          {
+            "tier": 2,
+            "material": "Neurochem Pack",
+            "amount": 5
+          },
+          {
+            "tier": 3,
+            "vip": true
+          },
+          {
+            "tier": 4,
+            "vip": true
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-shielded-armored",
+        "name": "Shielded / Armored",
+        "x": 74.61,
+        "y": 45.12,
+        "w": 6.17,
+        "h": 10.16,
+        "maxTier": 2,
+        "tierLabels": {
+          "1": "Shielded",
+          "2": "Armored"
+        },
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Sparkleaf",
+            "amount": 17
+          },
+          {
+            "tier": 1,
+            "material": "Reclaimed Biostripping",
+            "amount": 6
+          },
+          {
+            "tier": 2,
+            "material": "Biolens Seed",
+            "amount": 1
+          },
+          {
+            "tier": 2,
+            "material": "Neurochem Pack",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-evasive-maneuvers",
+        "name": "Evasive Maneuvers",
+        "x": 40.45,
+        "y": 58.85,
+        "w": 9.05,
+        "h": 16.1,
+        "maxTier": 3,
+        "tierLabels": {
+          "2": "VIP 1",
+          "3": "VIP 2"
+        },
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Strerilized Biostripping",
+            "amount": 9
+          },
+          {
+            "tier": 1,
+            "material": "Neurochem Pack",
+            "amount": 6
+          },
+          {
+            "tier": 2,
+            "vip": true
+          },
+          {
+            "tier": 3,
+            "vip": true
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-escape-artist",
+        "name": "Escape Artist",
+        "x": 51.65,
+        "y": 58.85,
+        "w": 9.05,
+        "h": 16.1,
+        "maxTier": 3,
+        "tierLabels": {
+          "2": "VIP 1",
+          "3": "VIP 2"
+        },
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Strerilized Biostripping",
+            "amount": 10
+          },
+          {
+            "tier": 1,
+            "material": "Neurochem Pack",
+            "amount": 8
+          },
+          {
+            "tier": 2,
+            "vip": true
+          },
+          {
+            "tier": 3,
+            "vip": true
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-counterintel",
+        "name": "Counterintel",
+        "x": 62.75,
+        "y": 58.85,
+        "w": 9.05,
+        "h": 16.1,
+        "maxTier": 3,
+        "tierLabels": {
+          "2": "VIP 1",
+          "3": "VIP 2"
+        },
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Nueral Insulation",
+            "amount": 1
+          },
+          {
+            "tier": 1,
+            "material": "Strerilized Biostripping",
+            "amount": 18
+          },
+          {
+            "tier": 2,
+            "vip": true
+          },
+          {
+            "tier": 3,
+            "vip": true
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-anti-virus-packs",
+        "name": "Anti-Virus Packs",
+        "x": 74.85,
+        "y": 64.9,
+        "w": 6.45,
+        "h": 10.35,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Sparkleaf",
+            "amount": 12
+          },
+          {
+            "tier": 1,
+            "material": "Reclaimed Biostripping",
+            "amount": 4
+          }
+        ]
+      },
+      {
+        "id": "nucaloric-signal-jammer",
+        "name": "Signal Jammer",
+        "x": 86.2,
+        "y": 64.9,
+        "w": 6.75,
+        "h": 10.35,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Reclaimed Biostripping",
+            "amount": 12
+          },
+          {
+            "tier": 1,
+            "material": "Sparkleaf",
+            "amount": 7
+          }
+        ]
+      }
     ]
   },
-
   {
     "id": "traxus",
     "name": "Traxus",
@@ -872,45 +1403,378 @@ const FACTIONS = [
     "color": "#ff8500",
     "rgb": "255, 133, 0",
     "nodes": [
-      { "id": "traxus-overrun", "name": "Overrun", "x": 31.7, "y": 10.5, "w": 6.25, "h": 10.0, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Unstable Gunmetal", "amount": 10 }] },
-      { "id": "traxus-retaliator", "name": "Retaliator", "x": 42.65, "y": 10.5, "w": 6.25, "h": 10.0, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Unstable Gunmetal", "amount": 17 }] },
-      { "id": "traxus-v75-scar", "name": "V75 SCAR", "x": 53.65, "y": 10.5, "w": 6.25, "h": 10.0, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Plasma Filament", "amount": 12 }, { "tier": 1, "material": "Deimosite Rods", "amount": 6 }] },
-      { "id": "traxus-kkv-9sd", "name": "KKV-9SD", "x": 64.65, "y": 10.5, "w": 6.25, "h": 10.0, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Plasma Filament", "amount": 23 }, { "tier": 1, "material": "Deimosite Rods", "amount": 11 }] },
-      { "id": "traxus-vip-1", "name": "VIP Node 1", "x": 75.8, "y": 10.2, "w": 8.1, "h": 11.6, "maxTier": 1, "isVip": true, "tierLabels": { "1": "VIP 1" }, "costs": [] },
-      { "id": "traxus-vip-2", "name": "VIP Node 2", "x": 86.9, "y": 10.2, "w": 7.6, "h": 11.6, "maxTier": 1, "isVip": true, "tierLabels": { "1": "VIP 2" }, "costs": [] },
-
-      { "id": "traxus-vip-3", "name": "VIP Node 3", "x": 31.7, "y": 28.7, "w": 6.3, "h": 10.5, "maxTier": 1, "isVip": true, "tierLabels": { "1": "VIP 3" }, "costs": [] },
-      { "id": "traxus-enhanced-chips", "name": "Enhanced Chips", "x": 42.65, "y": 28.7, "w": 6.4, "h": 10.5, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Unstable Gunmetal", "amount": 13 }] },
-      { "id": "traxus-deluxe-chips", "name": "Deluxe Chips", "x": 53.65, "y": 28.7, "w": 6.4, "h": 10.5, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Anomalous Wire", "amount": 5 }, { "tier": 1, "material": "Deimosite Rods", "amount": 13 }] },
-      { "id": "traxus-sponsorship", "name": "Sponsorship [Traxus]", "x": 85.2, "y": 25.3, "w": 9.4, "h": 15.8, "maxTier": 2, "costs": [] },
-
-      { "id": "traxus-vip-4", "name": "VIP Node 4", "x": 31.7, "y": 46.3, "w": 6.3, "h": 10.5, "maxTier": 1, "isVip": true, "tierLabels": { "1": "VIP 4" }, "costs": [] },
-      { "id": "traxus-enhanced-mags", "name": "Enhanced Mags", "x": 42.5, "y": 46.0, "w": 7.0, "h": 10.7, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Unstable Gunmetal", "amount": 10 }] },
-      { "id": "traxus-deluxe-mags", "name": "Deluxe Mags", "x": 53.65, "y": 46.0, "w": 6.5, "h": 10.7, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Tachyon Filament", "amount": 4 }, { "tier": 1, "material": "Deimosite Rods", "amount": 9 }] },
-      { "id": "traxus-enhanced-muzzles", "name": "Enhanced Muzzles", "x": 64.65, "y": 46.0, "w": 6.5, "h": 10.7, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Unstable Gunmetal", "amount": 20 }] },
-      { "id": "traxus-deluxe-muzzles", "name": "Deluxe Muzzles", "x": 75.7, "y": 46.0, "w": 6.5, "h": 10.7, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Tachyon Filament", "amount": 8 }, { "tier": 1, "material": "Cetinite Rods", "amount": 3 }] },
-      { "id": "traxus-vip-5", "name": "VIP Node 5", "x": 86.9, "y": 46.3, "w": 7.6, "h": 10.5, "maxTier": 1, "isVip": true, "tierLabels": { "1": "VIP 5" }, "costs": [] },
-
-      { "id": "traxus-vip-6", "name": "VIP Node 6", "x": 31.7, "y": 63.8, "w": 6.3, "h": 10.3, "maxTier": 1, "isVip": true, "tierLabels": { "1": "VIP 6" }, "costs": [] },
-      { "id": "traxus-enhanced-optics", "name": "Enhanced Optics", "x": 42.5, "y": 63.6, "w": 7.0, "h": 10.5, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Unstable Gunmetal", "amount": 29 }] },
-      { "id": "traxus-deluxe-optics", "name": "Deluxe Optics", "x": 53.65, "y": 63.6, "w": 6.5, "h": 10.5, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Anomalous Wire", "amount": 10 }, { "tier": 1, "material": "Cetinite Rods", "amount": 3 }] },
-      { "id": "traxus-enhanced-specialty-mods", "name": "Enhanced Specialty Mods", "x": 64.65, "y": 63.6, "w": 6.5, "h": 10.5, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Altered Wire", "amount": 16 }, { "tier": 1, "material": "Deimosite Rods", "amount": 7 }] },
-      { "id": "traxus-deluxe-specialty-mods", "name": "Deluxe Specialty Mods", "x": 75.7, "y": 63.6, "w": 6.5, "h": 10.5, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Predictive Framework", "amount": 1 }, { "tier": 1, "material": "Ballistic Turbine", "amount": 1 }] },
-      { "id": "traxus-vip-7", "name": "VIP Node 7", "x": 86.9, "y": 63.8, "w": 7.6, "h": 10.3, "maxTier": 1, "isVip": true, "tierLabels": { "1": "VIP 7" }, "costs": [] }
+      {
+        "id": "traxus-overrun",
+        "name": "Overrun",
+        "x": 31.7,
+        "y": 10.5,
+        "w": 6.25,
+        "h": 10.0,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gunmetal",
+            "amount": 10
+          }
+        ]
+      },
+      {
+        "id": "traxus-retaliator",
+        "name": "Retaliator",
+        "x": 42.65,
+        "y": 10.5,
+        "w": 6.25,
+        "h": 10.0,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gunmetal",
+            "amount": 17
+          }
+        ]
+      },
+      {
+        "id": "traxus-v75-scar",
+        "name": "V75 SCAR",
+        "x": 53.65,
+        "y": 10.5,
+        "w": 6.25,
+        "h": 10.0,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Plasma Filament",
+            "amount": 12
+          },
+          {
+            "tier": 1,
+            "material": "Deimosite Rods",
+            "amount": 6
+          }
+        ]
+      },
+      {
+        "id": "traxus-kkv-9sd",
+        "name": "KKV-9SD",
+        "x": 64.65,
+        "y": 10.5,
+        "w": 6.25,
+        "h": 10.0,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Plasma Filament",
+            "amount": 23
+          },
+          {
+            "tier": 1,
+            "material": "Deimosite Rods",
+            "amount": 11
+          }
+        ]
+      },
+      {
+        "id": "traxus-vip-1",
+        "name": "VIP Node 1",
+        "x": 75.8,
+        "y": 10.2,
+        "w": 8.1,
+        "h": 11.6,
+        "maxTier": 1,
+        "isVip": true,
+        "tierLabels": {
+          "1": "VIP 1"
+        },
+        "costs": []
+      },
+      {
+        "id": "traxus-vip-2",
+        "name": "VIP Node 2",
+        "x": 86.9,
+        "y": 10.2,
+        "w": 7.6,
+        "h": 11.6,
+        "maxTier": 1,
+        "isVip": true,
+        "tierLabels": {
+          "1": "VIP 2"
+        },
+        "costs": []
+      },
+      {
+        "id": "traxus-vip-3",
+        "name": "VIP Node 3",
+        "x": 31.7,
+        "y": 28.7,
+        "w": 6.3,
+        "h": 10.5,
+        "maxTier": 1,
+        "isVip": true,
+        "tierLabels": {
+          "1": "VIP 3"
+        },
+        "costs": []
+      },
+      {
+        "id": "traxus-enhanced-chips",
+        "name": "Enhanced Chips",
+        "x": 53.65,
+        "y": 28.7,
+        "w": 6.4,
+        "h": 10.5,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gunmetal",
+            "amount": 13
+          }
+        ]
+      },
+      {
+        "id": "traxus-deluxe-chips",
+        "name": "Deluxe Chips",
+        "x": 42.65,
+        "y": 28.7,
+        "w": 6.4,
+        "h": 10.5,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Anomalous Wire",
+            "amount": 5
+          },
+          {
+            "tier": 1,
+            "material": "Deimosite Rods",
+            "amount": 13
+          }
+        ]
+      },
+      {
+        "id": "traxus-sponsorship",
+        "name": "Sponsorship [Traxus]",
+        "x": 85.2,
+        "y": 25.3,
+        "w": 9.4,
+        "h": 15.8,
+        "maxTier": 2,
+        "costs": []
+      },
+      {
+        "id": "traxus-vip-4",
+        "name": "VIP Node 4",
+        "x": 31.7,
+        "y": 46.3,
+        "w": 6.3,
+        "h": 10.5,
+        "maxTier": 1,
+        "isVip": true,
+        "tierLabels": {
+          "1": "VIP 4"
+        },
+        "costs": []
+      },
+      {
+        "id": "traxus-enhanced-mags",
+        "name": "Enhanced Mags",
+        "x": 53.65,
+        "y": 46.0,
+        "w": 7.0,
+        "h": 10.7,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gunmetal",
+            "amount": 10
+          }
+        ]
+      },
+      {
+        "id": "traxus-deluxe-mags",
+        "name": "Deluxe Mags",
+        "x": 42.5,
+        "y": 46.0,
+        "w": 6.5,
+        "h": 10.7,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Tachyon Filament",
+            "amount": 4
+          },
+          {
+            "tier": 1,
+            "material": "Deimosite Rods",
+            "amount": 9
+          }
+        ]
+      },
+      {
+        "id": "traxus-enhanced-muzzles",
+        "name": "Enhanced Muzzles",
+        "x": 64.65,
+        "y": 46.0,
+        "w": 6.5,
+        "h": 10.7,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gunmetal",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "id": "traxus-deluxe-muzzles",
+        "name": "Deluxe Muzzles",
+        "x": 75.7,
+        "y": 46.0,
+        "w": 6.5,
+        "h": 10.7,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Tachyon Filament",
+            "amount": 8
+          },
+          {
+            "tier": 1,
+            "material": "Cetinite Rods",
+            "amount": 3
+          }
+        ]
+      },
+      {
+        "id": "traxus-vip-5",
+        "name": "VIP Node 5",
+        "x": 86.9,
+        "y": 46.3,
+        "w": 7.6,
+        "h": 10.5,
+        "maxTier": 1,
+        "isVip": true,
+        "tierLabels": {
+          "1": "VIP 5"
+        },
+        "costs": []
+      },
+      {
+        "id": "traxus-vip-6",
+        "name": "VIP Node 6",
+        "x": 31.7,
+        "y": 63.8,
+        "w": 6.3,
+        "h": 10.3,
+        "maxTier": 1,
+        "isVip": true,
+        "tierLabels": {
+          "1": "VIP 6"
+        },
+        "costs": []
+      },
+      {
+        "id": "traxus-enhanced-optics",
+        "name": "Enhanced Optics",
+        "x": 53.65,
+        "y": 63.6,
+        "w": 7.0,
+        "h": 10.5,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gunmetal",
+            "amount": 29
+          }
+        ]
+      },
+      {
+        "id": "traxus-deluxe-optics",
+        "name": "Deluxe Optics",
+        "x": 42.5,
+        "y": 63.6,
+        "w": 6.5,
+        "h": 10.5,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Anomalous Wire",
+            "amount": 10
+          },
+          {
+            "tier": 1,
+            "material": "Cetinite Rods",
+            "amount": 3
+          }
+        ]
+      },
+      {
+        "id": "traxus-enhanced-specialty-mods",
+        "name": "Enhanced Specialty Mods",
+        "x": 64.65,
+        "y": 63.6,
+        "w": 6.5,
+        "h": 10.5,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Altered Wire",
+            "amount": 16
+          },
+          {
+            "tier": 1,
+            "material": "Deimosite Rods",
+            "amount": 7
+          }
+        ]
+      },
+      {
+        "id": "traxus-deluxe-specialty-mods",
+        "name": "Deluxe Specialty Mods",
+        "x": 75.7,
+        "y": 63.6,
+        "w": 6.5,
+        "h": 10.5,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Predictive Framework",
+            "amount": 1
+          },
+          {
+            "tier": 1,
+            "material": "Ballistic Turbine",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "id": "traxus-vip-7",
+        "name": "VIP Node 7",
+        "x": 86.9,
+        "y": 63.8,
+        "w": 7.6,
+        "h": 10.3,
+        "maxTier": 1,
+        "isVip": true,
+        "tierLabels": {
+          "1": "VIP 7"
+        },
+        "costs": []
+      }
     ]
   },
   {
@@ -920,45 +1784,303 @@ const FACTIONS = [
     "color": "#d178ff",
     "rgb": "209, 120, 255",
     "nodes": [
-      { "id": "mida-hot-potato", "name": "Hot Potato", "x": 32.59, "y": 9.93, "w": 6.26, "h": 9.93, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Unstable Lead", "amount": 10 }] },
-      { "id": "mida-explosives", "name": "Explosives", "x": 43.27, "y": 9.93, "w": 7.3, "h": 9.93, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Dynamic Compounds", "amount": 16 }, { "tier": 1, "material": "Surveillance Lens", "amount": 4 }] },
-      { "id": "mida-lights-out", "name": "Lights Out", "x": 53.96, "y": 9.52, "w": 8.86, "h": 14.9, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Thoughtwave Lens", "amount": 3 }, { "tier": 1, "material": "Dynamic Compounds", "amount": 14 }] },
-      { "id": "mida-equipment", "name": "Equipment", "x": 65.95, "y": 10.35, "w": 6.78, "h": 10.76, "maxTier": 2, "tierLabels": { "1": "Equipment", "2": "Equipment+" },
-        "costs": [{ "tier": 1, "material": "Surveillance Lens", "amount": 17 }, { "tier": 1, "material": "Dynamic Compounds", "amount": 6 }, { "tier": 2, "material": "Thoughtwave Lens", "amount": 4 }, { "tier": 2, "material": "Dynamic Compounds", "amount": 17 }] },
-      { "id": "mida-sponsorship", "name": "Sponsorship [Mida]", "x": 86.55, "y": 8.69, "w": 8.86, "h": 14.07, "maxTier": 2, "tierLabels": { "1": "Sponsorship", "2": "Sponsorship+" }, "costs": [] },
-      { "id": "mida-bullseye", "name": "Bullseye", "x": 32.59, "y": 26.49, "w": 6.26, "h": 12.0, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Unstable Lead", "amount": 20 }] },
-      { "id": "mida-chemist", "name": "Chemist", "x": 32.59, "y": 43.05, "w": 8.86, "h": 14.07, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Volatile Compunds", "amount": 29 }, { "tier": 1, "material": "Surveillance Lens", "amount": 4 }] },
-      { "id": "mida-eyes-open", "name": "Eyes Open", "x": 44.06, "y": 45.53, "w": 6.26, "h": 9.93, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Unstable Lead", "amount": 17 }] },
-      { "id": "mida-equipment-stock", "name": "Equipment Stock", "x": 32.59, "y": 61.67, "w": 6.26, "h": 9.93, "maxTier": 1,
-        "costs": [{ "tier": 1, "material": "Volatile Compunds", "amount": 6 }, { "tier": 1, "material": "Thoughtwave Lens", "amount": 5 }] },
-      { "id": "mida-spare-rounds", "name": "Spare Rounds", "x": 42.75, "y": 62.09, "w": 8.86, "h": 13.25, "maxTier": 2, "tierLabels": { "1": "Spare Rounds", "2": "Spare Rounds+" },
-        "costs": [{ "tier": 1, "material": "Unstable Lead", "amount": 10 }, { "tier": 2, "material": "Surveillance Lens", "amount": 22 }, { "tier": 2, "material": "Dynamic Compounds", "amount": 8 }] },
-      { "id": "mida-implant-stock", "name": "Implant Stock", "x": 54.74, "y": 27.32, "w": 6.78, "h": 10.76, "maxTier": 2, "tierLabels": { "1": "Implant Stock", "2": "Implant Stock+" },
-        "costs": [{ "tier": 1, "material": "Unstable Lead", "amount": 28 }, { "tier": 2, "material": "Volatile Compunds", "amount": 3 }, { "tier": 2, "material": "Surveillance Lens", "amount": 23 }] },
-      { "id": "mida-explosive-resistance", "name": "Explosive Resistance", "x": 65.95, "y": 27.32, "w": 8.34, "h": 10.76, "maxTier": 4, "tierLabels": { "1": "Explosive Resistance", "2": "Explosive Resistance+", "3": "VIP 1", "4": "VIP 2" },
-        "costs": [{ "tier": 1, "material": "Unstable Lead", "amount": 12 }, { "tier": 2, "material": "Surveillance Lens", "amount": 22 }, { "tier": 2, "material": "Dynamic Compounds", "amount": 8 }, { "tier": 3, "vip": true }, { "tier": 4, "vip": true }] },
-      { "id": "mida-ballistic-resistance", "name": "Ballistic Resistance", "x": 77.16, "y": 27.32, "w": 8.34, "h": 10.76, "maxTier": 4, "tierLabels": { "1": "Ballistic Resistance", "2": "Ballistic Resistance+", "3": "VIP 1", "4": "VIP 2" },
-        "costs": [{ "tier": 1, "material": "Unstable Lead", "amount": 13 }, { "tier": 2, "material": "Dynamic Compounds", "amount": 23 }, { "tier": 2, "material": "Surveillance Lens", "amount": 12 }, { "tier": 3, "vip": true }, { "tier": 4, "vip": true }] },
-      { "id": "mida-volt-resistance", "name": "Volt Resistance", "x": 88.11, "y": 27.32, "w": 6.78, "h": 10.76, "maxTier": 4, "tierLabels": { "1": "Volt Resistance", "2": "Volt Resistance+", "3": "VIP 1", "4": "VIP 2" },
-        "costs": [{ "tier": 1, "material": "Unstable Lead", "amount": 15 }, { "tier": 2, "material": "Thoughtwave Lens", "amount": 3 }, { "tier": 2, "material": "Dynamic Compounds", "amount": 19 }, { "tier": 3, "vip": true }, { "tier": 4, "vip": true }] },
-      { "id": "mida-divebomb", "name": "Divebomb", "x": 65.95, "y": 45.12, "w": 8.34, "h": 14.07, "maxTier": 3, "tierLabels": { "1": "Divebomb", "2": "VIP 1", "3": "VIP 2" },
-        "costs": [{ "tier": 1, "material": "Thoughtwave Lens", "amount": 12 }, { "tier": 1, "material": "Volatile Compunds", "amount": 5 }, { "tier": 2, "vip": true }, { "tier": 3, "vip": true }] },
-      { "id": "mida-impact-ping", "name": "Impact Ping", "x": 77.16, "y": 45.12, "w": 8.34, "h": 14.07, "maxTier": 3, "tierLabels": { "1": "Impact Ping", "2": "VIP 1", "3": "VIP 2" },
-        "costs": [{ "tier": 1, "material": "Volatile Compunds", "amount": 10 }, { "tier": 1, "material": "Thoughtwave Lens", "amount": 8 }, { "tier": 2, "vip": true }, { "tier": 3, "vip": true }] },
-      { "id": "mida-covert-recovery", "name": "Covert Recovery", "x": 88.11, "y": 45.12, "w": 6.78, "h": 14.07, "maxTier": 3, "tierLabels": { "1": "Covert Recovery", "2": "VIP 1", "3": "VIP 2" },
-        "costs": [{ "tier": 1, "material": "Biolens Seed", "amount": 1 }, { "tier": 1, "material": "Volatile Compunds", "amount": 15 }, { "tier": 2, "vip": true }, { "tier": 3, "vip": true }] },
-      { "id": "mida-sensor-case", "name": "Sensor Case", "x": 55.01, "y": 63.33, "w": 6.26, "h": 9.93, "maxTier": 3, "tierLabels": { "1": "Sensor Case", "2": "Grenade Case", "3": "VIP 1" },
-        "costs": [{ "tier": 1, "material": "Unstable Lead", "amount": 26 }, { "tier": 2, "material": "Ballistic Turbine", "amount": 1 }, { "tier": 2, "material": "Thoughtwave Lens", "amount": 18 }, { "tier": 3, "vip": true }] },
-      { "id": "mida-cardio", "name": "Cardio", "x": 66.21, "y": 63.33, "w": 8.86, "h": 14.07, "maxTier": 2, "tierLabels": { "1": "Cardio Barter", "2": "Cardio Kick" },
-        "costs": [{ "tier": 1, "material": "Unstable Lead", "amount": 22 }, { "tier": 2, "material": "Dynamic Compounds", "amount": 21 }, { "tier": 2, "material": "Surveillance Lens", "amount": 5 }] },
-      { "id": "mida-vip-1", "name": "VIP Node 1", "x": 78.73, "y": 63.33, "w": 6.26, "h": 9.93, "maxTier": 1, "isVip": true, "tierLabels": { "1": "VIP 1" }, "costs": [] },
-      { "id": "mida-vip-2", "name": "VIP Node 2", "x": 88.37, "y": 63.33, "w": 6.26, "h": 9.93, "maxTier": 1, "isVip": true, "tierLabels": { "1": "VIP 2" }, "costs": [] }
+      {
+        "id": "mida-hot-potato",
+        "name": "Hot Potato",
+        "x": 32.35,
+        "y": 9.75,
+        "w": 6.45,
+        "h": 10.15,
+        "maxTier": 1,
+        "costs": [
+          {"tier": 1, "material": "Unstable Lead", "amount": 10}
+        ]
+      },
+      {
+        "id": "mida-explosives",
+        "name": "Explosives",
+        "x": 43.05,
+        "y": 9.95,
+        "w": 7.05,
+        "h": 9.85,
+        "maxTier": 1,
+        "costs": [
+          {"tier": 1, "material": "Dynamic Compounds", "amount": 16},
+          {"tier": 1, "material": "Surveillance Lens", "amount": 4}
+        ]
+      },
+      {
+        "id": "mida-lights-out",
+        "name": "Lights Out",
+        "x": 53.7,
+        "y": 9.25,
+        "w": 8.85,
+        "h": 14.55,
+        "maxTier": 1,
+        "costs": [
+          {"tier": 1, "material": "Thoughtwave Lens", "amount": 3},
+          {"tier": 1, "material": "Dynamic Compounds", "amount": 14}
+        ]
+      },
+      {
+        "id": "mida-equipment",
+        "name": "Equipment",
+        "x": 65.45,
+        "y": 10.2,
+        "w": 6.85,
+        "h": 10.6,
+        "maxTier": 2,
+        "tierLabels": {"1": "Equipment", "2": "Equipment+"},
+        "costs": [
+          {"tier": 1, "material": "Surveillance Lens", "amount": 17},
+          {"tier": 1, "material": "Dynamic Compounds", "amount": 6},
+          {"tier": 2, "material": "Thoughtwave Lens", "amount": 4},
+          {"tier": 2, "material": "Dynamic Compounds", "amount": 17}
+        ]
+      },
+      {
+        "id": "mida-sponsorship",
+        "name": "Sponsorship [Mida]",
+        "x": 86.25,
+        "y": 8.65,
+        "w": 8.95,
+        "h": 13.95,
+        "maxTier": 2,
+        "tierLabels": {"1": "Sponsorship", "2": "Sponsorship+"},
+        "costs": []
+      },
+      {
+        "id": "mida-bullseye",
+        "name": "Bullseye",
+        "x": 32.45,
+        "y": 26.3,
+        "w": 6.3,
+        "h": 11.75,
+        "maxTier": 1,
+        "costs": [
+          {"tier": 1, "material": "Unstable Lead", "amount": 20}
+        ]
+      },
+      {
+        "id": "mida-chemist",
+        "name": "Chemist",
+        "x": 31.05,
+        "y": 42.95,
+        "w": 9.25,
+        "h": 13.95,
+        "maxTier": 1,
+        "costs": [
+          {"tier": 1, "material": "Volatile Compunds", "amount": 29},
+          {"tier": 1, "material": "Surveillance Lens", "amount": 4}
+        ]
+      },
+      {
+        "id": "mida-eyes-open",
+        "name": "Eyes Open",
+        "x": 43.8,
+        "y": 45.45,
+        "w": 6.25,
+        "h": 9.75,
+        "maxTier": 1,
+        "costs": [
+          {"tier": 1, "material": "Unstable Lead", "amount": 17}
+        ]
+      },
+      {
+        "id": "mida-implant-stock",
+        "name": "Implant Stock",
+        "x": 54.55,
+        "y": 27.25,
+        "w": 6.7,
+        "h": 10.55,
+        "maxTier": 2,
+        "tierLabels": {"1": "Implant Stock", "2": "Implant Stock+"},
+        "costs": [
+          {"tier": 1, "material": "Unstable Lead", "amount": 28},
+          {"tier": 2, "material": "Volatile Compunds", "amount": 3},
+          {"tier": 2, "material": "Surveillance Lens", "amount": 23}
+        ]
+      },
+      {
+        "id": "mida-explosive-resistance",
+        "name": "Explosive Resistance",
+        "x": 65.55,
+        "y": 27.15,
+        "w": 8.45,
+        "h": 10.65,
+        "maxTier": 4,
+        "tierLabels": {"1": "Explosive Resistance", "2": "Explosive Resistance+", "3": "VIP 1", "4": "VIP 2"},
+        "costs": [
+          {"tier": 1, "material": "Unstable Lead", "amount": 12},
+          {"tier": 2, "material": "Surveillance Lens", "amount": 22},
+          {"tier": 2, "material": "Dynamic Compounds", "amount": 8},
+          {"tier": 3, "vip": true},
+          {"tier": 4, "vip": true}
+        ]
+      },
+      {
+        "id": "mida-ballistic-resistance",
+        "name": "Ballistic Resistance",
+        "x": 76.9,
+        "y": 27.15,
+        "w": 8.45,
+        "h": 10.65,
+        "maxTier": 4,
+        "tierLabels": {"1": "Ballistic Resistance", "2": "Ballistic Resistance+", "3": "VIP 1", "4": "VIP 2"},
+        "costs": [
+          {"tier": 1, "material": "Unstable Lead", "amount": 13},
+          {"tier": 2, "material": "Dynamic Compounds", "amount": 23},
+          {"tier": 2, "material": "Surveillance Lens", "amount": 12},
+          {"tier": 3, "vip": true},
+          {"tier": 4, "vip": true}
+        ]
+      },
+      {
+        "id": "mida-volt-resistance",
+        "name": "Volt Resistance",
+        "x": 87.65,
+        "y": 27.15,
+        "w": 6.9,
+        "h": 10.65,
+        "maxTier": 4,
+        "tierLabels": {"1": "Volt Resistance", "2": "Volt Resistance+", "3": "VIP 1", "4": "VIP 2"},
+        "costs": [
+          {"tier": 1, "material": "Unstable Lead", "amount": 15},
+          {"tier": 2, "material": "Thoughtwave Lens", "amount": 3},
+          {"tier": 2, "material": "Dynamic Compounds", "amount": 19},
+          {"tier": 3, "vip": true},
+          {"tier": 4, "vip": true}
+        ]
+      },
+      {
+        "id": "mida-divebomb",
+        "name": "Divebomb",
+        "x": 65.45,
+        "y": 44.85,
+        "w": 8.45,
+        "h": 13.7,
+        "maxTier": 3,
+        "tierLabels": {"1": "Divebomb", "2": "VIP 1", "3": "VIP 2"},
+        "costs": [
+          {"tier": 1, "material": "Thoughtwave Lens", "amount": 12},
+          {"tier": 1, "material": "Volatile Compunds", "amount": 5},
+          {"tier": 2, "vip": true},
+          {"tier": 3, "vip": true}
+        ]
+      },
+      {
+        "id": "mida-impact-ping",
+        "name": "Impact Ping",
+        "x": 76.9,
+        "y": 44.85,
+        "w": 8.45,
+        "h": 13.7,
+        "maxTier": 3,
+        "tierLabels": {"1": "Impact Ping", "2": "VIP 1", "3": "VIP 2"},
+        "costs": [
+          {"tier": 1, "material": "Volatile Compunds", "amount": 10},
+          {"tier": 1, "material": "Thoughtwave Lens", "amount": 8},
+          {"tier": 2, "vip": true},
+          {"tier": 3, "vip": true}
+        ]
+      },
+      {
+        "id": "mida-covert-recovery",
+        "name": "Covert Recovery",
+        "x": 87.65,
+        "y": 44.85,
+        "w": 6.9,
+        "h": 13.7,
+        "maxTier": 3,
+        "tierLabels": {"1": "Covert Recovery", "2": "VIP 1", "3": "VIP 2"},
+        "costs": [
+          {"tier": 1, "material": "Biolens Seed", "amount": 1},
+          {"tier": 1, "material": "Volatile Compunds", "amount": 15},
+          {"tier": 2, "vip": true},
+          {"tier": 3, "vip": true}
+        ]
+      },
+      {
+        "id": "mida-equipment-stock",
+        "name": "Equipment Stock",
+        "x": 32.35,
+        "y": 61.45,
+        "w": 6.3,
+        "h": 9.85,
+        "maxTier": 1,
+        "costs": [
+          {"tier": 1, "material": "Volatile Compunds", "amount": 6},
+          {"tier": 1, "material": "Thoughtwave Lens", "amount": 5}
+        ]
+      },
+      {
+        "id": "mida-vip-1",
+        "name": "VIP Node 1",
+        "x": 42.9,
+        "y": 61.2,
+        "w": 6.25,
+        "h": 10.2,
+        "maxTier": 1,
+        "isVip": true,
+        "tierLabels": {"1": "VIP 1"},
+        "costs": []
+      },
+      {
+        "id": "mida-spare-rounds",
+        "name": "Spare Rounds",
+        "x": 54.65,
+        "y": 61.6,
+        "w": 6.85,
+        "h": 10.1,
+        "maxTier": 2,
+        "tierLabels": {"1": "Spare Rounds", "2": "Spare Rounds+"},
+        "costs": [
+          {"tier": 1, "material": "Unstable Lead", "amount": 10},
+          {"tier": 2, "material": "Surveillance Lens", "amount": 22},
+          {"tier": 2, "material": "Dynamic Compounds", "amount": 8}
+        ]
+      },
+      {
+        "id": "mida-sensor-case",
+        "name": "Sensor Case / Grenade Case",
+        "x": 64.25,
+        "y": 60.45,
+        "w": 9.35,
+        "h": 13.95,
+        "maxTier": 3,
+        "tierLabels": {"1": "Sensor Case", "2": "Grenade Case", "3": "VIP 1"},
+        "costs": [
+          {"tier": 1, "material": "Unstable Lead", "amount": 26},
+          {"tier": 2, "material": "Ballistic Turbine", "amount": 1},
+          {"tier": 2, "material": "Thoughtwave Lens", "amount": 18},
+          {"tier": 3, "vip": true}
+        ]
+      },
+      {
+        "id": "mida-cardio-barter",
+        "name": "Cardio Barter",
+        "x": 77.65,
+        "y": 62.95,
+        "w": 6.45,
+        "h": 9.8,
+        "maxTier": 1,
+        "costs": [
+          {"tier": 1, "material": "Unstable Lead", "amount": 22}
+        ]
+      },
+      {
+        "id": "mida-cardio-kick",
+        "name": "Cardio Kick",
+        "x": 87.65,
+        "y": 62.95,
+        "w": 6.45,
+        "h": 9.8,
+        "maxTier": 1,
+        "costs": [
+          {"tier": 1, "material": "Dynamic Compounds", "amount": 21},
+          {"tier": 1, "material": "Surveillance Lens", "amount": 5}
+        ]
+      }
     ]
   },
   {
@@ -968,555 +2090,555 @@ const FACTIONS = [
     "color": "#ff1717",
     "rgb": "255, 23, 23",
     "nodes": [
-        {
-            "id": "arachne-twin-tap-exchange",
-            "name": "Twin Tap Exchange",
-            "x": 30.1,
-            "y": 7.85,
-            "w": 8.65,
-            "h": 12.8,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Gel",
-                    "amount": 10
-                }
-            ]
-        },
-        {
-            "id": "arachne-mpps-railgun",
-            "name": "MPPS Railgun",
-            "x": 41.0,
-            "y": 8.45,
-            "w": 8.65,
-            "h": 11.8,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Gel",
-                    "amount": 20
-                }
-            ]
-        },
-        {
-            "id": "arachne-weapons",
-            "name": "Weapons",
-            "x": 53.0,
-            "y": 9.35,
-            "w": 6.15,
-            "h": 8.75,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Gel",
-                    "amount": 20
-                }
-            ]
-        },
-        {
-            "id": "arachne-upped-arsenal",
-            "name": "Upped Arsenal+",
-            "x": 63.75,
-            "y": 8.7,
-            "w": 6.75,
-            "h": 10.25,
-            "maxTier": 3,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Drone Node",
-                    "amount": 20
-                },
-                {
-                    "tier": 1,
-                    "material": "Drone Resin",
-                    "amount": 6
-                },
-                {
-                    "tier": 2,
-                    "material": "Biomata Node",
-                    "amount": 6
-                },
-                {
-                    "tier": 2,
-                    "material": "Drone Resin",
-                    "amount": 24
-                },
-                {
-                    "tier": 3,
-                    "material": "Enzyme Replicator",
-                    "amount": 1
-                },
-                {
-                    "tier": 3,
-                    "material": "Biomata Resin",
-                    "amount": 15
-                }
-            ],
-            "tierLabels": {
-                "1": "Upped Arsenal",
-                "2": "Upped Arsenal+",
-                "3": "Upped Arsenal++"
-            }
-        },
-        {
-            "id": "arachne-deployables",
-            "name": "Deployables",
-            "x": 74.55,
-            "y": 9.8,
-            "w": 5.8,
-            "h": 9.0,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Biomata Resin",
-                    "amount": 3
-                },
-                {
-                    "tier": 1,
-                    "material": "Drone Node",
-                    "amount": 23
-                }
-            ]
-        },
-        {
-            "id": "arachne-sponsorship",
-            "name": "Sponsorship+ [Arachne]",
-            "x": 84.05,
-            "y": 7.8,
-            "w": 9.15,
-            "h": 13.4,
-            "maxTier": 2,
-            "costs": [],
-            "tierLabels": {
-                "1": "Sponsorship",
-                "2": "Sponsorship+"
-            }
-        },
-        {
-            "id": "arachne-precision-mods",
-            "name": "Precision Mods+",
-            "x": 31.25,
-            "y": 27.5,
-            "w": 6.05,
-            "h": 9.1,
-            "maxTier": 3,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Gel",
-                    "amount": 10
-                },
-                {
-                    "tier": 2,
-                    "material": "Biomata Resin",
-                    "amount": 4
-                },
-                {
-                    "tier": 2,
-                    "material": "Drone Node",
-                    "amount": 29
-                },
-                {
-                    "tier": 3,
-                    "material": "Biomata Resin",
-                    "amount": 8
-                },
-                {
-                    "tier": 3,
-                    "material": "Biomata Node",
-                    "amount": 6
-                }
-            ],
-            "tierLabels": {
-                "1": "Precision Mods",
-                "2": "Precision Mods+",
-                "3": "Precision Mods++"
-            }
-        },
-        {
-            "id": "arachne-railgun-mods",
-            "name": "Railgun Mods+",
-            "x": 42.25,
-            "y": 27.7,
-            "w": 6.05,
-            "h": 9.1,
-            "maxTier": 3,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Gel",
-                    "amount": 17
-                },
-                {
-                    "tier": 2,
-                    "material": "Biomata Node",
-                    "amount": 6
-                },
-                {
-                    "tier": 2,
-                    "material": "Drone Resin",
-                    "amount": 24
-                },
-                {
-                    "tier": 3,
-                    "material": "Biomata Node",
-                    "amount": 10
-                },
-                {
-                    "tier": 3,
-                    "material": "Biomata Resin",
-                    "amount": 5
-                }
-            ],
-            "tierLabels": {
-                "1": "Railgun Mods",
-                "2": "Railgun Mods+",
-                "3": "Railgun Mods++"
-            }
-        },
-        {
-            "id": "arachne-bolstered-arms",
-            "name": "Bolstered Arms+",
-            "x": 53.05,
-            "y": 27.7,
-            "w": 6.05,
-            "h": 9.1,
-            "maxTier": 2,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Gel",
-                    "amount": 29
-                },
-                {
-                    "tier": 2,
-                    "material": "Biomata Node",
-                    "amount": 3
-                },
-                {
-                    "tier": 2,
-                    "material": "Drone Resin",
-                    "amount": 14
-                }
-            ],
-            "tierLabels": {
-                "1": "Bolstered Arms",
-                "2": "Bolstered Arms+"
-            }
-        },
-        {
-            "id": "arachne-vip-star-1",
-            "name": "VIP Node 1",
-            "x": 62.65,
-            "y": 25.7,
-            "w": 8.9,
-            "h": 12.7,
-            "maxTier": 1,
-            "isVip": true,
-            "tierLabels": {
-                "1": "VIP 1"
-            },
-            "costs": []
-        },
-        {
-            "id": "arachne-frost-mine",
-            "name": "Frost Mine",
-            "x": 73.45,
-            "y": 25.9,
-            "w": 8.55,
-            "h": 13.2,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Gel",
-                    "amount": 22
-                }
-            ]
-        },
-        {
-            "id": "arachne-got-em",
-            "name": "Got Em",
-            "x": 84.35,
-            "y": 26.05,
-            "w": 8.65,
-            "h": 13.0,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Drone Node",
-                    "amount": 12
-                },
-                {
-                    "tier": 1,
-                    "material": "Drone Resin",
-                    "amount": 4
-                }
-            ]
-        },
-        {
-            "id": "arachne-mod-stock",
-            "name": "Mod Stock+",
-            "x": 31.25,
-            "y": 44.9,
-            "w": 6.05,
-            "h": 9.2,
-            "maxTier": 2,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Gel",
-                    "amount": 26
-                },
-                {
-                    "tier": 2,
-                    "material": "Drone Resin",
-                    "amount": 15
-                },
-                {
-                    "tier": 2,
-                    "material": "Drone Node",
-                    "amount": 9
-                }
-            ],
-            "tierLabels": {
-                "1": "Mod Stock",
-                "2": "Mod Stock+"
-            }
-        },
-        {
-            "id": "arachne-implant-stock",
-            "name": "Implant Stock",
-            "x": 53.05,
-            "y": 44.9,
-            "w": 6.25,
-            "h": 9.4,
-            "maxTier": 2,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Gel",
-                    "amount": 26
-                },
-                {
-                    "tier": 2,
-                    "material": "Biomata Resin",
-                    "amount": 3
-                },
-                {
-                    "tier": 2,
-                    "material": "Drone Node",
-                    "amount": 23
-                }
-            ],
-            "tierLabels": {
-                "1": "Implant Stock",
-                "2": "Implant Stock+"
-            }
-        },
-        {
-            "id": "arachne-edge-runner",
-            "name": "Edge//Runner",
-            "x": 64.05,
-            "y": 44.2,
-            "w": 8.65,
-            "h": 10.3,
-            "maxTier": 4,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Gel",
-                    "amount": 12
-                },
-                {
-                    "tier": 2,
-                    "material": "Drone Node",
-                    "amount": 29
-                },
-                {
-                    "tier": 2,
-                    "material": "Drone Resin",
-                    "amount": 10
-                },
-                {
-                    "tier": 3,
-                    "vip": true
-                },
-                {
-                    "tier": 4,
-                    "vip": true
-                }
-            ],
-            "tierLabels": {
-                "1": "Edge//Runner",
-                "2": "Edge//Runner+",
-                "3": "VIP 1",
-                "4": "VIP 2"
-            }
-        },
-        {
-            "id": "arachne-parting-gift",
-            "name": "Parting Gift",
-            "x": 75.55,
-            "y": 44.9,
-            "w": 6.35,
-            "h": 9.5,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Gel",
-                    "amount": 13
-                }
-            ]
-        },
-        {
-            "id": "arachne-tox-injectors",
-            "name": "Tox Injectors",
-            "x": 86.55,
-            "y": 44.9,
-            "w": 6.35,
-            "h": 9.5,
-            "maxTier": 2,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Gel",
-                    "amount": 15
-                },
-                {
-                    "tier": 2,
-                    "material": "Biomata Node",
-                    "amount": 3
-                },
-                {
-                    "tier": 2,
-                    "material": "Drone Resin",
-                    "amount": 19
-                }
-            ],
-            "tierLabels": {
-                "1": "Tox Injectors",
-                "2": "Tox Injectors+"
-            }
-        },
-        {
-            "id": "arachne-weapon-mods",
-            "name": "Weapon Mods+",
-            "x": 31.25,
-            "y": 61.95,
-            "w": 6.05,
-            "h": 9.2,
-            "maxTier": 3,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Drone Resin",
-                    "amount": 11
-                },
-                {
-                    "tier": 1,
-                    "material": "Drone Node",
-                    "amount": 5
-                },
-                {
-                    "tier": 2,
-                    "material": "Biomata Resin",
-                    "amount": 3
-                },
-                {
-                    "tier": 2,
-                    "material": "Drone Node",
-                    "amount": 32
-                },
-                {
-                    "tier": 3,
-                    "material": "Reflex Coil",
-                    "amount": 1
-                },
-                {
-                    "tier": 3,
-                    "material": "Biomata Node",
-                    "amount": 18
-                }
-            ],
-            "tierLabels": {
-                "1": "Weapon Mods",
-                "2": "Weapon Mods+",
-                "3": "Weapon Mods++"
-            }
-        },
-        {
-            "id": "arachne-fight-club",
-            "name": "Fight Club",
-            "x": 62.1,
-            "y": 60.8,
-            "w": 9.05,
-            "h": 13.4,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Biomata Resin",
-                    "amount": 9
-                },
-                {
-                    "tier": 1,
-                    "material": "Biomata Node",
-                    "amount": 6
-                }
-            ]
-        },
-        {
-            "id": "arachne-frenzy",
-            "name": "Frenzy",
-            "x": 73.45,
-            "y": 60.9,
-            "w": 9.0,
-            "h": 13.3,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Biomata Resin",
-                    "amount": 10
-                },
-                {
-                    "tier": 1,
-                    "material": "Biomata Node",
-                    "amount": 8
-                }
-            ]
-        },
-        {
-            "id": "arachne-immune-response",
-            "name": "Immune Response",
-            "x": 84.35,
-            "y": 60.9,
-            "w": 9.0,
-            "h": 13.3,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Reflex Coil",
-                    "amount": 1
-                },
-                {
-                    "tier": 1,
-                    "material": "Biomata Node",
-                    "amount": 18
-                }
-            ]
+      {
+        "id": "arachne-twin-tap-exchange",
+        "name": "Twin Tap Exchange",
+        "x": 30.1,
+        "y": 7.85,
+        "w": 8.65,
+        "h": 12.8,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gel",
+            "amount": 10
+          }
+        ]
+      },
+      {
+        "id": "arachne-mpps-railgun",
+        "name": "MPPS Railgun",
+        "x": 41.0,
+        "y": 8.45,
+        "w": 8.65,
+        "h": 11.8,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gel",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "id": "arachne-weapons",
+        "name": "Weapons",
+        "x": 53.0,
+        "y": 9.35,
+        "w": 6.15,
+        "h": 8.75,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gel",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "id": "arachne-upped-arsenal",
+        "name": "Upped Arsenal+",
+        "x": 63.75,
+        "y": 8.7,
+        "w": 6.75,
+        "h": 10.25,
+        "maxTier": 3,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Drone Node",
+            "amount": 20
+          },
+          {
+            "tier": 1,
+            "material": "Drone Resin",
+            "amount": 6
+          },
+          {
+            "tier": 2,
+            "material": "Biomata Node",
+            "amount": 6
+          },
+          {
+            "tier": 2,
+            "material": "Drone Resin",
+            "amount": 24
+          },
+          {
+            "tier": 3,
+            "material": "Enzyme Replicator",
+            "amount": 1
+          },
+          {
+            "tier": 3,
+            "material": "Biomata Resin",
+            "amount": 15
+          }
+        ],
+        "tierLabels": {
+          "1": "Upped Arsenal",
+          "2": "Upped Arsenal+",
+          "3": "Upped Arsenal++"
         }
+      },
+      {
+        "id": "arachne-deployables",
+        "name": "Deployables",
+        "x": 74.55,
+        "y": 9.8,
+        "w": 5.8,
+        "h": 9.0,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Biomata Resin",
+            "amount": 3
+          },
+          {
+            "tier": 1,
+            "material": "Drone Node",
+            "amount": 23
+          }
+        ]
+      },
+      {
+        "id": "arachne-sponsorship",
+        "name": "Sponsorship+ [Arachne]",
+        "x": 84.05,
+        "y": 7.8,
+        "w": 9.15,
+        "h": 13.4,
+        "maxTier": 2,
+        "costs": [],
+        "tierLabels": {
+          "1": "Sponsorship",
+          "2": "Sponsorship+"
+        }
+      },
+      {
+        "id": "arachne-precision-mods",
+        "name": "Precision Mods+",
+        "x": 31.25,
+        "y": 27.5,
+        "w": 6.05,
+        "h": 9.1,
+        "maxTier": 3,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gel",
+            "amount": 10
+          },
+          {
+            "tier": 2,
+            "material": "Biomata Resin",
+            "amount": 4
+          },
+          {
+            "tier": 2,
+            "material": "Drone Node",
+            "amount": 29
+          },
+          {
+            "tier": 3,
+            "material": "Biomata Resin",
+            "amount": 8
+          },
+          {
+            "tier": 3,
+            "material": "Biomata Node",
+            "amount": 6
+          }
+        ],
+        "tierLabels": {
+          "1": "Precision Mods",
+          "2": "Precision Mods+",
+          "3": "Precision Mods++"
+        }
+      },
+      {
+        "id": "arachne-railgun-mods",
+        "name": "Railgun Mods+",
+        "x": 42.25,
+        "y": 27.7,
+        "w": 6.05,
+        "h": 9.1,
+        "maxTier": 3,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gel",
+            "amount": 17
+          },
+          {
+            "tier": 2,
+            "material": "Biomata Node",
+            "amount": 6
+          },
+          {
+            "tier": 2,
+            "material": "Drone Resin",
+            "amount": 24
+          },
+          {
+            "tier": 3,
+            "material": "Biomata Node",
+            "amount": 10
+          },
+          {
+            "tier": 3,
+            "material": "Biomata Resin",
+            "amount": 5
+          }
+        ],
+        "tierLabels": {
+          "1": "Railgun Mods",
+          "2": "Railgun Mods+",
+          "3": "Railgun Mods++"
+        }
+      },
+      {
+        "id": "arachne-bolstered-arms",
+        "name": "Bolstered Arms+",
+        "x": 53.05,
+        "y": 27.7,
+        "w": 6.05,
+        "h": 9.1,
+        "maxTier": 2,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gel",
+            "amount": 29
+          },
+          {
+            "tier": 2,
+            "material": "Biomata Node",
+            "amount": 3
+          },
+          {
+            "tier": 2,
+            "material": "Drone Resin",
+            "amount": 14
+          }
+        ],
+        "tierLabels": {
+          "1": "Bolstered Arms",
+          "2": "Bolstered Arms+"
+        }
+      },
+      {
+        "id": "arachne-vip-star-1",
+        "name": "VIP Node 1",
+        "x": 62.65,
+        "y": 25.7,
+        "w": 8.9,
+        "h": 12.7,
+        "maxTier": 1,
+        "isVip": true,
+        "tierLabels": {
+          "1": "VIP 1"
+        },
+        "costs": []
+      },
+      {
+        "id": "arachne-frost-mine",
+        "name": "Frost Mine",
+        "x": 73.45,
+        "y": 25.9,
+        "w": 8.55,
+        "h": 13.2,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gel",
+            "amount": 22
+          }
+        ]
+      },
+      {
+        "id": "arachne-got-em",
+        "name": "Got Em",
+        "x": 84.35,
+        "y": 26.05,
+        "w": 8.65,
+        "h": 13.0,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Drone Node",
+            "amount": 12
+          },
+          {
+            "tier": 1,
+            "material": "Drone Resin",
+            "amount": 4
+          }
+        ]
+      },
+      {
+        "id": "arachne-mod-stock",
+        "name": "Mod Stock+",
+        "x": 31.25,
+        "y": 44.9,
+        "w": 6.05,
+        "h": 9.2,
+        "maxTier": 2,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gel",
+            "amount": 26
+          },
+          {
+            "tier": 2,
+            "material": "Drone Resin",
+            "amount": 15
+          },
+          {
+            "tier": 2,
+            "material": "Drone Node",
+            "amount": 9
+          }
+        ],
+        "tierLabels": {
+          "1": "Mod Stock",
+          "2": "Mod Stock+"
+        }
+      },
+      {
+        "id": "arachne-implant-stock",
+        "name": "Implant Stock",
+        "x": 53.05,
+        "y": 44.9,
+        "w": 6.25,
+        "h": 9.4,
+        "maxTier": 2,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gel",
+            "amount": 26
+          },
+          {
+            "tier": 2,
+            "material": "Biomata Resin",
+            "amount": 3
+          },
+          {
+            "tier": 2,
+            "material": "Drone Node",
+            "amount": 23
+          }
+        ],
+        "tierLabels": {
+          "1": "Implant Stock",
+          "2": "Implant Stock+"
+        }
+      },
+      {
+        "id": "arachne-edge-runner",
+        "name": "Edge//Runner",
+        "x": 64.05,
+        "y": 44.2,
+        "w": 8.65,
+        "h": 10.3,
+        "maxTier": 4,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gel",
+            "amount": 12
+          },
+          {
+            "tier": 2,
+            "material": "Drone Node",
+            "amount": 29
+          },
+          {
+            "tier": 2,
+            "material": "Drone Resin",
+            "amount": 10
+          },
+          {
+            "tier": 3,
+            "vip": true
+          },
+          {
+            "tier": 4,
+            "vip": true
+          }
+        ],
+        "tierLabels": {
+          "1": "Edge//Runner",
+          "2": "Edge//Runner+",
+          "3": "VIP 1",
+          "4": "VIP 2"
+        }
+      },
+      {
+        "id": "arachne-parting-gift",
+        "name": "Parting Gift",
+        "x": 75.55,
+        "y": 44.9,
+        "w": 6.35,
+        "h": 9.5,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gel",
+            "amount": 13
+          }
+        ]
+      },
+      {
+        "id": "arachne-tox-injectors",
+        "name": "Tox Injectors",
+        "x": 86.55,
+        "y": 44.9,
+        "w": 6.35,
+        "h": 9.5,
+        "maxTier": 2,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Gel",
+            "amount": 15
+          },
+          {
+            "tier": 2,
+            "material": "Biomata Node",
+            "amount": 3
+          },
+          {
+            "tier": 2,
+            "material": "Drone Resin",
+            "amount": 19
+          }
+        ],
+        "tierLabels": {
+          "1": "Tox Injectors",
+          "2": "Tox Injectors+"
+        }
+      },
+      {
+        "id": "arachne-weapon-mods",
+        "name": "Weapon Mods+",
+        "x": 31.25,
+        "y": 61.95,
+        "w": 6.05,
+        "h": 9.2,
+        "maxTier": 3,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Drone Resin",
+            "amount": 11
+          },
+          {
+            "tier": 1,
+            "material": "Drone Node",
+            "amount": 5
+          },
+          {
+            "tier": 2,
+            "material": "Biomata Resin",
+            "amount": 3
+          },
+          {
+            "tier": 2,
+            "material": "Drone Node",
+            "amount": 32
+          },
+          {
+            "tier": 3,
+            "material": "Reflex Coil",
+            "amount": 1
+          },
+          {
+            "tier": 3,
+            "material": "Biomata Node",
+            "amount": 18
+          }
+        ],
+        "tierLabels": {
+          "1": "Weapon Mods",
+          "2": "Weapon Mods+",
+          "3": "Weapon Mods++"
+        }
+      },
+      {
+        "id": "arachne-fight-club",
+        "name": "Fight Club",
+        "x": 62.1,
+        "y": 60.8,
+        "w": 9.05,
+        "h": 13.4,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Biomata Resin",
+            "amount": 9
+          },
+          {
+            "tier": 1,
+            "material": "Biomata Node",
+            "amount": 6
+          }
+        ]
+      },
+      {
+        "id": "arachne-frenzy",
+        "name": "Frenzy",
+        "x": 73.45,
+        "y": 60.9,
+        "w": 9.0,
+        "h": 13.3,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Biomata Resin",
+            "amount": 10
+          },
+          {
+            "tier": 1,
+            "material": "Biomata Node",
+            "amount": 8
+          }
+        ]
+      },
+      {
+        "id": "arachne-immune-response",
+        "name": "Immune Response",
+        "x": 84.35,
+        "y": 60.9,
+        "w": 9.0,
+        "h": 13.3,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Reflex Coil",
+            "amount": 1
+          },
+          {
+            "tier": 1,
+            "material": "Biomata Node",
+            "amount": 18
+          }
+        ]
+      }
     ]
-},
+  },
   {
     "id": "sekiguchi",
     "name": "Sekiguchi",
@@ -1524,438 +2646,438 @@ const FACTIONS = [
     "color": "#86ffd1",
     "rgb": "134, 255, 209",
     "nodes": [
-        {
-            "id": "sekiguchi-energy-amp-barter",
-            "name": "Energy Amp Barter",
-            "x": 32.19,
-            "y": 11.47,
-            "w": 6.49,
-            "h": 10.24,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Diode",
-                    "amount": 22
-                }
-            ]
-        },
-        {
-            "id": "sekiguchi-energy-amp",
-            "name": "Energy Amp",
-            "x": 43.35,
-            "y": 9.83,
-            "w": 9.35,
-            "h": 13.92,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Storage Drive",
-                    "amount": 23
-                },
-                {
-                    "tier": 1,
-                    "material": "Fractal Circuit",
-                    "amount": 12
-                }
-            ]
-        },
-        {
-            "id": "sekiguchi-sponsorship",
-            "name": "Sponsorship+ [Sekiguchi]",
-            "x": 86.19,
-            "y": 9.83,
-            "w": 8.83,
-            "h": 13.92,
-            "maxTier": 2,
-            "costs": [],
-            "tierLabels": {
-                "1": "Sponsorship",
-                "2": "Sponsorship+"
-            }
-        },
-        {
-            "id": "sekiguchi-momentum",
-            "name": "Momentum",
-            "x": 32.19,
-            "y": 29.07,
-            "w": 6.75,
-            "h": 11.06,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Diode",
-                    "amount": 17
-                }
-            ]
-        },
-        {
-            "id": "sekiguchi-overwatch",
-            "name": "Overwatch",
-            "x": 43.35,
-            "y": 29.07,
-            "w": 6.75,
-            "h": 11.06,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Diode",
-                    "amount": 17
-                }
-            ]
-        },
-        {
-            "id": "sekiguchi-role-player",
-            "name": "Role Player",
-            "x": 54.52,
-            "y": 29.07,
-            "w": 6.75,
-            "h": 11.06,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Diode",
-                    "amount": 17
-                }
-            ]
-        },
-        {
-            "id": "sekiguchi-cradle-efficiency",
-            "name": "Cradle Efficiency+",
-            "x": 75.8,
-            "y": 26.62,
-            "w": 9.61,
-            "h": 15.15,
-            "maxTier": 3,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Fractal Circuit",
-                    "amount": 19
-                },
-                {
-                    "tier": 1,
-                    "material": "Storage Drive",
-                    "amount": 4
-                },
-                {
-                    "tier": 2,
-                    "material": "Paradox Circuit",
-                    "amount": 4
-                },
-                {
-                    "tier": 2,
-                    "material": "Storage Drive",
-                    "amount": 17
-                },
-                {
-                    "tier": 3,
-                    "material": "Predictive Framework",
-                    "amount": 1
-                },
-                {
-                    "tier": 3,
-                    "material": "Paradox Circuit",
-                    "amount": 18
-                }
-            ],
-            "tierLabels": {
-                "1": "Cradle Efficiency",
-                "2": "Cradle Efficiency+",
-                "3": "Cradle Efficiency++"
-            }
-        },
-        {
-            "id": "sekiguchi-vip-1",
-            "name": "VIP Node 1",
-            "x": 87.49,
-            "y": 29.07,
-            "w": 6.75,
-            "h": 10.65,
-            "maxTier": 1,
-            "isVip": true,
-            "tierLabels": {
-                "1": "VIP 1"
-            },
-            "costs": []
-        },
-        {
-            "id": "sekiguchi-momentum-plus",
-            "name": "Momentum+",
-            "x": 32.19,
-            "y": 45.86,
-            "w": 6.75,
-            "h": 11.06,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Storage Drive",
-                    "amount": 15
-                },
-                {
-                    "tier": 1,
-                    "material": "Fractal Circuit",
-                    "amount": 9
-                }
-            ]
-        },
-        {
-            "id": "sekiguchi-overwatch-plus",
-            "name": "Overwatch+",
-            "x": 43.35,
-            "y": 45.86,
-            "w": 6.75,
-            "h": 11.06,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Storage Drive",
-                    "amount": 15
-                },
-                {
-                    "tier": 1,
-                    "material": "Fractal Circuit",
-                    "amount": 9
-                }
-            ]
-        },
-        {
-            "id": "sekiguchi-role-player-plus",
-            "name": "Role Player+",
-            "x": 54.52,
-            "y": 45.86,
-            "w": 6.75,
-            "h": 11.06,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Storage Drive",
-                    "amount": 15
-                },
-                {
-                    "tier": 1,
-                    "material": "Fractal Circuit",
-                    "amount": 9
-                }
-            ]
-        },
-        {
-            "id": "sekiguchi-energy-reservoir",
-            "name": "Energy Reservoir+",
-            "x": 65.68,
-            "y": 45.86,
-            "w": 8.31,
-            "h": 11.06,
-            "maxTier": 2,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Diode",
-                    "amount": 16
-                },
-                {
-                    "tier": 2,
-                    "material": "Fractal Circuit",
-                    "amount": 4
-                },
-                {
-                    "tier": 2,
-                    "material": "Storage Drive",
-                    "amount": 6
-                }
-            ],
-            "tierLabels": {
-                "1": "Energy Reservoir",
-                "2": "Energy Reservoir+"
-            }
-        },
-        {
-            "id": "sekiguchi-herd-immunity",
-            "name": "Herd Immunity+",
-            "x": 76.58,
-            "y": 45.86,
-            "w": 8.31,
-            "h": 11.06,
-            "maxTier": 2,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Diode",
-                    "amount": 8
-                },
-                {
-                    "tier": 2,
-                    "material": "Fractal Circuit",
-                    "amount": 7
-                },
-                {
-                    "tier": 2,
-                    "material": "Storage Drive",
-                    "amount": 9
-                }
-            ],
-            "tierLabels": {
-                "1": "Herd Immunity",
-                "2": "Herd Immunity+"
-            }
-        },
-        {
-            "id": "sekiguchi-balancing-act",
-            "name": "Balancing Act",
-            "x": 87.49,
-            "y": 45.86,
-            "w": 6.75,
-            "h": 11.06,
-            "maxTier": 2,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Unstable Diode",
-                    "amount": 15
-                },
-                {
-                    "tier": 2,
-                    "material": "Paradox Circuit",
-                    "amount": 12
-                },
-                {
-                    "tier": 2,
-                    "material": "Storage Drive",
-                    "amount": 19
-                }
-            ],
-            "tierLabels": {
-                "1": "Balancing Act",
-                "2": "Balancing Act+"
-            }
-        },
-        {
-            "id": "sekiguchi-vip-2",
-            "name": "VIP Node 2",
-            "x": 32.19,
-            "y": 63.88,
-            "w": 6.75,
-            "h": 9.83,
-            "maxTier": 1,
-            "isVip": true,
-            "tierLabels": {
-                "1": "VIP 2"
-            },
-            "costs": []
-        },
-        {
-            "id": "sekiguchi-vip-3",
-            "name": "VIP Node 3",
-            "x": 43.35,
-            "y": 63.88,
-            "w": 6.75,
-            "h": 9.83,
-            "maxTier": 1,
-            "isVip": true,
-            "tierLabels": {
-                "1": "VIP 3"
-            },
-            "costs": []
-        },
-        {
-            "id": "sekiguchi-vip-4",
-            "name": "VIP Node 4",
-            "x": 54.52,
-            "y": 63.88,
-            "w": 6.75,
-            "h": 9.83,
-            "maxTier": 1,
-            "isVip": true,
-            "tierLabels": {
-                "1": "VIP 4"
-            },
-            "costs": []
-        },
-        {
-            "id": "sekiguchi-checkmate",
-            "name": "Checkmate",
-            "x": 65.68,
-            "y": 63.47,
-            "w": 8.31,
-            "h": 12.29,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Paradox Circuit",
-                    "amount": 7
-                },
-                {
-                    "tier": 1,
-                    "material": "Storage Drive",
-                    "amount": 24
-                }
-            ]
-        },
-        {
-            "id": "sekiguchi-freeloader",
-            "name": "Freeloader",
-            "x": 76.58,
-            "y": 63.47,
-            "w": 8.31,
-            "h": 12.29,
-            "maxTier": 3,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Amygdala Drive",
-                    "amount": 7
-                },
-                {
-                    "tier": 1,
-                    "material": "Paradox Circuit",
-                    "amount": 5
-                },
-                {
-                    "tier": 2,
-                    "vip": true
-                },
-                {
-                    "tier": 3,
-                    "vip": true
-                }
-            ],
-            "tierLabels": {
-                "1": "Freeloader",
-                "2": "VIP 1",
-                "3": "VIP 2"
-            }
-        },
-        {
-            "id": "sekiguchi-the-first-law",
-            "name": "The First Law",
-            "x": 87.49,
-            "y": 63.47,
-            "w": 6.75,
-            "h": 12.29,
-            "maxTier": 1,
-            "costs": [
-                {
-                    "tier": 1,
-                    "material": "Nueral Insulation",
-                    "amount": 1
-                },
-                {
-                    "tier": 1,
-                    "material": "Amygdala Drive",
-                    "amount": 15
-                }
-            ]
+      {
+        "id": "sekiguchi-energy-amp-barter",
+        "name": "Energy Amp Barter",
+        "x": 32.19,
+        "y": 11.47,
+        "w": 6.49,
+        "h": 10.24,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Diode",
+            "amount": 22
+          }
+        ]
+      },
+      {
+        "id": "sekiguchi-energy-amp",
+        "name": "Energy Amp",
+        "x": 43.35,
+        "y": 9.83,
+        "w": 9.35,
+        "h": 13.92,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Storage Drive",
+            "amount": 23
+          },
+          {
+            "tier": 1,
+            "material": "Fractal Circuit",
+            "amount": 12
+          }
+        ]
+      },
+      {
+        "id": "sekiguchi-sponsorship",
+        "name": "Sponsorship+ [Sekiguchi]",
+        "x": 86.19,
+        "y": 9.83,
+        "w": 8.83,
+        "h": 13.92,
+        "maxTier": 2,
+        "costs": [],
+        "tierLabels": {
+          "1": "Sponsorship",
+          "2": "Sponsorship+"
         }
+      },
+      {
+        "id": "sekiguchi-momentum",
+        "name": "Momentum",
+        "x": 32.19,
+        "y": 29.07,
+        "w": 6.75,
+        "h": 11.06,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Diode",
+            "amount": 17
+          }
+        ]
+      },
+      {
+        "id": "sekiguchi-overwatch",
+        "name": "Overwatch",
+        "x": 43.35,
+        "y": 29.07,
+        "w": 6.75,
+        "h": 11.06,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Diode",
+            "amount": 17
+          }
+        ]
+      },
+      {
+        "id": "sekiguchi-role-player",
+        "name": "Role Player",
+        "x": 54.52,
+        "y": 29.07,
+        "w": 6.75,
+        "h": 11.06,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Diode",
+            "amount": 17
+          }
+        ]
+      },
+      {
+        "id": "sekiguchi-cradle-efficiency",
+        "name": "Cradle Efficiency+",
+        "x": 75.8,
+        "y": 26.62,
+        "w": 9.61,
+        "h": 15.15,
+        "maxTier": 3,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Fractal Circuit",
+            "amount": 19
+          },
+          {
+            "tier": 1,
+            "material": "Storage Drive",
+            "amount": 4
+          },
+          {
+            "tier": 2,
+            "material": "Paradox Circuit",
+            "amount": 4
+          },
+          {
+            "tier": 2,
+            "material": "Storage Drive",
+            "amount": 17
+          },
+          {
+            "tier": 3,
+            "material": "Predictive Framework",
+            "amount": 1
+          },
+          {
+            "tier": 3,
+            "material": "Paradox Circuit",
+            "amount": 18
+          }
+        ],
+        "tierLabels": {
+          "1": "Cradle Efficiency",
+          "2": "Cradle Efficiency+",
+          "3": "Cradle Efficiency++"
+        }
+      },
+      {
+        "id": "sekiguchi-vip-1",
+        "name": "VIP Node 1",
+        "x": 87.49,
+        "y": 29.07,
+        "w": 6.75,
+        "h": 10.65,
+        "maxTier": 1,
+        "isVip": true,
+        "tierLabels": {
+          "1": "VIP 1"
+        },
+        "costs": []
+      },
+      {
+        "id": "sekiguchi-momentum-plus",
+        "name": "Momentum+",
+        "x": 32.19,
+        "y": 45.86,
+        "w": 6.75,
+        "h": 11.06,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Storage Drive",
+            "amount": 15
+          },
+          {
+            "tier": 1,
+            "material": "Fractal Circuit",
+            "amount": 9
+          }
+        ]
+      },
+      {
+        "id": "sekiguchi-overwatch-plus",
+        "name": "Overwatch+",
+        "x": 43.35,
+        "y": 45.86,
+        "w": 6.75,
+        "h": 11.06,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Storage Drive",
+            "amount": 15
+          },
+          {
+            "tier": 1,
+            "material": "Fractal Circuit",
+            "amount": 9
+          }
+        ]
+      },
+      {
+        "id": "sekiguchi-role-player-plus",
+        "name": "Role Player+",
+        "x": 54.52,
+        "y": 45.86,
+        "w": 6.75,
+        "h": 11.06,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Storage Drive",
+            "amount": 15
+          },
+          {
+            "tier": 1,
+            "material": "Fractal Circuit",
+            "amount": 9
+          }
+        ]
+      },
+      {
+        "id": "sekiguchi-energy-reservoir",
+        "name": "Energy Reservoir+",
+        "x": 65.68,
+        "y": 45.86,
+        "w": 8.31,
+        "h": 11.06,
+        "maxTier": 2,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Diode",
+            "amount": 16
+          },
+          {
+            "tier": 2,
+            "material": "Fractal Circuit",
+            "amount": 4
+          },
+          {
+            "tier": 2,
+            "material": "Storage Drive",
+            "amount": 6
+          }
+        ],
+        "tierLabels": {
+          "1": "Energy Reservoir",
+          "2": "Energy Reservoir+"
+        }
+      },
+      {
+        "id": "sekiguchi-herd-immunity",
+        "name": "Herd Immunity+",
+        "x": 76.58,
+        "y": 45.86,
+        "w": 8.31,
+        "h": 11.06,
+        "maxTier": 2,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Diode",
+            "amount": 8
+          },
+          {
+            "tier": 2,
+            "material": "Fractal Circuit",
+            "amount": 7
+          },
+          {
+            "tier": 2,
+            "material": "Storage Drive",
+            "amount": 9
+          }
+        ],
+        "tierLabels": {
+          "1": "Herd Immunity",
+          "2": "Herd Immunity+"
+        }
+      },
+      {
+        "id": "sekiguchi-balancing-act",
+        "name": "Balancing Act",
+        "x": 87.49,
+        "y": 45.86,
+        "w": 6.75,
+        "h": 11.06,
+        "maxTier": 2,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Unstable Diode",
+            "amount": 15
+          },
+          {
+            "tier": 2,
+            "material": "Paradox Circuit",
+            "amount": 12
+          },
+          {
+            "tier": 2,
+            "material": "Storage Drive",
+            "amount": 19
+          }
+        ],
+        "tierLabels": {
+          "1": "Balancing Act",
+          "2": "Balancing Act+"
+        }
+      },
+      {
+        "id": "sekiguchi-vip-2",
+        "name": "VIP Node 2",
+        "x": 32.19,
+        "y": 63.88,
+        "w": 6.75,
+        "h": 9.83,
+        "maxTier": 1,
+        "isVip": true,
+        "tierLabels": {
+          "1": "VIP 2"
+        },
+        "costs": []
+      },
+      {
+        "id": "sekiguchi-vip-3",
+        "name": "VIP Node 3",
+        "x": 43.35,
+        "y": 63.88,
+        "w": 6.75,
+        "h": 9.83,
+        "maxTier": 1,
+        "isVip": true,
+        "tierLabels": {
+          "1": "VIP 3"
+        },
+        "costs": []
+      },
+      {
+        "id": "sekiguchi-vip-4",
+        "name": "VIP Node 4",
+        "x": 54.52,
+        "y": 63.88,
+        "w": 6.75,
+        "h": 9.83,
+        "maxTier": 1,
+        "isVip": true,
+        "tierLabels": {
+          "1": "VIP 4"
+        },
+        "costs": []
+      },
+      {
+        "id": "sekiguchi-checkmate",
+        "name": "Checkmate",
+        "x": 65.68,
+        "y": 63.47,
+        "w": 8.31,
+        "h": 12.29,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Paradox Circuit",
+            "amount": 7
+          },
+          {
+            "tier": 1,
+            "material": "Storage Drive",
+            "amount": 24
+          }
+        ]
+      },
+      {
+        "id": "sekiguchi-freeloader",
+        "name": "Freeloader",
+        "x": 76.58,
+        "y": 63.47,
+        "w": 8.31,
+        "h": 12.29,
+        "maxTier": 3,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Amygdala Drive",
+            "amount": 7
+          },
+          {
+            "tier": 1,
+            "material": "Paradox Circuit",
+            "amount": 5
+          },
+          {
+            "tier": 2,
+            "vip": true
+          },
+          {
+            "tier": 3,
+            "vip": true
+          }
+        ],
+        "tierLabels": {
+          "1": "Freeloader",
+          "2": "VIP 1",
+          "3": "VIP 2"
+        }
+      },
+      {
+        "id": "sekiguchi-the-first-law",
+        "name": "The First Law",
+        "x": 87.49,
+        "y": 63.47,
+        "w": 6.75,
+        "h": 12.29,
+        "maxTier": 1,
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Nueral Insulation",
+            "amount": 1
+          },
+          {
+            "tier": 1,
+            "material": "Amygdala Drive",
+            "amount": 15
+          }
+        ]
+      }
     ]
-}
+  }
 ];
 
 upgradeState = loadUpgradeState();
