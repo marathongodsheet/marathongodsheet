@@ -5,7 +5,7 @@ This version rechecks and tightens faction upgrade node overlays, with special f
 
 # Marathon Godsheet Website
 
-Open `index.html` locally, or upload this folder to GitHub Pages / Netlify.
+Open `index.html` locally
 
 ## Saving progress
 The site automatically saves each user's progress in that browser using localStorage:
