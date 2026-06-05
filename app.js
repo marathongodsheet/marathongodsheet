@@ -1,8 +1,8 @@
-const STORAGE_KEY = "marathon-godsheet-v27-state";
-const HISTORY_KEY = "marathon-godsheet-v27-history";
-const VAULT_KEY = "marathon-godsheet-v27-vault";
-const UPGRADE_ALLOCATIONS_KEY = "marathon-godsheet-v27-upgrade-allocations";
-const UI_STATE_KEY = "marathon-godsheet-v27-ui";
+const STORAGE_KEY = "marathon-godsheet-v28-state";
+const HISTORY_KEY = "marathon-godsheet-v28-history";
+const VAULT_KEY = "marathon-godsheet-v28-vault";
+const UPGRADE_ALLOCATIONS_KEY = "marathon-godsheet-v28-upgrade-allocations";
+const UI_STATE_KEY = "marathon-godsheet-v28-ui";
 const CATEGORIES = ["Grey", "Green", "Blue", "Purple", "Gold"];
 
 const rarityClass = { Grey: "grey", Green: "green", Blue: "blue", Purple: "purple", Gold: "gold" };
@@ -458,9 +458,12 @@ function importSave(file) {
 function bindButtons() {
   document.getElementById("useBtn").addEventListener("click", () => applyTransaction("used"));
   document.getElementById("addBackBtn").addEventListener("click", () => applyTransaction("returned"));
-  document.getElementById("exportSaveBtn").addEventListener("click", exportSave);
-  document.getElementById("exportCsvBtn").addEventListener("click", exportCsv);
-  document.getElementById("importSave").addEventListener("change", event => {
+  const exportSaveBtn = document.getElementById("exportSaveBtn");
+  if (exportSaveBtn) exportSaveBtn.addEventListener("click", exportSave);
+  const exportCsvBtn = document.getElementById("exportCsvBtn");
+  if (exportCsvBtn) exportCsvBtn.addEventListener("click", exportCsv);
+  const importSaveInput = document.getElementById("importSave");
+  if (importSaveInput) importSaveInput.addEventListener("change", event => {
     const file = event.target.files[0];
     if (file) importSave(file);
     event.target.value = "";
@@ -496,7 +499,7 @@ renderAll();
 // ------------------------------
 // Upgrade Tracking - Faction Trees
 // ------------------------------
-const UPGRADE_STORAGE_KEY = "marathon-godsheet-v27-upgrades";
+const UPGRADE_STORAGE_KEY = "marathon-godsheet-v28-upgrades";
 const FACTIONS = [
   {
     "id": "cyberacme",

@@ -381,3 +381,36 @@ details[data-category="Gold"] summary { color: var(--gold); }
 }
 
 .mini-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.mini-actions .small-btn{white-space:nowrap}
+
+
+.tab-panel { position: relative; padding-top: 8px; }
+.made-by-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 3;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(23, 27, 36, .94);
+  color: var(--text);
+  font-weight: 800;
+  font-size: 13px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.18);
+}
+.bug-report-note {
+  margin: 14px 0 32px;
+  padding: 10px 14px;
+  max-width: 520px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(23, 27, 36, .92);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+.topbar h1 { font-size: clamp(28px, 4vw, 46px); }
+.section-title:empty, .section-title p:empty { display:none; }
+
+
+.header-badge { position: static; top: auto; right: auto; display: inline-flex; align-items: center; white-space: nowrap; }
