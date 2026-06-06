@@ -18,12 +18,13 @@
   </header>
 
   <nav class="tabs" aria-label="Main tabs">
-    <button class="tab active" data-tab="dashboard">Dashboard</button>
-    <button class="tab" data-tab="upgrade">Upgrade Tracking</button>
+    <button class="tab active" data-tab="upgrade">Upgrade Tracking</button>
+    <button class="tab" data-tab="dashboard">Dashboard</button>
+    <button class="tab" data-tab="catalog">Cataloging</button>
   </nav>
 
   <main>
-    <section id="dashboardTab" class="tab-panel active">
+    <section id="dashboardTab" class="tab-panel">
       <section class="summary-grid" aria-label="Summary totals">
         <div class="summary-card"><span>Materials</span><strong id="materialCount">0</strong></div>
         <div class="summary-card"><span>Starting Total</span><strong id="startingTotal">0</strong></div>
@@ -32,7 +33,7 @@
 
       <section class="excel-panel">
         <div class="section-title">
-          <h2>TOTALS LEFT</h2>
+          <h2>How many more materials do I need?</h2>
           
         </div>
         <div class="table-scroll">
@@ -40,6 +41,10 @@
         </div>
       </section>
 
+      <div class="bug-report-note">To report a bug send an email of the issue to marathongodsheet@gmail.com</div>
+    </section>
+
+    <section id="catalogTab" class="tab-panel">
       <section class="entry-layout">
         <article class="entry-card">
           <div class="section-title compact">
@@ -72,24 +77,17 @@
 
         <article class="dropdown-card">
           <div class="section-title compact">
-            <h2>Material Dropdowns by Rarity</h2>
+            <h2>Raw total of Materials</h2>
             
           </div>
           <div id="rarityDropdowns" class="rarity-dropdowns"></div>
         </article>
       </section>
 
-      <section class="history-panel">
-        <div class="section-title">
-          <h2>Transaction History</h2>
-        </div>
-        <div id="historyList" class="history-list"></div>
-      </section>
 
-      <div class="bug-report-note">To report a bug send an email of the issue to marathongodsheet@gmail.com</div>
     </section>
 
-    <section id="upgradeTab" class="tab-panel">
+    <section id="upgradeTab" class="tab-panel active">
       <section class="upgrade-layout">
         <aside class="faction-panel">
           <div class="section-title compact">
@@ -98,12 +96,11 @@
 
           <div class="faction-picker" id="factionList"></div>
 
-          <div class="needed-panel">
-            <div class="mini-title">
-              <h3>Selected Upgrade Materials</h3>
-              <div class="mini-actions"><button id="maxUpgradeBtn" class="secondary small-btn">Set Faction to Max</button><button id="resetUpgradeBtn" class="secondary small-btn">Reset This Faction</button></div>
-            </div>
-            <div id="upgradeNeededList" class="needed-list"></div>
+          <div class="upgrade-action-panel">
+            <button id="maxUpgradeBtn" class="secondary">Set Faction to Max</button>
+            <button id="resetUpgradeBtn" class="secondary">Reset This Faction</button>
+            <button id="resetAllFactionsBtn" class="secondary">Reset All Factions</button>
+            <button id="undoBtn" class="secondary">Undo Last Action</button>
           </div>
         </aside>
 

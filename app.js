@@ -1,8 +1,8 @@
-const STORAGE_KEY = "marathon-godsheet-v28-state";
-const HISTORY_KEY = "marathon-godsheet-v28-history";
-const VAULT_KEY = "marathon-godsheet-v28-vault";
-const UPGRADE_ALLOCATIONS_KEY = "marathon-godsheet-v28-upgrade-allocations";
-const UI_STATE_KEY = "marathon-godsheet-v28-ui";
+const STORAGE_KEY = "marathon-godsheet-v33-state";
+const HISTORY_KEY = "marathon-godsheet-v33-history";
+const VAULT_KEY = "marathon-godsheet-v33-vault";
+const UPGRADE_ALLOCATIONS_KEY = "marathon-godsheet-v33-upgrade-allocations";
+const UI_STATE_KEY = "marathon-godsheet-v33-ui";
 const CATEGORIES = ["Grey", "Green", "Blue", "Purple", "Gold"];
 
 const rarityClass = { Grey: "grey", Green: "green", Blue: "blue", Purple: "purple", Gold: "gold" };
@@ -25,6 +25,49 @@ let history = loadHistory();
 let vault = loadVaultState();
 var upgradeState;
 var upgradeAllocations;
+const undoStack = [];
+const UNDO_LIMIT = 30;
+
+function cloneForUndo(value) {
+  return JSON.parse(JSON.stringify(value || {}));
+}
+
+function pushUndoSnapshot() {
+  undoStack.unshift({
+    state: cloneForUndo(state),
+    history: cloneForUndo(history),
+    vault: cloneForUndo(vault),
+    upgradeState: cloneForUndo(typeof upgradeState !== "undefined" ? upgradeState : {}),
+    upgradeAllocations: cloneForUndo(typeof upgradeAllocations !== "undefined" ? upgradeAllocations : {})
+  });
+  if (undoStack.length > UNDO_LIMIT) undoStack.length = UNDO_LIMIT;
+  updateUndoButton();
+}
+
+function updateUndoButton() {
+  const btn = document.getElementById("undoBtn");
+  if (btn) btn.disabled = undoStack.length === 0;
+}
+
+function undoLastAction() {
+  const snapshot = undoStack.shift();
+  if (!snapshot) {
+    alert("There is nothing to undo.");
+    updateUndoButton();
+    return;
+  }
+  state = snapshot.state;
+  history = snapshot.history;
+  vault = snapshot.vault;
+  upgradeState = snapshot.upgradeState;
+  upgradeAllocations = snapshot.upgradeAllocations;
+  saveUpgradeState();
+  saveUpgradeAllocations();
+  save();
+  if (upgradeTrackerReady) renderUpgradeTracker();
+  renderAll();
+  updateUndoButton();
+}
 
 const totalsTable = document.getElementById("totalsTable");
 const raritySelect = document.getElementById("raritySelect");
@@ -128,7 +171,7 @@ function renderTabs() {
   document.querySelectorAll(".tab").forEach(btn => {
     btn.addEventListener("click", () => activateTab(btn.dataset.tab));
   });
-  activateTab(loadUiState().activeTab || "dashboard", false);
+  activateTab(loadUiState().activeTab || "upgrade", false);
 }
 
 
@@ -173,11 +216,9 @@ function renderTotalsTable() {
   CATEGORIES.forEach(category => {
     const rarity = document.createElement("th");
     rarity.className = rarityClass[category];
+    rarity.colSpan = 2;
     rarity.textContent = category;
-    const total = document.createElement("th");
-    total.className = rarityClass[category];
-    total.textContent = "Totals";
-    header.append(rarity, total);
+    header.append(rarity);
   });
   thead.appendChild(header);
 
@@ -314,6 +355,7 @@ function applyTransaction(kind) {
       alert(`You only have ${fmt(record.left)} ${item.name} in TOTALS LEFT to move into the vault.`);
       return;
     }
+    pushUndoSnapshot();
     vault[item.id] = Number(vault[item.id] || 0) + amount;
     record.left -= amount;
     history.unshift({
@@ -332,6 +374,7 @@ function applyTransaction(kind) {
       alert(`Only ${fmt(vault[item.id] || 0)} ${item.name} is currently in the vault.`);
       return;
     }
+    pushUndoSnapshot();
     vault[item.id] = Number(vault[item.id] || 0) - amount;
     record.left += amount;
     history.unshift({
@@ -352,6 +395,7 @@ function applyTransaction(kind) {
 }
 
 function renderHistory() {
+  if (!historyList) return;
   if (!history.length) {
     historyList.innerHTML = `<div class="empty-history">No changes yet.</div>`;
     return;
@@ -470,6 +514,7 @@ function bindButtons() {
   });
   document.getElementById("resetBtn").addEventListener("click", () => {
     if (!confirm("Reset all material totals and history?")) return;
+    pushUndoSnapshot();
     state = defaultState();
     history = [];
     vault = defaultVaultState();
@@ -499,7 +544,7 @@ renderAll();
 // ------------------------------
 // Upgrade Tracking - Faction Trees
 // ------------------------------
-const UPGRADE_STORAGE_KEY = "marathon-godsheet-v28-upgrades";
+const UPGRADE_STORAGE_KEY = "marathon-godsheet-v33-upgrades";
 const FACTIONS = [
   {
     "id": "cyberacme",
@@ -3229,35 +3274,39 @@ function getActiveFaction() {
 
 function tierLabel(tier, nodeOrMaxTier) {
   const node = typeof nodeOrMaxTier === "object" ? nodeOrMaxTier : null;
-  const maxTier = node ? node.maxTier : nodeOrMaxTier;
   if (tier === 0) return "Not started";
-  if (node?.tierLabels?.[String(tier)]) return node.tierLabels[String(tier)];
+  const cost = node?.costs?.find(entry => Number(entry.tier) === Number(tier));
   if (node?.isVip) return `VIP ${tier}`;
-  if (tier >= maxTier) return `Tier ${tier} / Max`;
+  if (cost?.vip) {
+    const vipTiers = [...new Set((node.costs || [])
+      .filter(entry => entry.vip)
+      .map(entry => Number(entry.tier) || 0)
+      .filter(Boolean))]
+      .sort((a, b) => a - b);
+    const vipIndex = Math.max(1, vipTiers.indexOf(Number(tier)) + 1);
+    return `VIP ${vipIndex}`;
+  }
   return `Tier ${tier}`;
 }
 
 function renderFactionList() {
   const holder = document.getElementById("factionList");
   if (!holder) return;
-  const faction = getActiveFaction();
-  holder.innerHTML = `
-    <label class="faction-select-label">
-      Faction
-      <select id="factionSelect"></select>
-    </label>
-  `;
-  const select = holder.querySelector("#factionSelect");
-  FACTIONS.forEach(f => {
-    const option = new Option(f.name, f.id);
-    select.appendChild(option);
-  });
-  select.value = activeFactionId;
-  select.style.setProperty("--faction-color", faction.color);
-  select.addEventListener("change", event => {
-    activeFactionId = event.target.value;
-    saveUiState({ activeFactionId });
-    renderUpgradeTracker();
+  holder.innerHTML = `<div class="faction-button-grid" aria-label="Faction selection"></div>`;
+  const grid = holder.querySelector(".faction-button-grid");
+  FACTIONS.forEach(faction => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = `faction-button ${faction.id === activeFactionId ? "active" : ""}`;
+    btn.textContent = faction.name;
+    btn.style.setProperty("--faction-color", faction.color);
+    btn.style.setProperty("--faction-rgb", faction.rgb);
+    btn.addEventListener("click", () => {
+      activeFactionId = faction.id;
+      saveUiState({ activeFactionId });
+      renderUpgradeTracker();
+    });
+    grid.appendChild(btn);
   });
 }
 
@@ -3289,13 +3338,45 @@ function renderTreeNodes() {
     button.style.setProperty("--node-rgb", faction.rgb);
     if (node.isVip) button.classList.add("vip-node");
     button.setAttribute("aria-label", `${node.name}, ${tierLabel(currentTier, node)}`);
-    const label = currentTier > 0 ? (node.isVip ? `VIP` : currentTier) : "+";
-    button.innerHTML = `<span>${label}</span>`;
+    const label = currentTier > 0 ? tierLabel(currentTier, node).replace("Tier ", "T") : "+";
+    const notches = Array.from({ length: Math.max(1, node.maxTier) }, (_, index) => {
+      const notchTier = index + 1;
+      const isFilled = currentTier >= notchTier;
+      const isVipTier = node.isVip || (node.costs || []).some(cost => cost.vip && Number(cost.tier) === notchTier);
+      return `<i class="${isFilled ? "filled" : ""} ${isVipTier ? "vip-notch" : ""}" aria-hidden="true"></i>`;
+    }).join("");
+    button.innerHTML = `<span class="node-tier-label">${label}</span><div class="node-progress-bar">${notches}</div>`;
     button.title = node.name;
-    button.addEventListener("click", () => openTierDialog(node.id));
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      changeNodeTierByStep(node.id, 1);
+    });
+    button.addEventListener("contextmenu", event => {
+      event.preventDefault();
+      changeNodeTierByStep(node.id, -1);
+    });
     layer.appendChild(button);
   });
 }
+
+function changeNodeTierByStep(nodeId, step) {
+  const faction = getActiveFaction();
+  const node = faction.nodes.find(n => n.id === nodeId);
+  if (!node) return;
+  const currentTier = upgradeState[faction.id][node.id] || 0;
+  let nextTier;
+  if (step > 0) {
+    nextTier = currentTier >= node.maxTier ? 0 : currentTier + 1;
+  } else {
+    nextTier = Math.max(0, currentTier - 1);
+  }
+  if (nextTier === currentTier) return;
+  pushUndoSnapshot();
+  setNodeTierWithMaterialEffects(faction, node, nextTier);
+  renderUpgradeTracker();
+  renderAll();
+}
+
 
 function openTierDialog(nodeId) {
   const dialog = document.getElementById("tierDialog");
@@ -3358,7 +3439,9 @@ function saveTierFromDialog(event) {
   const dialog = document.getElementById("tierDialog");
   if (!node || !select || !dialog) return;
 
-  setNodeTierWithMaterialEffects(faction, node, Number(select.value) || 0);
+  const nextTier = Number(select.value) || 0;
+  if ((upgradeState[faction.id][node.id] || 0) !== nextTier) pushUndoSnapshot();
+  setNodeTierWithMaterialEffects(faction, node, nextTier);
   renderUpgradeTracker();
   renderAll();
   dialog.close();
@@ -3519,6 +3602,7 @@ function renderUpgradeTracker() {
 function setActiveFactionToMax() {
   const faction = getActiveFaction();
   if (!confirm(`Set every known non-VIP ${faction.name} node to max normal tier? VIP-only material requirements are still ignored.`)) return;
+  pushUndoSnapshot();
   faction.nodes.forEach(node => {
     if (node.isVip) return;
     const highestKnownCostTier = Math.max(0, ...(node.costs || []).filter(cost => !cost.vip).map(cost => Number(cost.tier) || 0));
@@ -3538,13 +3622,17 @@ function bindUpgradeTracker() {
   const form = document.getElementById("tierForm");
   const select = document.getElementById("tierSelect");
   const reset = document.getElementById("resetUpgradeBtn");
+  const resetAll = document.getElementById("resetAllFactionsBtn");
+  const undoBtn = document.getElementById("undoBtn");
   const maxBtn = document.getElementById("maxUpgradeBtn");
   if (form) form.addEventListener("submit", saveTierFromDialog);
   if (select) select.addEventListener("change", renderTierCostPreview);
   if (maxBtn) maxBtn.addEventListener("click", setActiveFactionToMax);
+  if (undoBtn) undoBtn.addEventListener("click", undoLastAction);
   if (reset) reset.addEventListener("click", () => {
     const faction = getActiveFaction();
     if (!confirm(`Reset ${faction.name} upgrade node tiers only?`)) return;
+    pushUndoSnapshot();
     faction.nodes.forEach(node => {
       revertNodeAllocation(faction.id, node.id);
       upgradeState[faction.id][node.id] = 0;
@@ -3555,6 +3643,22 @@ function bindUpgradeTracker() {
     renderUpgradeTracker();
     renderAll();
   });
+  if (resetAll) resetAll.addEventListener("click", () => {
+    if (!confirm("Reset upgrade tiers for every faction?")) return;
+    pushUndoSnapshot();
+    FACTIONS.forEach(faction => {
+      faction.nodes.forEach(node => {
+        revertNodeAllocation(faction.id, node.id);
+        upgradeState[faction.id][node.id] = 0;
+      });
+    });
+    saveUpgradeState();
+    saveUpgradeAllocations();
+    save();
+    renderUpgradeTracker();
+    renderAll();
+  });
+  updateUndoButton();
 }
 
 upgradeTrackerReady = true;

@@ -414,3 +414,83 @@ details[data-category="Gold"] summary { color: var(--gold); }
 
 
 .header-badge { position: static; top: auto; right: auto; display: inline-flex; align-items: center; white-space: nowrap; }
+
+
+/* v30 cleanup */
+.entry-layout { margin-top: 42px; }
+.upgrade-action-panel {
+  margin: 0 16px 16px;
+  display: grid;
+  gap: 10px;
+}
+.upgrade-action-panel button { width: 100%; }
+.excel-table th[colspan="2"] { text-align: center; }
+.tree-node { cursor: pointer; }
+.tree-node:active { transform: scale(.985); }
+
+/* v31 faction buttons and node progress bars */
+.faction-button-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.faction-button {
+  width: 100%;
+  text-align: left;
+  background: rgba(var(--faction-rgb), .12);
+  color: var(--faction-color);
+  border: 1px solid rgba(var(--faction-rgb), .55);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
+  font-weight: 900;
+}
+.faction-button.active {
+  background: var(--faction-color);
+  color: #10131a;
+  border-color: transparent;
+  box-shadow: 0 0 18px rgba(var(--faction-rgb), .28);
+}
+.tree-node {
+  grid-template-rows: 1fr auto;
+  gap: 3px;
+  padding: 4px;
+}
+.tree-node .node-tier-label {
+  align-self: center;
+  justify-self: center;
+}
+.node-progress-bar {
+  width: 82%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 2px;
+  align-self: end;
+  justify-self: center;
+  padding: 2px;
+  border-radius: 8px;
+  background: rgba(0,0,0,.45);
+  border: 1px solid rgba(var(--node-rgb), .36);
+}
+.node-progress-bar i {
+  display: block;
+  min-height: 5px;
+  border-radius: 4px;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.node-progress-bar i.filled {
+  background: var(--node-color);
+  border-color: rgba(255,255,255,.22);
+  box-shadow: 0 0 8px rgba(var(--node-rgb), .35);
+}
+.node-progress-bar i.vip-notch {
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.18) 0 2px, rgba(0,0,0,.12) 2px 4px);
+}
+.node-progress-bar i.vip-notch.filled {
+  background-color: var(--node-color);
+}
+button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  filter: none;
+}

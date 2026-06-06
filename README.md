@@ -1,84 +1,63 @@
-# Marathon Godsheet
+Marathon Godsheet Site v24
+==========================
 
-Made by Cuh
+This version rechecks and tightens faction upgrade node overlays, with special fixes for Mida and Cyberacme alignment.
 
-Marathon Godsheet is an interactive material and faction upgrade tracker. It tracks materials by rarity, lets you reserve materials in a vault, and updates the totals table as faction upgrades are selected.
+# Marathon Godsheet Website
 
-For bug reports, send an email with the issue to:
+Open `index.html` locally, or upload this folder to GitHub Pages / Netlify.
 
-marathongodsheet@gmail.com
+## Saving progress
+The site automatically saves each user's progress in that browser using localStorage:
 
----
+- material totals
+- vault contents
+- transaction history
+- selected upgrade tiers
+- selected faction
+- active tab
+- page scroll position
 
-## How to Open the Site
+This means a published GitHub Pages copy will remember where that person left off on the same browser/device. It does not share saves between different devices unless the user exports/imports the save file.
 
-1. Download the website zip file.
-2. Right-click the zip file and choose **Extract All**.
-3. Open the extracted folder.
-4. Double-click **index.html**.
+## Publishing with GitHub Pages
+1. Create a GitHub repository.
+2. Upload the contents of this folder, not the zip file itself.
+3. Go to Settings > Pages.
+4. Choose Deploy from branch.
+5. Select the `main` branch and `/root`.
+6. Save. GitHub will give you the website link.
 
-The site should open in your browser.
+## Publishing with Netlify
+1. Unzip the folder.
+2. Go to Netlify.
+3. Drag the whole unzipped website folder into Netlify's deploy area.
 
-Do not open the site directly from inside the zip file. Extract it first.
 
----
-## This is not complete as we do not know the cost for VIP nodes yet
+## v21 update
+- Cyberacme node labels and button positions were rebuilt from the video, including the Sponsorship / Implant Stock placement issue.
+- Button overlays were rechecked across all factions.
+- Browser save keys were bumped to v21 so old misplaced upgrade states do not interfere.
 
-## Main Tabs
 
-The website has two main tabs:
+## v21 notes
+- Cyberacme overlay was rebuilt to 16 total physical nodes: 13 non-VIP and 3 VIP.
+- Cyberacme node buttons were re-centered tightly over the screenshot nodes.
+- Carrier+ was separated into its own physical node so the Cyberacme node count matches the visible tree.
 
-1. **Dashboard**
-2. **Upgrade Tracking**
 
----
+## v23 update
 
-## Dashboard Tab
+- Added the missing Cyberacme Carrier+ Barter physical node.
+- Kept Max Looter Barter on the rightmost node of the three barter nodes.
+- Cyberacme now has 17 physical nodes total: 14 non-VIP nodes and 3 VIP nodes.
+- Browser save keys were bumped to v23 so old Cyberacme node state does not interfere.
 
-The Dashboard is the main material tracking page.
 
-It includes:
+## v23 fix
+Traxus circled deluxe/enhanced nodes were swapped so Deluxe is on the left and Enhanced is on the right for Chips, Mags, and Optics.
 
-- **TOTALS LEFT** table
-- **In Vault** box
-- **Material Dropdowns by Rarity**
-- **Transaction History**
 
----
+## Overlay check images
 
-## TOTALS LEFT Table
-
-The **TOTALS LEFT** table shows how many materials are still available.
-
-Materials are grouped by rarity:
-
-- Grey
-- Green
-- Blue
-- Purple
-- Gold
-
-The table updates automatically when:
-
-- Materials are added to the vault
-- Materials are removed from the vault
-- Upgrade tiers are selected
-- A faction is reset
-- A faction is set to max
-
-A material total is highlighted green only when it reaches **0**.
-
----
-
-## In Vault
-
-The **In Vault** section is used for materials that are reserved for upgrades.
-
-Vault logic:
-
-- Adding material to the vault subtracts it from **TOTALS LEFT**.
-- Removing material from the vault adds it back to **TOTALS LEFT**.
-- If an upgrade uses a material that is already in the vault, it removes the material from the vault first.
-- If the vault covers the full upgrade cost, **TOTALS LEFT** does not decrease again.
-- If the vault only covers part of the upgrade cost, only the missing amount is subtracted from **TOTALS LEFT**.
-
+The `overlay_checks` folder includes labeled JPEGs for each faction. Each clickable node area is drawn over the faction tree screenshot with the node name inside its square, so placement and labels can be reviewed before publishing.
