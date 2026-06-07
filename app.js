@@ -93,9 +93,15 @@ function loadState() {
     if (saved && typeof saved === "object") {
       materials.forEach(item => {
         const record = saved[item.id] || {};
+        const savedStart = Number(record.start ?? item.start) || 0;
+        const currentStart = Number(item.start) || 0;
+        const startDelta = currentStart - savedStart;
+        const savedLeft = Number(record.left ?? savedStart) || 0;
         defaults[item.id] = {
-          start: Number(record.start ?? item.start) || 0,
-          left: Number(record.left ?? item.start) || 0,
+          // If default totals change in a site update, carry that change into the
+          // user's TOTALS LEFT value without wiping their saved progress.
+          start: currentStart,
+          left: savedLeft + startDelta,
           used: Number(record.used ?? 0) || 0,
           returned: Number(record.returned ?? 0) || 0
         };
@@ -351,10 +357,6 @@ function applyTransaction(kind) {
   }
   const record = state[item.id];
   if (kind === "used") {
-    if (amount > record.left) {
-      alert(`You only have ${fmt(record.left)} ${item.name} in TOTALS LEFT to move into the vault.`);
-      return;
-    }
     pushUndoSnapshot();
     vault[item.id] = Number(vault[item.id] || 0) + amount;
     record.left -= amount;
@@ -895,7 +897,7 @@ const FACTIONS = [
         "y": 8.54,
         "w": 8.99,
         "h": 14.23,
-        "maxTier": 3,
+        "maxTier": 1,
         "costs": [
           {
             "tier": 1,
@@ -982,7 +984,7 @@ const FACTIONS = [
         "y": 28.46,
         "w": 6.42,
         "h": 9.35,
-        "maxTier": 3,
+        "maxTier": 1,
         "costs": [
           {
             "tier": 1,
@@ -998,7 +1000,7 @@ const FACTIONS = [
         "y": 26.02,
         "w": 8.99,
         "h": 13.41,
-        "maxTier": 3,
+        "maxTier": 1,
         "costs": [
           {
             "tier": 1,
@@ -1841,7 +1843,11 @@ const FACTIONS = [
         "h": 10.15,
         "maxTier": 1,
         "costs": [
-          {"tier": 1, "material": "Unstable Lead", "amount": 10}
+          {
+            "tier": 1,
+            "material": "Unstable Lead",
+            "amount": 10
+          }
         ]
       },
       {
@@ -1853,8 +1859,16 @@ const FACTIONS = [
         "h": 9.85,
         "maxTier": 1,
         "costs": [
-          {"tier": 1, "material": "Dynamic Compounds", "amount": 16},
-          {"tier": 1, "material": "Surveillance Lens", "amount": 4}
+          {
+            "tier": 1,
+            "material": "Dynamic Compounds",
+            "amount": 16
+          },
+          {
+            "tier": 1,
+            "material": "Surveillance Lens",
+            "amount": 4
+          }
         ]
       },
       {
@@ -1866,8 +1880,16 @@ const FACTIONS = [
         "h": 14.55,
         "maxTier": 1,
         "costs": [
-          {"tier": 1, "material": "Thoughtwave Lens", "amount": 3},
-          {"tier": 1, "material": "Dynamic Compounds", "amount": 14}
+          {
+            "tier": 1,
+            "material": "Thoughtwave Lens",
+            "amount": 3
+          },
+          {
+            "tier": 1,
+            "material": "Dynamic Compounds",
+            "amount": 14
+          }
         ]
       },
       {
@@ -1878,12 +1900,31 @@ const FACTIONS = [
         "w": 6.85,
         "h": 10.6,
         "maxTier": 2,
-        "tierLabels": {"1": "Equipment", "2": "Equipment+"},
+        "tierLabels": {
+          "1": "Equipment",
+          "2": "Equipment+"
+        },
         "costs": [
-          {"tier": 1, "material": "Surveillance Lens", "amount": 17},
-          {"tier": 1, "material": "Dynamic Compounds", "amount": 6},
-          {"tier": 2, "material": "Thoughtwave Lens", "amount": 4},
-          {"tier": 2, "material": "Dynamic Compounds", "amount": 17}
+          {
+            "tier": 1,
+            "material": "Surveillance Lens",
+            "amount": 17
+          },
+          {
+            "tier": 1,
+            "material": "Dynamic Compounds",
+            "amount": 6
+          },
+          {
+            "tier": 2,
+            "material": "Thoughtwave Lens",
+            "amount": 4
+          },
+          {
+            "tier": 2,
+            "material": "Dynamic Compounds",
+            "amount": 17
+          }
         ]
       },
       {
@@ -1894,7 +1935,10 @@ const FACTIONS = [
         "w": 8.95,
         "h": 13.95,
         "maxTier": 2,
-        "tierLabels": {"1": "Sponsorship", "2": "Sponsorship+"},
+        "tierLabels": {
+          "1": "Sponsorship",
+          "2": "Sponsorship+"
+        },
         "costs": []
       },
       {
@@ -1906,7 +1950,11 @@ const FACTIONS = [
         "h": 11.75,
         "maxTier": 1,
         "costs": [
-          {"tier": 1, "material": "Unstable Lead", "amount": 20}
+          {
+            "tier": 1,
+            "material": "Unstable Lead",
+            "amount": 20
+          }
         ]
       },
       {
@@ -1918,8 +1966,16 @@ const FACTIONS = [
         "h": 13.95,
         "maxTier": 1,
         "costs": [
-          {"tier": 1, "material": "Volatile Compunds", "amount": 29},
-          {"tier": 1, "material": "Surveillance Lens", "amount": 4}
+          {
+            "tier": 1,
+            "material": "Volatile Compunds",
+            "amount": 29
+          },
+          {
+            "tier": 1,
+            "material": "Surveillance Lens",
+            "amount": 4
+          }
         ]
       },
       {
@@ -1931,7 +1987,11 @@ const FACTIONS = [
         "h": 9.75,
         "maxTier": 1,
         "costs": [
-          {"tier": 1, "material": "Unstable Lead", "amount": 17}
+          {
+            "tier": 1,
+            "material": "Unstable Lead",
+            "amount": 17
+          }
         ]
       },
       {
@@ -1942,11 +2002,26 @@ const FACTIONS = [
         "w": 6.7,
         "h": 10.55,
         "maxTier": 2,
-        "tierLabels": {"1": "Implant Stock", "2": "Implant Stock+"},
+        "tierLabels": {
+          "1": "Implant Stock",
+          "2": "Implant Stock+"
+        },
         "costs": [
-          {"tier": 1, "material": "Unstable Lead", "amount": 28},
-          {"tier": 2, "material": "Volatile Compunds", "amount": 3},
-          {"tier": 2, "material": "Surveillance Lens", "amount": 23}
+          {
+            "tier": 1,
+            "material": "Unstable Lead",
+            "amount": 28
+          },
+          {
+            "tier": 2,
+            "material": "Volatile Compunds",
+            "amount": 3
+          },
+          {
+            "tier": 2,
+            "material": "Surveillance Lens",
+            "amount": 23
+          }
         ]
       },
       {
@@ -1957,13 +2032,36 @@ const FACTIONS = [
         "w": 8.45,
         "h": 10.65,
         "maxTier": 4,
-        "tierLabels": {"1": "Explosive Resistance", "2": "Explosive Resistance+", "3": "VIP 1", "4": "VIP 2"},
+        "tierLabels": {
+          "1": "Explosive Resistance",
+          "2": "Explosive Resistance+",
+          "3": "VIP 1",
+          "4": "VIP 2"
+        },
         "costs": [
-          {"tier": 1, "material": "Unstable Lead", "amount": 12},
-          {"tier": 2, "material": "Surveillance Lens", "amount": 22},
-          {"tier": 2, "material": "Dynamic Compounds", "amount": 8},
-          {"tier": 3, "vip": true},
-          {"tier": 4, "vip": true}
+          {
+            "tier": 1,
+            "material": "Unstable Lead",
+            "amount": 12
+          },
+          {
+            "tier": 2,
+            "material": "Surveillance Lens",
+            "amount": 22
+          },
+          {
+            "tier": 2,
+            "material": "Dynamic Compounds",
+            "amount": 8
+          },
+          {
+            "tier": 3,
+            "vip": true
+          },
+          {
+            "tier": 4,
+            "vip": true
+          }
         ]
       },
       {
@@ -1974,13 +2072,36 @@ const FACTIONS = [
         "w": 8.45,
         "h": 10.65,
         "maxTier": 4,
-        "tierLabels": {"1": "Ballistic Resistance", "2": "Ballistic Resistance+", "3": "VIP 1", "4": "VIP 2"},
+        "tierLabels": {
+          "1": "Ballistic Resistance",
+          "2": "Ballistic Resistance+",
+          "3": "VIP 1",
+          "4": "VIP 2"
+        },
         "costs": [
-          {"tier": 1, "material": "Unstable Lead", "amount": 13},
-          {"tier": 2, "material": "Dynamic Compounds", "amount": 23},
-          {"tier": 2, "material": "Surveillance Lens", "amount": 12},
-          {"tier": 3, "vip": true},
-          {"tier": 4, "vip": true}
+          {
+            "tier": 1,
+            "material": "Unstable Lead",
+            "amount": 13
+          },
+          {
+            "tier": 2,
+            "material": "Dynamic Compounds",
+            "amount": 23
+          },
+          {
+            "tier": 2,
+            "material": "Surveillance Lens",
+            "amount": 12
+          },
+          {
+            "tier": 3,
+            "vip": true
+          },
+          {
+            "tier": 4,
+            "vip": true
+          }
         ]
       },
       {
@@ -1991,13 +2112,36 @@ const FACTIONS = [
         "w": 6.9,
         "h": 10.65,
         "maxTier": 4,
-        "tierLabels": {"1": "Volt Resistance", "2": "Volt Resistance+", "3": "VIP 1", "4": "VIP 2"},
+        "tierLabels": {
+          "1": "Volt Resistance",
+          "2": "Volt Resistance+",
+          "3": "VIP 1",
+          "4": "VIP 2"
+        },
         "costs": [
-          {"tier": 1, "material": "Unstable Lead", "amount": 15},
-          {"tier": 2, "material": "Thoughtwave Lens", "amount": 3},
-          {"tier": 2, "material": "Dynamic Compounds", "amount": 19},
-          {"tier": 3, "vip": true},
-          {"tier": 4, "vip": true}
+          {
+            "tier": 1,
+            "material": "Unstable Lead",
+            "amount": 15
+          },
+          {
+            "tier": 2,
+            "material": "Thoughtwave Lens",
+            "amount": 3
+          },
+          {
+            "tier": 2,
+            "material": "Dynamic Compounds",
+            "amount": 19
+          },
+          {
+            "tier": 3,
+            "vip": true
+          },
+          {
+            "tier": 4,
+            "vip": true
+          }
         ]
       },
       {
@@ -2008,12 +2152,30 @@ const FACTIONS = [
         "w": 8.45,
         "h": 13.7,
         "maxTier": 3,
-        "tierLabels": {"1": "Divebomb", "2": "VIP 1", "3": "VIP 2"},
+        "tierLabels": {
+          "1": "Divebomb",
+          "2": "VIP 1",
+          "3": "VIP 2"
+        },
         "costs": [
-          {"tier": 1, "material": "Thoughtwave Lens", "amount": 12},
-          {"tier": 1, "material": "Volatile Compunds", "amount": 5},
-          {"tier": 2, "vip": true},
-          {"tier": 3, "vip": true}
+          {
+            "tier": 1,
+            "material": "Thoughtwave Lens",
+            "amount": 12
+          },
+          {
+            "tier": 1,
+            "material": "Volatile Compunds",
+            "amount": 5
+          },
+          {
+            "tier": 2,
+            "vip": true
+          },
+          {
+            "tier": 3,
+            "vip": true
+          }
         ]
       },
       {
@@ -2024,12 +2186,30 @@ const FACTIONS = [
         "w": 8.45,
         "h": 13.7,
         "maxTier": 3,
-        "tierLabels": {"1": "Impact Ping", "2": "VIP 1", "3": "VIP 2"},
+        "tierLabels": {
+          "1": "Impact Ping",
+          "2": "VIP 1",
+          "3": "VIP 2"
+        },
         "costs": [
-          {"tier": 1, "material": "Volatile Compunds", "amount": 10},
-          {"tier": 1, "material": "Thoughtwave Lens", "amount": 8},
-          {"tier": 2, "vip": true},
-          {"tier": 3, "vip": true}
+          {
+            "tier": 1,
+            "material": "Volatile Compunds",
+            "amount": 10
+          },
+          {
+            "tier": 1,
+            "material": "Thoughtwave Lens",
+            "amount": 8
+          },
+          {
+            "tier": 2,
+            "vip": true
+          },
+          {
+            "tier": 3,
+            "vip": true
+          }
         ]
       },
       {
@@ -2040,12 +2220,30 @@ const FACTIONS = [
         "w": 6.9,
         "h": 13.7,
         "maxTier": 3,
-        "tierLabels": {"1": "Covert Recovery", "2": "VIP 1", "3": "VIP 2"},
+        "tierLabels": {
+          "1": "Covert Recovery",
+          "2": "VIP 1",
+          "3": "VIP 2"
+        },
         "costs": [
-          {"tier": 1, "material": "Biolens Seed", "amount": 1},
-          {"tier": 1, "material": "Volatile Compunds", "amount": 15},
-          {"tier": 2, "vip": true},
-          {"tier": 3, "vip": true}
+          {
+            "tier": 1,
+            "material": "Biolens Seed",
+            "amount": 1
+          },
+          {
+            "tier": 1,
+            "material": "Volatile Compunds",
+            "amount": 15
+          },
+          {
+            "tier": 2,
+            "vip": true
+          },
+          {
+            "tier": 3,
+            "vip": true
+          }
         ]
       },
       {
@@ -2057,8 +2255,16 @@ const FACTIONS = [
         "h": 9.85,
         "maxTier": 1,
         "costs": [
-          {"tier": 1, "material": "Volatile Compunds", "amount": 6},
-          {"tier": 1, "material": "Thoughtwave Lens", "amount": 5}
+          {
+            "tier": 1,
+            "material": "Volatile Compunds",
+            "amount": 6
+          },
+          {
+            "tier": 1,
+            "material": "Thoughtwave Lens",
+            "amount": 5
+          }
         ]
       },
       {
@@ -2070,7 +2276,9 @@ const FACTIONS = [
         "h": 10.2,
         "maxTier": 1,
         "isVip": true,
-        "tierLabels": {"1": "VIP 1"},
+        "tierLabels": {
+          "1": "VIP 1"
+        },
         "costs": []
       },
       {
@@ -2081,11 +2289,26 @@ const FACTIONS = [
         "w": 6.85,
         "h": 10.1,
         "maxTier": 2,
-        "tierLabels": {"1": "Spare Rounds", "2": "Spare Rounds+"},
+        "tierLabels": {
+          "1": "Spare Rounds",
+          "2": "Spare Rounds+"
+        },
         "costs": [
-          {"tier": 1, "material": "Unstable Lead", "amount": 10},
-          {"tier": 2, "material": "Surveillance Lens", "amount": 22},
-          {"tier": 2, "material": "Dynamic Compounds", "amount": 8}
+          {
+            "tier": 1,
+            "material": "Unstable Lead",
+            "amount": 10
+          },
+          {
+            "tier": 2,
+            "material": "Surveillance Lens",
+            "amount": 22
+          },
+          {
+            "tier": 2,
+            "material": "Dynamic Compounds",
+            "amount": 8
+          }
         ]
       },
       {
@@ -2096,12 +2319,31 @@ const FACTIONS = [
         "w": 9.35,
         "h": 13.95,
         "maxTier": 3,
-        "tierLabels": {"1": "Sensor Case", "2": "Grenade Case", "3": "VIP 1"},
+        "tierLabels": {
+          "1": "Sensor Case",
+          "2": "Grenade Case",
+          "3": "VIP 1"
+        },
         "costs": [
-          {"tier": 1, "material": "Unstable Lead", "amount": 26},
-          {"tier": 2, "material": "Ballistic Turbine", "amount": 1},
-          {"tier": 2, "material": "Thoughtwave Lens", "amount": 18},
-          {"tier": 3, "vip": true}
+          {
+            "tier": 1,
+            "material": "Unstable Lead",
+            "amount": 26
+          },
+          {
+            "tier": 2,
+            "material": "Ballistic Turbine",
+            "amount": 1
+          },
+          {
+            "tier": 2,
+            "material": "Thoughtwave Lens",
+            "amount": 18
+          },
+          {
+            "tier": 3,
+            "vip": true
+          }
         ]
       },
       {
@@ -2113,7 +2355,11 @@ const FACTIONS = [
         "h": 9.8,
         "maxTier": 1,
         "costs": [
-          {"tier": 1, "material": "Unstable Lead", "amount": 22}
+          {
+            "tier": 1,
+            "material": "Unstable Lead",
+            "amount": 22
+          }
         ]
       },
       {
@@ -2125,8 +2371,16 @@ const FACTIONS = [
         "h": 9.8,
         "maxTier": 1,
         "costs": [
-          {"tier": 1, "material": "Dynamic Compounds", "amount": 21},
-          {"tier": 1, "material": "Surveillance Lens", "amount": 5}
+          {
+            "tier": 1,
+            "material": "Dynamic Compounds",
+            "amount": 21
+          },
+          {
+            "tier": 1,
+            "material": "Surveillance Lens",
+            "amount": 5
+          }
         ]
       }
     ]
@@ -2537,12 +2791,36 @@ const FACTIONS = [
         "y": 44.9,
         "w": 6.35,
         "h": 9.5,
-        "maxTier": 1,
+        "maxTier": 4,
+        "tierLabels": {
+          "1": "Tier 1",
+          "2": "Tier 2",
+          "3": "VIP 1",
+          "4": "VIP 2"
+        },
         "costs": [
           {
             "tier": 1,
             "material": "Unstable Gel",
             "amount": 13
+          },
+          {
+            "tier": 2,
+            "material": "Biomata Node",
+            "amount": 3
+          },
+          {
+            "tier": 2,
+            "material": "Drone Resin",
+            "amount": 14
+          },
+          {
+            "tier": 3,
+            "vip": true
+          },
+          {
+            "tier": 4,
+            "vip": true
           }
         ]
       },
@@ -2800,7 +3078,7 @@ const FACTIONS = [
         "y": 26.62,
         "w": 9.61,
         "h": 15.15,
-        "maxTier": 3,
+        "maxTier": 4,
         "costs": [
           {
             "tier": 1,
@@ -2831,17 +3109,28 @@ const FACTIONS = [
             "tier": 3,
             "material": "Paradox Circuit",
             "amount": 18
+          },
+          {
+            "tier": 4,
+            "material": "Alien Alloy",
+            "amount": 3
+          },
+          {
+            "tier": 4,
+            "material": "Predictive Framework",
+            "amount": 7
           }
         ],
         "tierLabels": {
-          "1": "Cradle Efficiency",
-          "2": "Cradle Efficiency+",
-          "3": "Cradle Efficiency++"
+          "1": "Tier 1",
+          "2": "Tier 2",
+          "3": "Tier 3",
+          "4": "VIP 1"
         }
       },
       {
         "id": "sekiguchi-vip-1",
-        "name": "VIP Node 1",
+        "name": "Prestige Cores",
         "x": 87.49,
         "y": 29.07,
         "w": 6.75,
@@ -2851,7 +3140,18 @@ const FACTIONS = [
         "tierLabels": {
           "1": "VIP 1"
         },
-        "costs": []
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Alien Alloy",
+            "amount": 3
+          },
+          {
+            "tier": 1,
+            "material": "Predictive Framework",
+            "amount": 2
+          }
+        ]
       },
       {
         "id": "sekiguchi-momentum-plus",
@@ -2923,7 +3223,7 @@ const FACTIONS = [
         "y": 45.86,
         "w": 8.31,
         "h": 11.06,
-        "maxTier": 2,
+        "maxTier": 3,
         "costs": [
           {
             "tier": 1,
@@ -2939,11 +3239,22 @@ const FACTIONS = [
             "tier": 2,
             "material": "Storage Drive",
             "amount": 6
+          },
+          {
+            "tier": 3,
+            "material": "Nueral Insulation",
+            "amount": 3
+          },
+          {
+            "tier": 3,
+            "material": "Predictive Framework",
+            "amount": 2
           }
         ],
         "tierLabels": {
-          "1": "Energy Reservoir",
-          "2": "Energy Reservoir+"
+          "1": "Tier 1",
+          "2": "Tier 2",
+          "3": "VIP 1"
         }
       },
       {
@@ -2953,7 +3264,7 @@ const FACTIONS = [
         "y": 45.86,
         "w": 8.31,
         "h": 11.06,
-        "maxTier": 2,
+        "maxTier": 3,
         "costs": [
           {
             "tier": 1,
@@ -2969,11 +3280,22 @@ const FACTIONS = [
             "tier": 2,
             "material": "Storage Drive",
             "amount": 9
+          },
+          {
+            "tier": 3,
+            "material": "Predictive Framework",
+            "amount": 5
+          },
+          {
+            "tier": 3,
+            "material": "Nueral Insulation",
+            "amount": 2
           }
         ],
         "tierLabels": {
-          "1": "Herd Immunity",
-          "2": "Herd Immunity+"
+          "1": "Tier 1",
+          "2": "Tier 2",
+          "3": "VIP 1"
         }
       },
       {
@@ -2983,7 +3305,7 @@ const FACTIONS = [
         "y": 45.86,
         "w": 6.75,
         "h": 11.06,
-        "maxTier": 2,
+        "maxTier": 3,
         "costs": [
           {
             "tier": 1,
@@ -2999,16 +3321,27 @@ const FACTIONS = [
             "tier": 2,
             "material": "Storage Drive",
             "amount": 19
+          },
+          {
+            "tier": 3,
+            "material": "Nueral Insulation",
+            "amount": 3
+          },
+          {
+            "tier": 3,
+            "material": "Predictive Framework",
+            "amount": 3
           }
         ],
         "tierLabels": {
-          "1": "Balancing Act",
-          "2": "Balancing Act+"
+          "1": "Tier 1",
+          "2": "Tier 2",
+          "3": "VIP 1"
         }
       },
       {
         "id": "sekiguchi-vip-2",
-        "name": "VIP Node 2",
+        "name": "Momentum++",
         "x": 32.19,
         "y": 63.88,
         "w": 6.75,
@@ -3016,13 +3349,24 @@ const FACTIONS = [
         "maxTier": 1,
         "isVip": true,
         "tierLabels": {
-          "1": "VIP 2"
+          "1": "VIP 1"
         },
-        "costs": []
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Predictive Framework",
+            "amount": 7
+          },
+          {
+            "tier": 1,
+            "material": "Nueral Insulation",
+            "amount": 2
+          }
+        ]
       },
       {
         "id": "sekiguchi-vip-3",
-        "name": "VIP Node 3",
+        "name": "Overwatch++",
         "x": 43.35,
         "y": 63.88,
         "w": 6.75,
@@ -3030,13 +3374,24 @@ const FACTIONS = [
         "maxTier": 1,
         "isVip": true,
         "tierLabels": {
-          "1": "VIP 3"
+          "1": "VIP 1"
         },
-        "costs": []
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Nueral Insulation",
+            "amount": 7
+          },
+          {
+            "tier": 1,
+            "material": "Predictive Framework",
+            "amount": 3
+          }
+        ]
       },
       {
         "id": "sekiguchi-vip-4",
-        "name": "VIP Node 4",
+        "name": "Role Player++",
         "x": 54.52,
         "y": 63.88,
         "w": 6.75,
@@ -3044,9 +3399,20 @@ const FACTIONS = [
         "maxTier": 1,
         "isVip": true,
         "tierLabels": {
-          "1": "VIP 4"
+          "1": "VIP 1"
         },
-        "costs": []
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Predictive Framework",
+            "amount": 7
+          },
+          {
+            "tier": 1,
+            "material": "Nueral Insulation",
+            "amount": 2
+          }
+        ]
       },
       {
         "id": "sekiguchi-checkmate",
@@ -3055,7 +3421,7 @@ const FACTIONS = [
         "y": 63.47,
         "w": 8.31,
         "h": 12.29,
-        "maxTier": 1,
+        "maxTier": 3,
         "costs": [
           {
             "tier": 1,
@@ -3066,8 +3432,33 @@ const FACTIONS = [
             "tier": 1,
             "material": "Storage Drive",
             "amount": 24
+          },
+          {
+            "tier": 2,
+            "material": "Predictive Framework",
+            "amount": 8
+          },
+          {
+            "tier": 2,
+            "material": "Nueral Insulation",
+            "amount": 4
+          },
+          {
+            "tier": 3,
+            "material": "Alien Alloy",
+            "amount": 3
+          },
+          {
+            "tier": 3,
+            "material": "Predictive Framework",
+            "amount": 2
           }
-        ]
+        ],
+        "tierLabels": {
+          "1": "Tier 1",
+          "2": "VIP 1",
+          "3": "VIP 2"
+        }
       },
       {
         "id": "sekiguchi-freeloader",
@@ -3090,15 +3481,27 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "vip": true
+            "material": "Nueral Insulation",
+            "amount": 3
+          },
+          {
+            "tier": 2,
+            "material": "Predictive Framework",
+            "amount": 4
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Hazard Capsule",
+            "amount": 2
+          },
+          {
+            "tier": 3,
+            "material": "Nueral Insulation",
+            "amount": 6
           }
         ],
         "tierLabels": {
-          "1": "Freeloader",
+          "1": "Tier 1",
           "2": "VIP 1",
           "3": "VIP 2"
         }
@@ -3110,7 +3513,7 @@ const FACTIONS = [
         "y": 63.47,
         "w": 6.75,
         "h": 12.29,
-        "maxTier": 1,
+        "maxTier": 3,
         "costs": [
           {
             "tier": 1,
@@ -3121,8 +3524,33 @@ const FACTIONS = [
             "tier": 1,
             "material": "Amygdala Drive",
             "amount": 15
+          },
+          {
+            "tier": 2,
+            "material": "Predictive Framework",
+            "amount": 11
+          },
+          {
+            "tier": 2,
+            "material": "Nueral Insulation",
+            "amount": 4
+          },
+          {
+            "tier": 3,
+            "material": "Alien Alloy",
+            "amount": 3
+          },
+          {
+            "tier": 3,
+            "material": "Predictive Framework",
+            "amount": 8
           }
-        ]
+        ],
+        "tierLabels": {
+          "1": "Tier 1",
+          "2": "VIP 1",
+          "3": "VIP 2"
+        }
       }
     ]
   }
@@ -3272,6 +3700,14 @@ function getActiveFaction() {
   return FACTIONS.find(faction => faction.id === activeFactionId) || FACTIONS[0];
 }
 
+function hasKnownMaterialCosts(node) {
+  return (node?.costs || []).some(cost => !cost.vip && cost.material && Number(cost.amount || 0) > 0);
+}
+
+function isIgnoredVipNode(node) {
+  return Boolean(node?.isVip && !hasKnownMaterialCosts(node));
+}
+
 function tierLabel(tier, nodeOrMaxTier) {
   const node = typeof nodeOrMaxTier === "object" ? nodeOrMaxTier : null;
   if (tier === 0) return "Not started";
@@ -3391,7 +3827,7 @@ function openTierDialog(nodeId) {
 
   activeNodeId = nodeId;
   name.textContent = `${faction.name} - ${node.name}`;
-  hint.textContent = node.isVip
+  hint.textContent = isIgnoredVipNode(node)
     ? `This is a VIP node. VIP material requirements are not available yet, so it will save progress but will not count toward the materials needed total.`
     : `Choose the tier you currently have for this upgrade. Known material costs will update the TOTALS LEFT table automatically. Credits are ignored.`;
   select.innerHTML = "";
@@ -3414,7 +3850,7 @@ function renderTierCostPreview() {
   const tier = Number(select.value) || 0;
 
   if (!node || !node.costs.length) {
-    if (node?.isVip) {
+    if (isIgnoredVipNode(node)) {
       preview.innerHTML = `<strong>VIP node — not counted yet.</strong><span>This saves as ${tierLabel(tier, node)}, but VIP material requirements are unknown and will not be added to the Materials Needed total.</span>`;
     } else {
       preview.innerHTML = `<strong>No material cost data for this node.</strong><span>This node will save as ${tierLabel(tier, node || 0)}. Credits are ignored.</span>`;
@@ -3448,12 +3884,12 @@ function saveTierFromDialog(event) {
 }
 
 function getRemainingCostsForNode(node, currentTier) {
-  if (node?.isVip) return [];
+  if (isIgnoredVipNode(node)) return [];
   return (node.costs || []).filter(cost => !cost.vip && Number(cost.tier) > currentTier);
 }
 
 function getSelectedCostsForNode(node, currentTier) {
-  if (node?.isVip) return [];
+  if (isIgnoredVipNode(node)) return [];
   return (node.costs || []).filter(cost => !cost.vip && Number(cost.tier) <= currentTier);
 }
 
@@ -3570,7 +4006,7 @@ function renderUpgradeNeededList() {
   });
 
   if (!needed.size) {
-    list.innerHTML = `<div class="empty-needed">No selected known material costs for this faction. VIP nodes and credits are ignored.</div>`;
+    list.innerHTML = `<div class="empty-needed">No selected known material costs for this faction. unknown VIP nodes and credits are ignored.</div>`;
     return;
   }
 
@@ -3584,8 +4020,8 @@ function renderUpgradeProgress() {
   const text = document.getElementById("upgradeProgressText");
   if (!text) return;
   const faction = getActiveFaction();
-  const normalNodes = faction.nodes.filter(node => !node.isVip);
-  const vipNodes = faction.nodes.filter(node => node.isVip).length;
+  const normalNodes = faction.nodes.filter(node => !isIgnoredVipNode(node));
+  const vipNodes = faction.nodes.filter(node => isIgnoredVipNode(node)).length;
   const started = normalNodes.filter(node => (upgradeState[faction.id][node.id] || 0) > 0).length;
   const maxed = normalNodes.filter(node => (upgradeState[faction.id][node.id] || 0) >= node.maxTier).length;
   text.textContent = `${started} / ${normalNodes.length} non-VIP nodes started • ${maxed} maxed${vipNodes ? ` • ${vipNodes} VIP ignored` : ""}`;
@@ -3601,10 +4037,10 @@ function renderUpgradeTracker() {
 
 function setActiveFactionToMax() {
   const faction = getActiveFaction();
-  if (!confirm(`Set every known non-VIP ${faction.name} node to max normal tier? VIP-only material requirements are still ignored.`)) return;
+  if (!confirm(`Set every known non-VIP ${faction.name} node to max normal tier? unknown VIP-only material requirements are still ignored.`)) return;
   pushUndoSnapshot();
   faction.nodes.forEach(node => {
-    if (node.isVip) return;
+    if (isIgnoredVipNode(node)) return;
     const highestKnownCostTier = Math.max(0, ...(node.costs || []).filter(cost => !cost.vip).map(cost => Number(cost.tier) || 0));
     const vipTierNumbers = (node.costs || []).filter(cost => cost.vip).map(cost => Number(cost.tier) || 0).filter(Boolean);
     const firstVipTier = vipTierNumbers.length ? Math.min(...vipTierNumbers) : null;

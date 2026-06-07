@@ -139,11 +139,11 @@ window.INITIAL_DATA = [
       },
       {
         "name": "Nueral Insulation",
-        "total": 2
+        "total": 38
       },
       {
         "name": "Predictive Framework",
-        "total": 2
+        "total": 71
       },
       {
         "name": "Ballistic Turbine",
@@ -164,11 +164,11 @@ window.INITIAL_DATA = [
     "items": [
       {
         "name": "Alien Alloy",
-        "total": 0
+        "total": 12
       },
       {
         "name": "Hazard Capsule",
-        "total": 0
+        "total": 2
       },
       {
         "name": "Synapse Cube",
