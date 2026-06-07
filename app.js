@@ -2831,7 +2831,7 @@ const FACTIONS = [
         "y": 44.9,
         "w": 6.35,
         "h": 9.5,
-        "maxTier": 2,
+        "maxTier": 4,
         "costs": [
           {
             "tier": 1,
@@ -2847,11 +2847,21 @@ const FACTIONS = [
             "tier": 2,
             "material": "Drone Resin",
             "amount": 19
+          },
+          {
+            "tier": 3,
+            "vip": true
+          },
+          {
+            "tier": 4,
+            "vip": true
           }
         ],
         "tierLabels": {
-          "1": "Tox Injectors",
-          "2": "Tox Injectors+"
+          "1": "Tier 1",
+          "2": "Tier 2",
+          "3": "VIP 1",
+          "4": "VIP 2"
         }
       },
       {
