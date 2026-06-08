@@ -243,7 +243,7 @@ function renderTotalsTable() {
         amountCell.textContent = fmt(shownLeft);
         const alloc = getAllocatedUpgradeUseForMaterial(item.id);
         const inVault = Number(vault[item.id] || 0);
-        amountCell.className = `amount ${shownLeft === 0 ? "upgrade-adjusted" : ""} ${shownLeft < 0 ? "negative-total" : ""}`;
+        amountCell.className = `amount ${shownLeft <= 0 ? "upgrade-adjusted" : ""} ${shownLeft < 0 ? "negative-total" : ""}`;
         if (upgradeNeed > 0 || inVault > 0) amountCell.title = `Totals left: ${fmt(shownLeft)} | In Vault: ${fmt(inVault)} | Spent by selected upgrades: ${fmt(upgradeNeed)} (${fmt(alloc.vault)} from vault, ${fmt(alloc.available)} from totals left)`;
       } else {
         matCell.className = "empty";
@@ -592,11 +592,17 @@ const FACTIONS = [
         "y": 7.7,
         "w": 9.25,
         "h": 13.05,
-        "maxTier": 2,
-        "costs": [],
+        "maxTier": 3,
+        "costs": [
+          {
+            "tier": 3,
+            "vip": true
+          }
+        ],
         "tierLabels": {
-          "1": "Sponsorship",
-          "2": "Sponsorship+"
+          "1": "Tier 1",
+          "2": "Tier 2",
+          "3": "VIP 1"
         }
       },
       {
@@ -881,7 +887,10 @@ const FACTIONS = [
         "y": 10.57,
         "w": 6.17,
         "h": 9.35,
-        "maxTier": 3,
+        "maxTier": 1,
+        "tierLabels": {
+          "1": "Tier 1"
+        },
         "costs": [
           {
             "tier": 1,
@@ -974,8 +983,18 @@ const FACTIONS = [
         "y": 8.54,
         "w": 8.22,
         "h": 13.82,
-        "maxTier": 2,
-        "costs": []
+        "maxTier": 3,
+        "tierLabels": {
+          "1": "Tier 1",
+          "2": "Tier 2",
+          "3": "VIP 1"
+        },
+        "costs": [
+          {
+            "tier": 3,
+            "vip": true
+          }
+        ]
       },
       {
         "id": "nucaloric-restore",
@@ -1613,8 +1632,18 @@ const FACTIONS = [
         "y": 25.3,
         "w": 9.4,
         "h": 15.8,
-        "maxTier": 2,
-        "costs": []
+        "maxTier": 3,
+        "tierLabels": {
+          "1": "Tier 1",
+          "2": "Tier 2",
+          "3": "VIP 1"
+        },
+        "costs": [
+          {
+            "tier": 3,
+            "vip": true
+          }
+        ]
       },
       {
         "id": "traxus-vip-4",
@@ -1934,12 +1963,18 @@ const FACTIONS = [
         "y": 8.65,
         "w": 8.95,
         "h": 13.95,
-        "maxTier": 2,
+        "maxTier": 3,
         "tierLabels": {
-          "1": "Sponsorship",
-          "2": "Sponsorship+"
+          "1": "Tier 1",
+          "2": "Tier 2",
+          "3": "VIP 1"
         },
-        "costs": []
+        "costs": [
+          {
+            "tier": 3,
+            "vip": true
+          }
+        ]
       },
       {
         "id": "mida-bullseye",
@@ -2514,11 +2549,17 @@ const FACTIONS = [
         "y": 7.8,
         "w": 9.15,
         "h": 13.4,
-        "maxTier": 2,
-        "costs": [],
+        "maxTier": 3,
+        "costs": [
+          {
+            "tier": 3,
+            "vip": true
+          }
+        ],
         "tierLabels": {
-          "1": "Sponsorship",
-          "2": "Sponsorship+"
+          "1": "Tier 1",
+          "2": "Tier 2",
+          "3": "VIP 1"
         }
       },
       {
@@ -3026,11 +3067,17 @@ const FACTIONS = [
         "y": 9.83,
         "w": 8.83,
         "h": 13.92,
-        "maxTier": 2,
-        "costs": [],
+        "maxTier": 3,
+        "costs": [
+          {
+            "tier": 3,
+            "vip": true
+          }
+        ],
         "tierLabels": {
-          "1": "Sponsorship",
-          "2": "Sponsorship+"
+          "1": "Tier 1",
+          "2": "Tier 2",
+          "3": "VIP 1"
         }
       },
       {
