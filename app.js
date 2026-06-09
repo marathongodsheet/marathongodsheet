@@ -3894,22 +3894,33 @@ function isIgnoredVipNode(node) {
   return Boolean(node?.isVip && !hasKnownMaterialCosts(node));
 }
 
+function compactTierLabel(label) {
+  return String(label || "")
+    .replace(/^Tier\s+/i, "T")
+    .replace(/^VIP\s+/i, "VIP")
+    .replace(/^TIER\s*/i, "T")
+    .trim();
+}
+
 function tierLabel(tier, nodeOrMaxTier) {
   const node = typeof nodeOrMaxTier === "object" ? nodeOrMaxTier : null;
-  if (tier === 0) return "Not started";
-  if (node?.tierLabels?.[String(tier)]) return node.tierLabels[String(tier)];
-  const cost = node?.costs?.find(entry => Number(entry.tier) === Number(tier));
-  if (node?.isVip) return `VIP ${tier}`;
+  const tierNumber = Number(tier) || 0;
+  if (tierNumber === 0) return "Not started";
+
+  // Visible labels must stay compact on every tree: T1, T2, etc. or VIP1, VIP2, etc.
+  // Full upgrade names are only exposed through the hover tooltip / aria label.
+  const cost = node?.costs?.find(entry => Number(entry.tier) === tierNumber);
+  if (node?.isVip) return `VIP${tierNumber}`;
   if (cost?.vip) {
     const vipTiers = [...new Set((node.costs || [])
       .filter(entry => entry.vip)
       .map(entry => Number(entry.tier) || 0)
       .filter(Boolean))]
       .sort((a, b) => a - b);
-    const vipIndex = Math.max(1, vipTiers.indexOf(Number(tier)) + 1);
-    return `VIP ${vipIndex}`;
+    const vipIndex = Math.max(1, vipTiers.indexOf(tierNumber) + 1);
+    return `VIP${vipIndex}`;
   }
-  return `Tier ${tier}`;
+  return `T${tierNumber}`;
 }
 
 function renderFactionList() {
@@ -3961,7 +3972,7 @@ function renderTreeNodes() {
     button.style.setProperty("--node-rgb", faction.rgb);
     if (node.isVip) button.classList.add("vip-node");
     button.setAttribute("aria-label", `${node.name}, ${tierLabel(currentTier, node)}`);
-    const label = currentTier > 0 ? tierLabel(currentTier, node).replace("Tier ", "T") : "+";
+    const label = currentTier > 0 ? tierLabel(currentTier, node) : "+";
     const notches = Array.from({ length: Math.max(1, node.maxTier) }, (_, index) => {
       const notchTier = index + 1;
       const isFilled = currentTier >= notchTier;
