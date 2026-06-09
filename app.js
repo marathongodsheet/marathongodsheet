@@ -1620,7 +1620,13 @@ const FACTIONS = [
                       },
                       {
                               "tier": 2,
-                              "vip": true
+                              "material": "Reflex Coil",
+                              "amount": 8
+                      },
+                      {
+                              "tier": 2,
+                              "material": "Ballistic Turbine",
+                              "amount": 3
                       }
               ],
               "tierLabels": {
@@ -1761,7 +1767,18 @@ const FACTIONS = [
               "tierLabels": {
                       "1": "Superior Mags"
               },
-              "costs": []
+              "costs": [
+                      {
+                              "tier": 1,
+                              "material": "Reflex Coil",
+                              "amount": 6
+                      },
+                      {
+                              "tier": 1,
+                              "material": "Ballistic Turbine",
+                              "amount": 3
+                      }
+              ]
       },
       {
         "id": "traxus-enhanced-mags",
@@ -1839,7 +1856,7 @@ const FACTIONS = [
       },
       {
         "id": "traxus-vip-5",
-        "name": "VIP Node 5",
+        "name": "Superior Muzzles",
         "x": 88.1,
         "y": 46.3,
         "w": 7.6,
@@ -1847,9 +1864,20 @@ const FACTIONS = [
         "maxTier": 1,
         "isVip": true,
         "tierLabels": {
-          "1": "VIP 5"
+          "1": "Superior Muzzles"
         },
-        "costs": []
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Reflex Coil",
+            "amount": 9
+          },
+          {
+            "tier": 1,
+            "material": "Ballistic Turbine",
+            "amount": 4
+          }
+        ]
       },
             {
               "id": "traxus-vip-6",
@@ -1863,7 +1891,18 @@ const FACTIONS = [
               "tierLabels": {
                       "1": "Superior Optics"
               },
-              "costs": []
+              "costs": [
+                      {
+                              "tier": 1,
+                              "material": "Predictive Framework",
+                              "amount": 13
+                      },
+                      {
+                              "tier": 1,
+                              "material": "Ballistic Turbine",
+                              "amount": 5
+                      }
+              ]
       },
       {
         "id": "traxus-enhanced-optics",
@@ -1946,7 +1985,7 @@ const FACTIONS = [
       },
       {
         "id": "traxus-vip-7",
-        "name": "VIP Node 7",
+        "name": "Superior Specialty Mods",
         "x": 88.1,
         "y": 63.8,
         "w": 7.6,
@@ -1954,9 +1993,20 @@ const FACTIONS = [
         "maxTier": 1,
         "isVip": true,
         "tierLabels": {
-          "1": "VIP 7"
+          "1": "Superior Specialty Mods"
         },
-        "costs": []
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Alien Alloy",
+            "amount": 2
+          },
+          {
+            "tier": 1,
+            "material": "Ballistic Turbine",
+            "amount": 2
+          }
+        ]
       }
     ]
   },
@@ -3871,13 +3921,25 @@ function hasAnySelectedUpgradeTier() {
 }
 
 function migrateSelectedUpgradesIntoAllocations() {
-  if (hasAnyUpgradeAllocation() || !hasAnySelectedUpgradeTier()) return;
+  // Rebuild allocations from the current upgrade data every load.
+  // This keeps old v33 save keys intact, but makes newly-added or corrected
+  // material costs immediately affect existing saved upgrade selections.
+  if (!hasAnySelectedUpgradeTier()) return;
+
+  FACTIONS.forEach(faction => {
+    faction.nodes.forEach(node => {
+      revertNodeAllocation(faction.id, node.id);
+    });
+  });
+
   FACTIONS.forEach(faction => {
     faction.nodes.forEach(node => {
       const tier = upgradeState?.[faction.id]?.[node.id] || 0;
       if (tier > 0) applyNodeAllocation(faction, node, tier);
     });
   });
+
+  saveUpgradeAllocations();
   save();
 }
 

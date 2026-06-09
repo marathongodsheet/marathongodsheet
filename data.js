@@ -143,11 +143,11 @@ window.INITIAL_DATA = [
       },
       {
         "name": "Predictive Framework",
-        "total": 85
+        "total": 98
       },
       {
         "name": "Ballistic Turbine",
-        "total": 11
+        "total": 30
       },
       {
         "name": "Enzyme Replicator",
@@ -155,7 +155,7 @@ window.INITIAL_DATA = [
       },
       {
         "name": "Reflex Coil",
-        "total": 2
+        "total": 25
       }
     ]
   },
@@ -164,7 +164,7 @@ window.INITIAL_DATA = [
     "items": [
       {
         "name": "Alien Alloy",
-        "total": 16
+        "total": 21
       },
       {
         "name": "Hazard Capsule",
