@@ -1,3 +1,7 @@
+Marathon Godsheet site v45
+
+Corrected faction tree image color mapping: Cyberacme lime green, Nucaloric pinkish red, Traxus orange, Mida purple, Arachne red, Sekiguchi teal. Save/localStorage keys remain unchanged.
+
 Marathon Godsheet Site v24
 ==========================
 
@@ -61,3 +65,17 @@ Traxus circled deluxe/enhanced nodes were swapped so Deluxe is on the left and E
 ## Overlay check images
 
 The `overlay_checks` folder includes labeled JPEGs for each faction. Each clickable node area is drawn over the faction tree screenshot with the node name inside its square, so placement and labels can be reviewed before publishing.
+
+
+## v46 update
+- Added known Cyberacme VIP material costs for Hoarder's Barter, Bountiful.EXE, and Discounted Templates.
+- Set Cyberacme Pinata and Petty Theft to 2 normal tiers + 2 unknown VIP tiers.
+- Set Cyberacme Lucky Looter to 1 normal tier + 2 unknown VIP tiers.
+- Increased default Nueral Insulation and Predictive Framework totals so saved users receive the delta without wiping progress.
+
+
+## v48 update
+- Traxus top-right VIP node renamed to M77.
+- M77 cost added: Alien Alloy x1 and Ballistic Turbine x7.
+- Raw totals updated for Alien Alloy and Ballistic Turbine.
+- Save keys unchanged.

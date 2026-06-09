@@ -602,7 +602,7 @@ const FACTIONS = [
         "tierLabels": {
           "1": "Tier 1",
           "2": "Tier 2",
-          "3": "VIP 1"
+          "3": "Sponsorship++ [Cyberacme]"
         }
       },
       {
@@ -712,30 +712,52 @@ const FACTIONS = [
       },
       {
         "id": "cyberacme-vip-1",
-        "name": "VIP Node 1",
+        "name": "Hoarder's Barter",
         "x": 64.15,
         "y": 24.35,
         "w": 8.8,
         "h": 12.5,
         "maxTier": 1,
-        "costs": [],
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Nueral Insulation",
+            "amount": 18
+          },
+          {
+            "tier": 1,
+            "material": "Predictive Framework",
+            "amount": 7
+          }
+        ],
         "isVip": true,
         "tierLabels": {
-          "1": "VIP 1"
+          "1": "Hoarder's Barter"
         }
       },
       {
         "id": "cyberacme-vip-2",
-        "name": "VIP Node 2",
+        "name": "Bountiful.EXE",
         "x": 75.55,
         "y": 40.25,
         "w": 8.8,
         "h": 12.5,
         "maxTier": 1,
-        "costs": [],
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Nueral Insulation",
+            "amount": 4
+          },
+          {
+            "tier": 1,
+            "material": "Predictive Framework",
+            "amount": 1
+          }
+        ],
         "isVip": true,
         "tierLabels": {
-          "1": "VIP 2"
+          "1": "Bountiful.EXE"
         }
       },
       {
@@ -776,16 +798,27 @@ const FACTIONS = [
       },
       {
         "id": "cyberacme-vip-3",
-        "name": "VIP Node 3",
+        "name": "Discounted Templates",
         "x": 43.0,
         "y": 57.35,
         "w": 6.15,
         "h": 9.5,
         "maxTier": 1,
-        "costs": [],
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Nueral Insulation",
+            "amount": 12
+          },
+          {
+            "tier": 1,
+            "material": "Predictive Framework",
+            "amount": 6
+          }
+        ],
         "isVip": true,
         "tierLabels": {
-          "1": "VIP 3"
+          "1": "Discounted Templates"
         }
       },
       {
@@ -805,7 +838,7 @@ const FACTIONS = [
         "y": 56.8,
         "w": 8.95,
         "h": 10.6,
-        "maxTier": 2,
+        "maxTier": 4,
         "costs": [
           {
             "tier": 1,
@@ -821,8 +854,22 @@ const FACTIONS = [
             "tier": 2,
             "material": "Diodes",
             "amount": 9
+          },
+          {
+            "tier": 3,
+            "vip": true
+          },
+          {
+            "tier": 4,
+            "vip": true
           }
-        ]
+        ],
+        "tierLabels": {
+          "1": "Tier 1",
+          "2": "Tier 2",
+          "3": "VIP 1",
+          "4": "VIP 2"
+        }
       },
       {
         "id": "cyberacme-petty-theft",
@@ -831,7 +878,7 @@ const FACTIONS = [
         "y": 56.8,
         "w": 8.15,
         "h": 10.6,
-        "maxTier": 2,
+        "maxTier": 4,
         "costs": [
           {
             "tier": 1,
@@ -847,8 +894,22 @@ const FACTIONS = [
             "tier": 2,
             "material": "Diodes",
             "amount": 9
+          },
+          {
+            "tier": 3,
+            "vip": true
+          },
+          {
+            "tier": 4,
+            "vip": true
           }
-        ]
+        ],
+        "tierLabels": {
+          "1": "Tier 1",
+          "2": "Tier 2",
+          "3": "VIP 1",
+          "4": "VIP 2"
+        }
       },
       {
         "id": "cyberacme-lucky-looter",
@@ -857,7 +918,7 @@ const FACTIONS = [
         "y": 56.5,
         "w": 8.7,
         "h": 11.1,
-        "maxTier": 1,
+        "maxTier": 3,
         "costs": [
           {
             "tier": 1,
@@ -868,8 +929,21 @@ const FACTIONS = [
             "tier": 1,
             "material": "Diodes",
             "amount": 9
+          },
+          {
+            "tier": 2,
+            "vip": true
+          },
+          {
+            "tier": 3,
+            "vip": true
           }
-        ]
+        ],
+        "tierLabels": {
+          "1": "Tier 1",
+          "2": "VIP 1",
+          "3": "VIP 2"
+        }
       }
     ]
   },
@@ -1475,7 +1549,7 @@ const FACTIONS = [
       {
         "id": "traxus-overrun",
         "name": "Overrun",
-        "x": 31.7,
+        "x": 32.9,
         "y": 10.5,
         "w": 6.25,
         "h": 10.0,
@@ -1491,7 +1565,7 @@ const FACTIONS = [
       {
         "id": "traxus-retaliator",
         "name": "Retaliator",
-        "x": 42.65,
+        "x": 43.85,
         "y": 10.5,
         "w": 6.25,
         "h": 10.0,
@@ -1507,7 +1581,7 @@ const FACTIONS = [
       {
         "id": "traxus-v75-scar",
         "name": "V75 SCAR",
-        "x": 53.65,
+        "x": 54.85,
         "y": 10.5,
         "w": 6.25,
         "h": 10.0,
@@ -1525,59 +1599,89 @@ const FACTIONS = [
           }
         ]
       },
-      {
-        "id": "traxus-kkv-9sd",
-        "name": "KKV-9SD",
-        "x": 64.65,
-        "y": 10.5,
-        "w": 6.25,
-        "h": 10.0,
-        "maxTier": 1,
-        "costs": [
-          {
-            "tier": 1,
-            "material": "Plasma Filament",
-            "amount": 23
-          },
-          {
-            "tier": 1,
-            "material": "Deimosite Rods",
-            "amount": 11
-          }
-        ]
+            {
+              "id": "traxus-kkv-9sd",
+              "name": "KKV-9SD",
+              "x": 65.85,
+              "y": 10.5,
+              "w": 6.25,
+              "h": 10.0,
+              "maxTier": 2,
+              "costs": [
+                      {
+                              "tier": 1,
+                              "material": "Plasma Filament",
+                              "amount": 23
+                      },
+                      {
+                              "tier": 1,
+                              "material": "Deimosite Rods",
+                              "amount": 11
+                      },
+                      {
+                              "tier": 2,
+                              "vip": true
+                      }
+              ],
+              "tierLabels": {
+                      "1": "KKV-9SD",
+                      "2": "BART"
+              }
       },
-      {
-        "id": "traxus-vip-1",
-        "name": "VIP Node 1",
-        "x": 75.8,
-        "y": 10.2,
-        "w": 8.1,
-        "h": 11.6,
-        "maxTier": 1,
-        "isVip": true,
-        "tierLabels": {
-          "1": "VIP 1"
-        },
-        "costs": []
+            {
+              "id": "traxus-vip-1",
+              "name": "Prestige Mod",
+              "x": 77,
+              "y": 10.2,
+              "w": 8.1,
+              "h": 11.6,
+              "maxTier": 1,
+              "isVip": true,
+              "tierLabels": {
+                      "1": "Prestige Mod"
+              },
+              "costs": [
+                      {
+                              "tier": 1,
+                              "material": "Alien Alloy",
+                              "amount": 3
+                      },
+                      {
+                              "tier": 1,
+                              "material": "Ballistic Turbine",
+                              "amount": 2
+                      }
+              ]
       },
       {
         "id": "traxus-vip-2",
-        "name": "VIP Node 2",
-        "x": 86.9,
+        "name": "M77",
+        "x": 88.1,
         "y": 10.2,
         "w": 7.6,
         "h": 11.6,
         "maxTier": 1,
         "isVip": true,
         "tierLabels": {
-          "1": "VIP 2"
+          "1": "M77"
         },
-        "costs": []
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Alien Alloy",
+            "amount": 1
+          },
+          {
+            "tier": 1,
+            "material": "Ballistic Turbine",
+            "amount": 7
+          }
+        ]
       },
       {
         "id": "traxus-vip-3",
         "name": "VIP Node 3",
-        "x": 31.7,
+        "x": 32.9,
         "y": 28.7,
         "w": 6.3,
         "h": 10.5,
@@ -1591,7 +1695,7 @@ const FACTIONS = [
       {
         "id": "traxus-enhanced-chips",
         "name": "Enhanced Chips",
-        "x": 53.65,
+        "x": 54.85,
         "y": 28.7,
         "w": 6.4,
         "h": 10.5,
@@ -1607,7 +1711,7 @@ const FACTIONS = [
       {
         "id": "traxus-deluxe-chips",
         "name": "Deluxe Chips",
-        "x": 42.65,
+        "x": 43.85,
         "y": 28.7,
         "w": 6.4,
         "h": 10.5,
@@ -1628,7 +1732,7 @@ const FACTIONS = [
       {
         "id": "traxus-sponsorship",
         "name": "Sponsorship [Traxus]",
-        "x": 85.2,
+        "x": 86.4,
         "y": 25.3,
         "w": 9.4,
         "h": 15.8,
@@ -1645,24 +1749,24 @@ const FACTIONS = [
           }
         ]
       },
-      {
-        "id": "traxus-vip-4",
-        "name": "VIP Node 4",
-        "x": 31.7,
-        "y": 46.3,
-        "w": 6.3,
-        "h": 10.5,
-        "maxTier": 1,
-        "isVip": true,
-        "tierLabels": {
-          "1": "VIP 4"
-        },
-        "costs": []
+            {
+              "id": "traxus-vip-4",
+              "name": "Superior Mags",
+              "x": 32.9,
+              "y": 46.3,
+              "w": 6.3,
+              "h": 10.5,
+              "maxTier": 1,
+              "isVip": true,
+              "tierLabels": {
+                      "1": "Superior Mags"
+              },
+              "costs": []
       },
       {
         "id": "traxus-enhanced-mags",
         "name": "Enhanced Mags",
-        "x": 53.65,
+        "x": 54.85,
         "y": 46.0,
         "w": 7.0,
         "h": 10.7,
@@ -1678,7 +1782,7 @@ const FACTIONS = [
       {
         "id": "traxus-deluxe-mags",
         "name": "Deluxe Mags",
-        "x": 42.5,
+        "x": 43.7,
         "y": 46.0,
         "w": 6.5,
         "h": 10.7,
@@ -1699,7 +1803,7 @@ const FACTIONS = [
       {
         "id": "traxus-enhanced-muzzles",
         "name": "Enhanced Muzzles",
-        "x": 64.65,
+        "x": 65.85,
         "y": 46.0,
         "w": 6.5,
         "h": 10.7,
@@ -1715,7 +1819,7 @@ const FACTIONS = [
       {
         "id": "traxus-deluxe-muzzles",
         "name": "Deluxe Muzzles",
-        "x": 75.7,
+        "x": 76.9,
         "y": 46.0,
         "w": 6.5,
         "h": 10.7,
@@ -1736,7 +1840,7 @@ const FACTIONS = [
       {
         "id": "traxus-vip-5",
         "name": "VIP Node 5",
-        "x": 86.9,
+        "x": 88.1,
         "y": 46.3,
         "w": 7.6,
         "h": 10.5,
@@ -1747,24 +1851,24 @@ const FACTIONS = [
         },
         "costs": []
       },
-      {
-        "id": "traxus-vip-6",
-        "name": "VIP Node 6",
-        "x": 31.7,
-        "y": 63.8,
-        "w": 6.3,
-        "h": 10.3,
-        "maxTier": 1,
-        "isVip": true,
-        "tierLabels": {
-          "1": "VIP 6"
-        },
-        "costs": []
+            {
+              "id": "traxus-vip-6",
+              "name": "Superior Optics",
+              "x": 32.9,
+              "y": 63.8,
+              "w": 6.3,
+              "h": 10.3,
+              "maxTier": 1,
+              "isVip": true,
+              "tierLabels": {
+                      "1": "Superior Optics"
+              },
+              "costs": []
       },
       {
         "id": "traxus-enhanced-optics",
         "name": "Enhanced Optics",
-        "x": 53.65,
+        "x": 54.85,
         "y": 63.6,
         "w": 7.0,
         "h": 10.5,
@@ -1780,7 +1884,7 @@ const FACTIONS = [
       {
         "id": "traxus-deluxe-optics",
         "name": "Deluxe Optics",
-        "x": 42.5,
+        "x": 43.7,
         "y": 63.6,
         "w": 6.5,
         "h": 10.5,
@@ -1801,7 +1905,7 @@ const FACTIONS = [
       {
         "id": "traxus-enhanced-specialty-mods",
         "name": "Enhanced Specialty Mods",
-        "x": 64.65,
+        "x": 65.85,
         "y": 63.6,
         "w": 6.5,
         "h": 10.5,
@@ -1822,7 +1926,7 @@ const FACTIONS = [
       {
         "id": "traxus-deluxe-specialty-mods",
         "name": "Deluxe Specialty Mods",
-        "x": 75.7,
+        "x": 76.9,
         "y": 63.6,
         "w": 6.5,
         "h": 10.5,
@@ -1843,7 +1947,7 @@ const FACTIONS = [
       {
         "id": "traxus-vip-7",
         "name": "VIP Node 7",
-        "x": 86.9,
+        "x": 88.1,
         "y": 63.8,
         "w": 7.6,
         "h": 10.3,
@@ -1956,25 +2060,25 @@ const FACTIONS = [
           }
         ]
       },
-      {
-        "id": "mida-sponsorship",
-        "name": "Sponsorship [Mida]",
-        "x": 86.25,
-        "y": 8.65,
-        "w": 8.95,
-        "h": 13.95,
-        "maxTier": 3,
-        "tierLabels": {
-          "1": "Tier 1",
-          "2": "Tier 2",
-          "3": "VIP 1"
-        },
-        "costs": [
-          {
-            "tier": 3,
-            "vip": true
-          }
-        ]
+            {
+              "id": "mida-sponsorship",
+              "name": "Sponsorship [Mida]",
+              "x": 86.25,
+              "y": 8.65,
+              "w": 8.95,
+              "h": 13.95,
+              "maxTier": 3,
+              "tierLabels": {
+                      "1": "Tier 1",
+                      "2": "Tier 2",
+                      "3": "Sponsorship++"
+              },
+              "costs": [
+                      {
+                              "tier": 3,
+                              "vip": true
+                      }
+              ]
       },
       {
         "id": "mida-bullseye",
@@ -2281,40 +2385,65 @@ const FACTIONS = [
           }
         ]
       },
-      {
-        "id": "mida-equipment-stock",
-        "name": "Equipment Stock",
-        "x": 32.35,
-        "y": 61.45,
-        "w": 6.3,
-        "h": 9.85,
-        "maxTier": 1,
-        "costs": [
-          {
-            "tier": 1,
-            "material": "Volatile Compunds",
-            "amount": 6
-          },
-          {
-            "tier": 1,
-            "material": "Thoughtwave Lens",
-            "amount": 5
-          }
-        ]
+            {
+              "id": "mida-equipment-stock",
+              "name": "Equipment Stock",
+              "x": 32.35,
+              "y": 61.45,
+              "w": 6.3,
+              "h": 9.85,
+              "maxTier": 2,
+              "costs": [
+                      {
+                              "tier": 1,
+                              "material": "Volatile Compunds",
+                              "amount": 6
+                      },
+                      {
+                              "tier": 1,
+                              "material": "Thoughtwave Lens",
+                              "amount": 5
+                      },
+                      {
+                              "tier": 2,
+                              "material": "Hazard Capsule",
+                              "amount": 1
+                      },
+                      {
+                              "tier": 2,
+                              "material": "Biolens Seed",
+                              "amount": 8
+                      }
+              ],
+              "tierLabels": {
+                      "1": "Equipment Stock",
+                      "2": "Equipment Stock+"
+              }
       },
-      {
-        "id": "mida-vip-1",
-        "name": "VIP Node 1",
-        "x": 42.9,
-        "y": 61.2,
-        "w": 6.25,
-        "h": 10.2,
-        "maxTier": 1,
-        "isVip": true,
-        "tierLabels": {
-          "1": "VIP 1"
-        },
-        "costs": []
+            {
+              "id": "mida-vip-1",
+              "name": "Dome Up",
+              "x": 42.9,
+              "y": 61.2,
+              "w": 6.25,
+              "h": 10.2,
+              "maxTier": 1,
+              "isVip": true,
+              "tierLabels": {
+                      "1": "Dome Up"
+              },
+              "costs": [
+                      {
+                              "tier": 1,
+                              "material": "Hazard Capsule",
+                              "amount": 3
+                      },
+                      {
+                              "tier": 1,
+                              "material": "Biolens Seed",
+                              "amount": 3
+                      }
+              ]
       },
       {
         "id": "mida-spare-rounds",
@@ -2346,40 +2475,40 @@ const FACTIONS = [
           }
         ]
       },
-      {
-        "id": "mida-sensor-case",
-        "name": "Sensor Case / Grenade Case",
-        "x": 64.25,
-        "y": 60.45,
-        "w": 9.35,
-        "h": 13.95,
-        "maxTier": 3,
-        "tierLabels": {
-          "1": "Sensor Case",
-          "2": "Grenade Case",
-          "3": "VIP 1"
-        },
-        "costs": [
-          {
-            "tier": 1,
-            "material": "Unstable Lead",
-            "amount": 26
-          },
-          {
-            "tier": 2,
-            "material": "Ballistic Turbine",
-            "amount": 1
-          },
-          {
-            "tier": 2,
-            "material": "Thoughtwave Lens",
-            "amount": 18
-          },
-          {
-            "tier": 3,
-            "vip": true
-          }
-        ]
+            {
+              "id": "mida-sensor-case",
+              "name": "Sensor Case / Grenade Case",
+              "x": 64.25,
+              "y": 60.45,
+              "w": 9.35,
+              "h": 13.95,
+              "maxTier": 3,
+              "tierLabels": {
+                      "1": "Sensor Case",
+                      "2": "Grenade Case",
+                      "3": "Grenade Case+"
+              },
+              "costs": [
+                      {
+                              "tier": 1,
+                              "material": "Unstable Lead",
+                              "amount": 26
+                      },
+                      {
+                              "tier": 2,
+                              "material": "Ballistic Turbine",
+                              "amount": 1
+                      },
+                      {
+                              "tier": 2,
+                              "material": "Thoughtwave Lens",
+                              "amount": 18
+                      },
+                      {
+                              "tier": 3,
+                              "vip": true
+                      }
+              ]
       },
       {
         "id": "mida-cardio-barter",
@@ -3768,6 +3897,7 @@ function isIgnoredVipNode(node) {
 function tierLabel(tier, nodeOrMaxTier) {
   const node = typeof nodeOrMaxTier === "object" ? nodeOrMaxTier : null;
   if (tier === 0) return "Not started";
+  if (node?.tierLabels?.[String(tier)]) return node.tierLabels[String(tier)];
   const cost = node?.costs?.find(entry => Number(entry.tier) === Number(tier));
   if (node?.isVip) return `VIP ${tier}`;
   if (cost?.vip) {

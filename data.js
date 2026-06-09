@@ -135,19 +135,19 @@ window.INITIAL_DATA = [
     "items": [
       {
         "name": "Biolens Seed",
-        "total": 3
+        "total": 14
       },
       {
         "name": "Nueral Insulation",
-        "total": 38
+        "total": 72
       },
       {
         "name": "Predictive Framework",
-        "total": 71
+        "total": 85
       },
       {
         "name": "Ballistic Turbine",
-        "total": 2
+        "total": 11
       },
       {
         "name": "Enzyme Replicator",
@@ -164,11 +164,11 @@ window.INITIAL_DATA = [
     "items": [
       {
         "name": "Alien Alloy",
-        "total": 12
+        "total": 16
       },
       {
         "name": "Hazard Capsule",
-        "total": 2
+        "total": 6
       },
       {
         "name": "Synapse Cube",
