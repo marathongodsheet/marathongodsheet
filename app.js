@@ -857,11 +857,23 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Predictive Framework",
+            "amount": 6
+          },
+          {
+            "tier": 3,
+            "material": "Nueral Insulation",
+            "amount": 2
           },
           {
             "tier": 4,
-            "vip": true
+            "material": "Predictive Framework",
+            "amount": 9
+          },
+          {
+            "tier": 4,
+            "material": "Nueral Insulation",
+            "amount": 3
           }
         ],
         "tierLabels": {
@@ -897,11 +909,23 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Nueral Insulation",
+            "amount": 6
+          },
+          {
+            "tier": 3,
+            "material": "Predictive Framework",
+            "amount": 2
           },
           {
             "tier": 4,
-            "vip": true
+            "material": "Predictive Framework",
+            "amount": 3
+          },
+          {
+            "tier": 4,
+            "material": "Nueral Insulation",
+            "amount": 9
           }
         ],
         "tierLabels": {
@@ -932,11 +956,23 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "vip": true
+            "material": "Predictive Framework",
+            "amount": 6
+          },
+          {
+            "tier": 2,
+            "material": "Nueral Insulation",
+            "amount": 2
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Nueral Insulation",
+            "amount": 9
+          },
+          {
+            "tier": 3,
+            "material": "Predictive Framework",
+            "amount": 3
           }
         ],
         "tierLabels": {

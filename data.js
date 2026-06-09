@@ -139,11 +139,11 @@ window.INITIAL_DATA = [
       },
       {
         "name": "Nueral Insulation",
-        "total": 72
+        "total": 103
       },
       {
         "name": "Predictive Framework",
-        "total": 98
+        "total": 127
       },
       {
         "name": "Ballistic Turbine",
