@@ -1,81 +1,97 @@
-Marathon Godsheet site v45
+# Marathon Godsheet
 
-Corrected faction tree image color mapping: Cyberacme lime green, Nucaloric pinkish red, Traxus orange, Mida purple, Arachne red, Sekiguchi teal. Save/localStorage keys remain unchanged.
+Marathon Godsheet is a web-based material and faction upgrade tracker. It is designed to help players track how many materials they still need, what materials they already have, and which faction upgrades have been completed.
 
-Marathon Godsheet Site v24
-==========================
+## Current Changes
 
-This version rechecks and tightens faction upgrade node overlays, with special fixes for Mida and Cyberacme alignment.
+### Upgrade Tracking
 
-# Marathon Godsheet Website
+* The Upgrade Tracking page is now the default/first page.
+* All six faction trees are available as clickable faction buttons:
 
-Open `index.html` locally, or upload this folder to GitHub Pages / Netlify.
+  * Cyberacme
+  * Nucaloric
+  * Traxus
+  * Mida
+  * Arachne
+  * Sekiguchi
+* Tree screenshots were updated and matched to their correct faction colors:
 
-## Saving progress
-The site automatically saves each user's progress in that browser using localStorage:
+  * Cyberacme = lime green
+  * Nucaloric = pinkish red
+  * Traxus = orange
+  * Mida = purple
+  * Arachne = red
+  * Sekiguchi = teal
+* Clickable upgrade nodes are placed over each faction tree.
+* Left-clicking an upgrade increases its tier.
+* Right-clicking an upgrade decreases its tier.
+* Upgrade labels now display only short tier labels:
 
-- material totals
-- vault contents
-- transaction history
-- selected upgrade tiers
-- selected faction
-- active tab
-- page scroll position
+  * `+` for unstarted upgrades
+  * `T1`, `T2`, `T3`, etc. for normal tiers
+  * `VIP1`, `VIP2`, `VIP3`, etc. for VIP tiers
+* Full upgrade names are hidden from the node badges and only appear when hovering over a node.
+* Upgrade tier labels were standardized across all faction trees.
+* The “Selected Upgrade Materials” section was removed.
+* The following buttons remain available:
 
-This means a published GitHub Pages copy will remember where that person left off on the same browser/device. It does not share saves between different devices unless the user exports/imports the save file.
+  * Set Faction to Max
+  * Reset This Faction
+  * Reset All Factions
+  * Undo Last Action
 
-## Publishing with GitHub Pages
-1. Create a GitHub repository.
-2. Upload the contents of this folder, not the zip file itself.
-3. Go to Settings > Pages.
-4. Choose Deploy from branch.
-5. Select the `main` branch and `/root`.
-6. Save. GitHub will give you the website link.
+### Material Tracking
 
-## Publishing with Netlify
-1. Unzip the folder.
-2. Go to Netlify.
-3. Drag the whole unzipped website folder into Netlify's deploy area.
+* Upgrade costs now subtract from material totals.
+* Vault materials are used first before subtracting from remaining totals.
+* Materials can still be added to or removed from the vault.
+* The vault allows entering amounts higher than the current “materials left” value.
+* Dashboard totals update based on normal upgrades, known VIP upgrades, and vault usage.
+* Credits are ignored for material tracking.
+* Sponsorship++ upgrades are treated as credits/cosmetic only and do not add material costs.
 
+### VIP Upgrade Updates
 
-## v21 update
-- Cyberacme node labels and button positions were rebuilt from the video, including the Sponsorship / Implant Stock placement issue.
-- Button overlays were rechecked across all factions.
-- Browser save keys were bumped to v21 so old misplaced upgrade states do not interfere.
+* Cyberacme VIP material costs were added where known.
+* Traxus VIP material costs were added where known.
+* Mida VIP material costs were added where known.
+* Unknown VIP upgrades are included as tier slots but currently have no material cost.
+* Known VIP material costs were added to raw totals and dashboard totals.
+* Save keys were kept the same so existing user progress should not reset after updates.
 
+### UI / Layout
 
-## v21 notes
-- Cyberacme overlay was rebuilt to 16 total physical nodes: 13 non-VIP and 3 VIP.
-- Cyberacme node buttons were re-centered tightly over the screenshot nodes.
-- Carrier+ was separated into its own physical node so the Cyberacme node count matches the visible tree.
+* The Dashboard table was renamed to “How many more materials do I need?”
+* Materials with values of zero or below are highlighted as complete.
+* Negative values are still shown but marked as completed.
+* The Cataloging page includes:
 
+  * In Vault
+  * Raw total of Materials
+* Transaction History was removed from the visible UI.
+* “Made by Cuh” was added near the reset button.
+* Bug report note was added:
 
-## v23 update
+  * To report a bug, email [marathongodsheet@gmail.com](mailto:marathongodsheet@gmail.com)
 
-- Added the missing Cyberacme Carrier+ Barter physical node.
-- Kept Max Looter Barter on the rightmost node of the three barter nodes.
-- Cyberacme now has 17 physical nodes total: 14 non-VIP nodes and 3 VIP nodes.
-- Browser save keys were bumped to v23 so old Cyberacme node state does not interfere.
+## Future Changes
 
+* Continue adding missing VIP material costs as they are discovered.
+* Add unknown VIP upgrade costs for:
 
-## v23 fix
-Traxus circled deluxe/enhanced nodes were swapped so Deluxe is on the left and Enhanced is on the right for Chips, Mags, and Optics.
-
-
-## Overlay check images
-
-The `overlay_checks` folder includes labeled JPEGs for each faction. Each clickable node area is drawn over the faction tree screenshot with the node name inside its square, so placement and labels can be reviewed before publishing.
-
-
-## v46 update
-- Added known Cyberacme VIP material costs for Hoarder's Barter, Bountiful.EXE, and Discounted Templates.
-- Set Cyberacme Pinata and Petty Theft to 2 normal tiers + 2 unknown VIP tiers.
-- Set Cyberacme Lucky Looter to 1 normal tier + 2 unknown VIP tiers.
-- Increased default Nueral Insulation and Predictive Framework totals so saved users receive the delta without wiping progress.
-
-
-## v48 update
-- Traxus top-right VIP node renamed to M77.
-- M77 cost added: Alien Alloy x1 and Ballistic Turbine x7.
-- Raw totals updated for Alien Alloy and Ballistic Turbine.
-- Save keys unchanged.
+  * Pinata
+  * Petty Theft
+  * Lucky Looter
+  * Superior Mags
+  * Superior Optics
+  * BART
+  * Grenade Case+
+  * Any other unknown VIP upgrades
+* Continue checking each faction tree for correct node placement and alignment.
+* Verify that every upgrade node has the correct number of normal tiers and VIP tiers.
+* Continue updating raw material totals whenever new upgrade costs are added.
+* Keep localStorage/save keys unchanged unless a full progress reset is intentionally needed.
+* Continue improving mobile and screen-size scaling for faction tree overlays.
+* Add more verification screenshots or overlay check images when needed.
+* Continue cleaning up faction tree screenshots if better background images become available.
