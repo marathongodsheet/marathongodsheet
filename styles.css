@@ -496,3 +496,40 @@ button:disabled {
   cursor: not-allowed;
   filter: none;
 }
+
+.instructions-panel {
+  padding: 1rem 0 2rem;
+}
+
+.instructions-card {
+  background: rgba(12, 15, 22, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1rem 1.1rem 1.25rem;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+.instructions-content {
+  display: grid;
+  gap: 0.9rem;
+  color: #d7e2f2;
+  line-height: 1.55;
+}
+
+.instructions-content ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.instructions-content p {
+  margin: 0;
+}
+
+
+.readonly-material-pill {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.92;
+}

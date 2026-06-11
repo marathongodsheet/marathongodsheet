@@ -21,6 +21,7 @@
     <button class="tab active" data-tab="upgrade">Upgrade Tracking</button>
     <button class="tab" data-tab="dashboard">Dashboard</button>
     <button class="tab" data-tab="catalog">Cataloging</button>
+    <button class="tab" data-tab="instructions">Instructions</button>
   </nav>
 
   <main>
@@ -77,7 +78,7 @@
 
         <article class="dropdown-card">
           <div class="section-title compact">
-            <h2>Raw total of Materials</h2>
+            <h2>Raw Total of Materials — Locked Reference</h2>
             
           </div>
           <div id="rarityDropdowns" class="rarity-dropdowns"></div>
@@ -143,6 +144,28 @@
           </menu>
         </form>
       </dialog>
+    </section>
+
+    <section id="instructionsTab" class="tab-panel instructions-panel">
+      <section class="instructions-card">
+        <div class="section-title compact">
+          <h2>Instructions</h2>
+        </div>
+        <div class="instructions-content">
+          <p><strong>Welcome to Marathon Godsheet.</strong> This site helps you track faction upgrade progress, see how many materials you still need, and record materials you already have in your vault.</p>
+          <ol>
+            <li><strong>Start on Upgrade Tracking.</strong> Pick a faction on the left, then click the nodes on the tree to mark the tier you currently own.</li>
+            <li><strong>Use quick node controls.</strong> Left click a node to increase its tier. Right click a node to decrease its tier. You can also click a node and use the popup to choose the exact tier.</li>
+            <li><strong>Watch totals update automatically.</strong> When a node has known material costs, the website updates the raw totals, dashboard totals, and Materials Left table for the selected tier. Higher tiers include the costs of required earlier tiers.</li>
+            <li><strong>Use the faction buttons if needed.</strong> Set Faction to Max is useful for testing. Reset This Faction clears only the active faction. Reset All Factions clears all faction upgrade selections. Undo Last Action reverses your most recent change.</li>
+            <li><strong>Check the Dashboard tab.</strong> The Dashboard shows your material totals and the <em>How many more materials do I need?</em> table. This is the fastest place to see what you are still missing.</li>
+            <li><strong>Use Cataloging to manage your vault.</strong> The <em>Raw Total of Materials</em> section is a locked reference list and cannot be changed by users. Only site/backend updates change those raw totals. In <em>In Vault</em>, add or remove materials you have saved in your vault.</li>
+            <li><strong>Vault materials are used first.</strong> If a selected upgrade needs a material that is in your vault, the site will spend the vault amount first before subtracting from your remaining totals.</li>
+            <li><strong>Your progress saves automatically.</strong> The site remembers your totals, vault, selected upgrades, and last tab using your browser storage, so you can close and reopen it without losing progress.</li>
+          </ol>
+          <p><strong>Tip:</strong> Credits are ignored for material tracking, so credits-only sponsorship upgrades will not affect the material totals.</p>
+        </div>
+      </section>
     </section>
   </main>
 

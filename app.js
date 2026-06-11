@@ -177,7 +177,13 @@ function renderTabs() {
   document.querySelectorAll(".tab").forEach(btn => {
     btn.addEventListener("click", () => activateTab(btn.dataset.tab));
   });
-  activateTab(loadUiState().activeTab || "upgrade", false);
+  const uiState = loadUiState();
+  let initialTab = uiState.activeTab;
+  if (!initialTab) {
+    initialTab = uiState.instructionsShown ? "upgrade" : "instructions";
+    saveUiState({ instructionsShown: true, activeTab: initialTab });
+  }
+  activateTab(initialTab, false);
 }
 
 
@@ -300,21 +306,13 @@ function renderRarityDropdowns() {
     const list = document.createElement("div");
     list.className = "dropdown-list";
     materials.filter(item => item.category === category).forEach(item => {
-      const pill = document.createElement("button");
-      pill.className = `material-pill secondary ${rarityClass[category]}`;
+      const pill = document.createElement("div");
+      pill.className = `material-pill secondary ${rarityClass[category]} readonly-material-pill`;
       pill.dataset.category = category;
-      pill.type = "button";
-      // These dropdown cards stay locked to the original workbook/default totals.
-      // Upgrade tracking and manual entries update the main TOTALS LEFT table, not this reference list.
+      // These dropdown cards are a locked reference list from the backend data.
+      // Users can change vault amounts, but raw material totals are only changed in data.js by site updates.
       pill.innerHTML = `<span>${item.name}</span><span>${fmt(item.start)}</span>`;
-      pill.title = `${item.category} material — default workbook total: ${fmt(item.start)}`;
-      pill.addEventListener("click", () => {
-        raritySelect.value = category;
-        renderMaterialSelect();
-        materialSelect.value = item.id;
-        renderSelectedReadout();
-        amountInput.focus();
-      });
+      pill.title = `${item.category} material — locked backend total: ${fmt(item.start)}`;
       list.appendChild(pill);
     });
     details.append(summary, list);
@@ -3250,11 +3248,23 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Reflex Coil",
+            "amount": 4
+          },
+          {
+            "tier": 3,
+            "material": "Enzyme Replicator",
+            "amount": 2
           },
           {
             "tier": 4,
-            "vip": true
+            "material": "Enzyme Replicator",
+            "amount": 10
+          },
+          {
+            "tier": 4,
+            "material": "Reflex Coil",
+            "amount": 4
           }
         ]
       },
@@ -3284,11 +3294,23 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Enzyme Replicator",
+            "amount": 4
+          },
+          {
+            "tier": 3,
+            "material": "Reflex Coil",
+            "amount": 2
           },
           {
             "tier": 4,
-            "vip": true
+            "material": "Reflex Coil",
+            "amount": 9
+          },
+          {
+            "tier": 4,
+            "material": "Enzyme Replicator",
+            "amount": 5
           }
         ],
         "tierLabels": {
@@ -3351,7 +3373,12 @@ const FACTIONS = [
         "y": 61.8,
         "w": 10.05,
         "h": 14.4,
-        "maxTier": 1,
+        "maxTier": 3,
+        "tierLabels": {
+          "1": "Fight Club",
+          "2": "VIP 1",
+          "3": "VIP 2"
+        },
         "costs": [
           {
             "tier": 1,
@@ -3362,6 +3389,21 @@ const FACTIONS = [
             "tier": 1,
             "material": "Biomata Node",
             "amount": 6
+          },
+          {
+            "tier": 2,
+            "material": "Enzyme Replicator",
+            "amount": 7
+          },
+          {
+            "tier": 2,
+            "material": "Reflex Coil",
+            "amount": 3
+          },
+          {
+            "tier": 3,
+            "material": "Hazard Capsule",
+            "amount": 2
           }
         ]
       },
@@ -3372,7 +3414,12 @@ const FACTIONS = [
         "y": 61.9,
         "w": 10,
         "h": 14.3,
-        "maxTier": 1,
+        "maxTier": 3,
+        "tierLabels": {
+          "1": "Frenzy",
+          "2": "VIP 1",
+          "3": "VIP 2"
+        },
         "costs": [
           {
             "tier": 1,
@@ -3383,6 +3430,26 @@ const FACTIONS = [
             "tier": 1,
             "material": "Biomata Node",
             "amount": 8
+          },
+          {
+            "tier": 2,
+            "material": "Reflex Coil",
+            "amount": 7
+          },
+          {
+            "tier": 2,
+            "material": "Enzyme Replicator",
+            "amount": 2
+          },
+          {
+            "tier": 3,
+            "material": "Alien Alloy",
+            "amount": 2
+          },
+          {
+            "tier": 3,
+            "material": "Reflex Coil",
+            "amount": 2
           }
         ]
       },
@@ -3393,7 +3460,12 @@ const FACTIONS = [
         "y": 61.9,
         "w": 10,
         "h": 14.3,
-        "maxTier": 1,
+        "maxTier": 3,
+        "tierLabels": {
+          "1": "Immune Response",
+          "2": "VIP 1",
+          "3": "VIP 2"
+        },
         "costs": [
           {
             "tier": 1,
@@ -3404,6 +3476,26 @@ const FACTIONS = [
             "tier": 1,
             "material": "Biomata Node",
             "amount": 18
+          },
+          {
+            "tier": 2,
+            "material": "Enzyme Replicator",
+            "amount": 7
+          },
+          {
+            "tier": 2,
+            "material": "Reflex Coil",
+            "amount": 3
+          },
+          {
+            "tier": 3,
+            "material": "Hazard Capsule",
+            "amount": 2
+          },
+          {
+            "tier": 3,
+            "material": "Enzyme Replicator",
+            "amount": 2
           }
         ]
       }
@@ -4185,6 +4277,9 @@ function tierLabel(tier, nodeOrMaxTier) {
 
   // Visible labels must stay compact on every tree: T1, T2, etc. or VIP1, VIP2, etc.
   // Full upgrade names are only exposed through the hover tooltip / aria label.
+  const explicitLabel = compactTierLabel(node?.tierLabels?.[tierNumber]);
+  if (/^(VIP|T)\d+$/i.test(explicitLabel)) return explicitLabel.toUpperCase();
+
   const cost = node?.costs?.find(entry => Number(entry.tier) === tierNumber);
   if (node?.isVip) return `VIP${tierNumber}`;
   if (cost?.vip) {

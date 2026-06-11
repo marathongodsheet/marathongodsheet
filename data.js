@@ -151,11 +151,11 @@ window.INITIAL_DATA = [
       },
       {
         "name": "Enzyme Replicator",
-        "total": 33
+        "total": 72
       },
       {
         "name": "Reflex Coil",
-        "total": 38
+        "total": 72
       }
     ]
   },
@@ -164,11 +164,11 @@ window.INITIAL_DATA = [
     "items": [
       {
         "name": "Alien Alloy",
-        "total": 30
+        "total": 32
       },
       {
         "name": "Hazard Capsule",
-        "total": 18
+        "total": 22
       },
       {
         "name": "Synapse Cube",
