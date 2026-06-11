@@ -57,7 +57,7 @@ window.INITIAL_DATA = [
       },
       {
         "name": "Surveillance Lens",
-        "total": 109
+        "total": 134
       },
       {
         "name": "Drone Node",
@@ -110,7 +110,7 @@ window.INITIAL_DATA = [
       },
       {
         "name": "Volatile Compunds",
-        "total": 68
+        "total": 43
       },
       {
         "name": "Biomata Node",
@@ -135,11 +135,11 @@ window.INITIAL_DATA = [
     "items": [
       {
         "name": "Biolens Seed",
-        "total": 14
+        "total": 106
       },
       {
         "name": "Nueral Insulation",
-        "total": 103
+        "total": 142
       },
       {
         "name": "Predictive Framework",
@@ -147,15 +147,15 @@ window.INITIAL_DATA = [
       },
       {
         "name": "Ballistic Turbine",
-        "total": 30
+        "total": 72
       },
       {
         "name": "Enzyme Replicator",
-        "total": 1
+        "total": 33
       },
       {
         "name": "Reflex Coil",
-        "total": 25
+        "total": 38
       }
     ]
   },
@@ -164,11 +164,11 @@ window.INITIAL_DATA = [
     "items": [
       {
         "name": "Alien Alloy",
-        "total": 21
+        "total": 30
       },
       {
         "name": "Hazard Capsule",
-        "total": 6
+        "total": 18
       },
       {
         "name": "Synapse Cube",

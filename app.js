@@ -1074,7 +1074,7 @@ const FACTIONS = [
       },
       {
         "id": "nucaloric-vip-1",
-        "name": "VIP Node 1",
+        "name": "Bulwark",
         "x": 74.25,
         "y": 8.54,
         "w": 8.99,
@@ -1084,7 +1084,18 @@ const FACTIONS = [
         "tierLabels": {
           "1": "VIP 1"
         },
-        "costs": []
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Hazard Capsule",
+            "amount": 3
+          },
+          {
+            "tier": 1,
+            "material": "Enzyme Replicator",
+            "amount": 3
+          }
+        ]
       },
       {
         "id": "nucaloric-sponsorship",
@@ -1309,11 +1320,23 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Biolens Seed",
+            "amount": 4
+          },
+          {
+            "tier": 3,
+            "material": "Nueral Insulation",
+            "amount": 2
           },
           {
             "tier": 4,
-            "vip": true
+            "material": "Nueral Insulation",
+            "amount": 9
+          },
+          {
+            "tier": 4,
+            "material": "Enzyme Replicator",
+            "amount": 5
           }
         ]
       },
@@ -1349,11 +1372,23 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Nueral Insulation",
+            "amount": 4
+          },
+          {
+            "tier": 3,
+            "material": "Biolens Seed",
+            "amount": 2
           },
           {
             "tier": 4,
-            "vip": true
+            "material": "Biolens Seed",
+            "amount": 10
+          },
+          {
+            "tier": 4,
+            "material": "Enzyme Replicator",
+            "amount": 4
           }
         ]
       },
@@ -1389,11 +1424,23 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Biolens Seed",
+            "amount": 4
+          },
+          {
+            "tier": 3,
+            "material": "Nueral Insulation",
+            "amount": 2
           },
           {
             "tier": 4,
-            "vip": true
+            "material": "Nueral Insulation",
+            "amount": 9
+          },
+          {
+            "tier": 4,
+            "material": "Enzyme Replicator",
+            "amount": 5
           }
         ]
       },
@@ -1457,11 +1504,23 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "vip": true
+            "material": "Biolens Seed",
+            "amount": 7
+          },
+          {
+            "tier": 2,
+            "material": "Nueral Insulation",
+            "amount": 3
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Hazard Capsule",
+            "amount": 2
+          },
+          {
+            "tier": 3,
+            "material": "Enzyme Replicator",
+            "amount": 2
           }
         ]
       },
@@ -1490,11 +1549,23 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "vip": true
+            "material": "Nueral Insulation",
+            "amount": 7
+          },
+          {
+            "tier": 2,
+            "material": "Biolens Seed",
+            "amount": 2
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Alien Alloy",
+            "amount": 2
+          },
+          {
+            "tier": 3,
+            "material": "Enzyme Replicator",
+            "amount": 2
           }
         ]
       },
@@ -1523,11 +1594,23 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "vip": true
+            "material": "Biolens Seed",
+            "amount": 7
+          },
+          {
+            "tier": 2,
+            "material": "Nueral Insulation",
+            "amount": 3
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Hazard Capsule",
+            "amount": 2
+          },
+          {
+            "tier": 3,
+            "material": "Enzyme Replicator",
+            "amount": 2
           }
         ]
       },
@@ -2194,12 +2277,12 @@ const FACTIONS = [
           {
             "tier": 1,
             "material": "Volatile Compunds",
-            "amount": 29
+            "amount": 4
           },
           {
             "tier": 1,
             "material": "Surveillance Lens",
-            "amount": 4
+            "amount": 29
           }
         ]
       },
@@ -2281,11 +2364,23 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Biolens Seed",
+            "amount": 4
+          },
+          {
+            "tier": 3,
+            "material": "Ballistic Turbine",
+            "amount": 2
           },
           {
             "tier": 4,
-            "vip": true
+            "material": "Biolens Seed",
+            "amount": 10
+          },
+          {
+            "tier": 4,
+            "material": "Ballistic Turbine",
+            "amount": 4
           }
         ]
       },
@@ -2321,11 +2416,23 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Ballistic Turbine",
+            "amount": 4
+          },
+          {
+            "tier": 3,
+            "material": "Biolens Seed",
+            "amount": 2
           },
           {
             "tier": 4,
-            "vip": true
+            "material": "Ballistic Turbine",
+            "amount": 9
+          },
+          {
+            "tier": 4,
+            "material": "Biolens Seed",
+            "amount": 5
           }
         ]
       },
@@ -2361,21 +2468,33 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Biolens Seed",
+            "amount": 4
+          },
+          {
+            "tier": 3,
+            "material": "Ballistic Turbine",
+            "amount": 2
           },
           {
             "tier": 4,
-            "vip": true
+            "material": "Biolens Seed",
+            "amount": 10
+          },
+          {
+            "tier": 4,
+            "material": "Ballistic Turbine",
+            "amount": 4
           }
         ]
       },
       {
         "id": "mida-divebomb",
         "name": "Divebomb",
-        "x": 65.45,
-        "y": 44.85,
-        "w": 8.45,
-        "h": 13.7,
+        "x": 64.45,
+        "y": 44.35,
+        "w": 9.45,
+        "h": 14.7,
         "maxTier": 3,
         "tierLabels": {
           "1": "Divebomb",
@@ -2395,21 +2514,33 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "vip": true
+            "material": "Biolens Seed",
+            "amount": 7
+          },
+          {
+            "tier": 2,
+            "material": "Ballistic Turbine",
+            "amount": 3
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Alien Alloy",
+            "amount": 2
+          },
+          {
+            "tier": 3,
+            "material": "Ballistic Turbine",
+            "amount": 2
           }
         ]
       },
       {
         "id": "mida-impact-ping",
         "name": "Impact Ping",
-        "x": 76.9,
-        "y": 44.85,
-        "w": 8.45,
-        "h": 13.7,
+        "x": 75.9,
+        "y": 44.35,
+        "w": 9.45,
+        "h": 14.7,
         "maxTier": 3,
         "tierLabels": {
           "1": "Impact Ping",
@@ -2429,11 +2560,23 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "vip": true
+            "material": "Ballistic Turbine",
+            "amount": 7
+          },
+          {
+            "tier": 2,
+            "material": "Biolens Seed",
+            "amount": 2
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Hazard Capsule",
+            "amount": 2
+          },
+          {
+            "tier": 3,
+            "material": "Biolens Seed",
+            "amount": 2
           }
         ]
       },
@@ -2442,7 +2585,7 @@ const FACTIONS = [
         "name": "Covert Recovery",
         "x": 87.65,
         "y": 44.85,
-        "w": 6.9,
+        "w": 7.9,
         "h": 13.7,
         "maxTier": 3,
         "tierLabels": {
@@ -2463,11 +2606,23 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "vip": true
+            "material": "Biolens Seed",
+            "amount": 7
+          },
+          {
+            "tier": 2,
+            "material": "Ballistic Turbine",
+            "amount": 3
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Alien Alloy",
+            "amount": 2
+          },
+          {
+            "tier": 3,
+            "material": "Ballistic Turbine",
+            "amount": 2
           }
         ]
       },
@@ -2475,7 +2630,7 @@ const FACTIONS = [
               "id": "mida-equipment-stock",
               "name": "Equipment Stock",
               "x": 32.35,
-              "y": 61.45,
+              "y": 63.45,
               "w": 6.3,
               "h": 9.85,
               "maxTier": 2,
@@ -2509,10 +2664,10 @@ const FACTIONS = [
             {
               "id": "mida-vip-1",
               "name": "Dome Up",
-              "x": 42.9,
-              "y": 61.2,
-              "w": 6.25,
-              "h": 10.2,
+              "x": 43.4,
+              "y": 63.2,
+              "w": 8.25,
+              "h": 12.2,
               "maxTier": 1,
               "isVip": true,
               "tierLabels": {
@@ -2535,7 +2690,7 @@ const FACTIONS = [
         "id": "mida-spare-rounds",
         "name": "Spare Rounds",
         "x": 54.65,
-        "y": 61.6,
+        "y": 62.6,
         "w": 6.85,
         "h": 10.1,
         "maxTier": 2,
@@ -2565,7 +2720,7 @@ const FACTIONS = [
               "id": "mida-sensor-case",
               "name": "Sensor Case / Grenade Case",
               "x": 64.25,
-              "y": 60.45,
+              "y": 61.45,
               "w": 9.35,
               "h": 13.95,
               "maxTier": 3,
@@ -2616,9 +2771,9 @@ const FACTIONS = [
         "id": "mida-cardio-kick",
         "name": "Cardio Kick",
         "x": 87.65,
-        "y": 62.95,
-        "w": 6.45,
-        "h": 9.8,
+        "y": 63.95,
+        "w": 9.45,
+        "h": 12.8,
         "maxTier": 1,
         "costs": [
           {
@@ -2646,9 +2801,9 @@ const FACTIONS = [
         "id": "arachne-twin-tap-exchange",
         "name": "Twin Tap Exchange",
         "x": 30.1,
-        "y": 7.85,
-        "w": 8.65,
-        "h": 12.8,
+        "y": 8.85,
+        "w": 9.65,
+        "h": 13.8,
         "maxTier": 1,
         "costs": [
           {
@@ -2662,9 +2817,9 @@ const FACTIONS = [
         "id": "arachne-mpps-railgun",
         "name": "MPPS Railgun",
         "x": 41.0,
-        "y": 8.45,
-        "w": 8.65,
-        "h": 11.8,
+        "y": 9.45,
+        "w": 9.65,
+        "h": 12.8,
         "maxTier": 1,
         "costs": [
           {
@@ -2678,9 +2833,9 @@ const FACTIONS = [
         "id": "arachne-weapons",
         "name": "Weapons",
         "x": 53.0,
-        "y": 9.35,
-        "w": 6.15,
-        "h": 8.75,
+        "y": 10.35,
+        "w": 7.15,
+        "h": 9.75,
         "maxTier": 1,
         "costs": [
           {
@@ -2694,9 +2849,9 @@ const FACTIONS = [
         "id": "arachne-upped-arsenal",
         "name": "Upped Arsenal+",
         "x": 63.75,
-        "y": 8.7,
-        "w": 6.75,
-        "h": 10.25,
+        "y": 9.7,
+        "w": 7.75,
+        "h": 11.25,
         "maxTier": 3,
         "costs": [
           {
@@ -2740,9 +2895,9 @@ const FACTIONS = [
         "id": "arachne-deployables",
         "name": "Deployables",
         "x": 74.55,
-        "y": 9.8,
-        "w": 5.8,
-        "h": 9.0,
+        "y": 10.8,
+        "w": 6.8,
+        "h": 10,
         "maxTier": 1,
         "costs": [
           {
@@ -2761,9 +2916,9 @@ const FACTIONS = [
         "id": "arachne-sponsorship",
         "name": "Sponsorship+ [Arachne]",
         "x": 84.05,
-        "y": 7.8,
-        "w": 9.15,
-        "h": 13.4,
+        "y": 8.8,
+        "w": 10.15,
+        "h": 14.4,
         "maxTier": 3,
         "costs": [
           {
@@ -2781,9 +2936,9 @@ const FACTIONS = [
         "id": "arachne-precision-mods",
         "name": "Precision Mods+",
         "x": 31.25,
-        "y": 27.5,
-        "w": 6.05,
-        "h": 9.1,
+        "y": 28.5,
+        "w": 7.05,
+        "h": 10.1,
         "maxTier": 3,
         "costs": [
           {
@@ -2822,9 +2977,9 @@ const FACTIONS = [
         "id": "arachne-railgun-mods",
         "name": "Railgun Mods+",
         "x": 42.25,
-        "y": 27.7,
-        "w": 6.05,
-        "h": 9.1,
+        "y": 28.7,
+        "w": 7.05,
+        "h": 10.1,
         "maxTier": 3,
         "costs": [
           {
@@ -2863,9 +3018,9 @@ const FACTIONS = [
         "id": "arachne-bolstered-arms",
         "name": "Bolstered Arms+",
         "x": 53.05,
-        "y": 27.7,
-        "w": 6.05,
-        "h": 9.1,
+        "y": 28.7,
+        "w": 7.05,
+        "h": 10.1,
         "maxTier": 2,
         "costs": [
           {
@@ -2891,25 +3046,36 @@ const FACTIONS = [
       },
       {
         "id": "arachne-vip-star-1",
-        "name": "VIP Node 1",
+        "name": "Prestige Mod",
         "x": 62.65,
-        "y": 25.7,
-        "w": 8.9,
-        "h": 12.7,
+        "y": 26.7,
+        "w": 9.9,
+        "h": 13.7,
         "maxTier": 1,
         "isVip": true,
         "tierLabels": {
-          "1": "VIP 1"
+          "1": "Prestige Mod"
         },
-        "costs": []
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Alien Alloy",
+            "amount": 3
+          },
+          {
+            "tier": 1,
+            "material": "Reflex Coil",
+            "amount": 2
+          }
+        ]
       },
       {
         "id": "arachne-frost-mine",
         "name": "Frost Mine",
         "x": 73.45,
-        "y": 25.9,
-        "w": 8.55,
-        "h": 13.2,
+        "y": 26.9,
+        "w": 9.55,
+        "h": 14.2,
         "maxTier": 1,
         "costs": [
           {
@@ -2923,9 +3089,9 @@ const FACTIONS = [
         "id": "arachne-got-em",
         "name": "Got Em",
         "x": 84.35,
-        "y": 26.05,
-        "w": 8.65,
-        "h": 13.0,
+        "y": 27.05,
+        "w": 9.65,
+        "h": 14,
         "maxTier": 1,
         "costs": [
           {
@@ -2944,9 +3110,9 @@ const FACTIONS = [
         "id": "arachne-mod-stock",
         "name": "Mod Stock+",
         "x": 31.25,
-        "y": 44.9,
-        "w": 6.05,
-        "h": 9.2,
+        "y": 45.9,
+        "w": 7.05,
+        "h": 10.2,
         "maxTier": 2,
         "costs": [
           {
@@ -2974,9 +3140,9 @@ const FACTIONS = [
         "id": "arachne-implant-stock",
         "name": "Implant Stock",
         "x": 53.05,
-        "y": 44.9,
-        "w": 6.25,
-        "h": 9.4,
+        "y": 45.9,
+        "w": 7.25,
+        "h": 10.4,
         "maxTier": 2,
         "costs": [
           {
@@ -3003,8 +3169,8 @@ const FACTIONS = [
       {
         "id": "arachne-edge-runner",
         "name": "Edge//Runner",
-        "x": 64.05,
-        "y": 44.2,
+        "x": 63.05,
+        "y": 45.2,
         "w": 8.65,
         "h": 10.3,
         "maxTier": 4,
@@ -3026,11 +3192,23 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "vip": true
+            "material": "Enzyme Replicator",
+            "amount": 4
+          },
+          {
+            "tier": 3,
+            "material": "Reflex Coil",
+            "amount": 2
           },
           {
             "tier": 4,
-            "vip": true
+            "material": "Reflex Coil",
+            "amount": 9
+          },
+          {
+            "tier": 4,
+            "material": "Enzyme Replicator",
+            "amount": 5
           }
         ],
         "tierLabels": {
@@ -3043,10 +3221,10 @@ const FACTIONS = [
       {
         "id": "arachne-parting-gift",
         "name": "Parting Gift",
-        "x": 75.55,
-        "y": 44.9,
-        "w": 6.35,
-        "h": 9.5,
+        "x": 74.55,
+        "y": 45.9,
+        "w": 7.35,
+        "h": 10.5,
         "maxTier": 4,
         "tierLabels": {
           "1": "Tier 1",
@@ -3083,10 +3261,10 @@ const FACTIONS = [
       {
         "id": "arachne-tox-injectors",
         "name": "Tox Injectors",
-        "x": 86.55,
-        "y": 44.9,
-        "w": 6.35,
-        "h": 9.5,
+        "x": 85.55,
+        "y": 45.9,
+        "w": 7.35,
+        "h": 10.5,
         "maxTier": 4,
         "costs": [
           {
@@ -3124,9 +3302,9 @@ const FACTIONS = [
         "id": "arachne-weapon-mods",
         "name": "Weapon Mods+",
         "x": 31.25,
-        "y": 61.95,
-        "w": 6.05,
-        "h": 9.2,
+        "y": 62.95,
+        "w": 7.05,
+        "h": 10.2,
         "maxTier": 3,
         "costs": [
           {
@@ -3170,9 +3348,9 @@ const FACTIONS = [
         "id": "arachne-fight-club",
         "name": "Fight Club",
         "x": 62.1,
-        "y": 60.8,
-        "w": 9.05,
-        "h": 13.4,
+        "y": 61.8,
+        "w": 10.05,
+        "h": 14.4,
         "maxTier": 1,
         "costs": [
           {
@@ -3191,9 +3369,9 @@ const FACTIONS = [
         "id": "arachne-frenzy",
         "name": "Frenzy",
         "x": 73.45,
-        "y": 60.9,
-        "w": 9.0,
-        "h": 13.3,
+        "y": 61.9,
+        "w": 10,
+        "h": 14.3,
         "maxTier": 1,
         "costs": [
           {
@@ -3212,9 +3390,9 @@ const FACTIONS = [
         "id": "arachne-immune-response",
         "name": "Immune Response",
         "x": 84.35,
-        "y": 60.9,
-        "w": 9.0,
-        "h": 13.3,
+        "y": 61.9,
+        "w": 10,
+        "h": 14.3,
         "maxTier": 1,
         "costs": [
           {
