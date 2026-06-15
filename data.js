@@ -89,7 +89,7 @@ window.INITIAL_DATA = [
         "total": 58
       },
       {
-        "name": "Strerilized Biostripping",
+        "name": "Sterilized Biostripping",
         "total": 37
       },
       {
@@ -109,7 +109,7 @@ window.INITIAL_DATA = [
         "total": 53
       },
       {
-        "name": "Volatile Compunds",
+        "name": "Volatile Compounds",
         "total": 43
       },
       {
@@ -135,10 +135,10 @@ window.INITIAL_DATA = [
     "items": [
       {
         "name": "Biolens Seed",
-        "total": 106
+        "total": 108
       },
       {
-        "name": "Nueral Insulation",
+        "name": "Neural Insulation",
         "total": 142
       },
       {
@@ -147,7 +147,7 @@ window.INITIAL_DATA = [
       },
       {
         "name": "Ballistic Turbine",
-        "total": 72
+        "total": 79
       },
       {
         "name": "Enzyme Replicator",
@@ -164,7 +164,7 @@ window.INITIAL_DATA = [
     "items": [
       {
         "name": "Alien Alloy",
-        "total": 32
+        "total": 35
       },
       {
         "name": "Hazard Capsule",

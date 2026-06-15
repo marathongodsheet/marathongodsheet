@@ -9,7 +9,19 @@ const rarityClass = { Grey: "grey", Green: "green", Blue: "blue", Purple: "purpl
 const data = window.INITIAL_DATA;
 
 function idFor(category, name) {
-  return `${category}::${name}`.toLowerCase().replace(/\s+/g, " ").trim();
+  const normalizedCategory = String(category || "").toLowerCase().trim();
+  const normalizedName = String(name || "").toLowerCase().replace(/\s+/g, " ").trim();
+  // Keep the original localStorage material keys even after fixing displayed typos.
+  if (normalizedCategory === "purple" && normalizedName === "neural insulation") {
+    return "purple::nueral insulation";
+  }
+  if (normalizedCategory === "blue" && normalizedName === "sterilized biostripping") {
+    return "blue::strerilized biostripping";
+  }
+  if (normalizedCategory === "blue" && normalizedName === "volatile compounds") {
+    return "blue::volatile compunds";
+  }
+  return `${normalizedCategory}::${normalizedName}`;
 }
 
 const materials = data.flatMap(group => group.items.map(item => ({
@@ -719,7 +731,7 @@ const FACTIONS = [
         "costs": [
           {
             "tier": 1,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 18
           },
           {
@@ -744,7 +756,7 @@ const FACTIONS = [
         "costs": [
           {
             "tier": 1,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 4
           },
           {
@@ -805,7 +817,7 @@ const FACTIONS = [
         "costs": [
           {
             "tier": 1,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 12
           },
           {
@@ -860,7 +872,7 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 2
           },
           {
@@ -870,7 +882,7 @@ const FACTIONS = [
           },
           {
             "tier": 4,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 3
           }
         ],
@@ -907,7 +919,7 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 6
           },
           {
@@ -922,7 +934,7 @@ const FACTIONS = [
           },
           {
             "tier": 4,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 9
           }
         ],
@@ -959,12 +971,12 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 2
           },
           {
             "tier": 3,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 9
           },
           {
@@ -1323,12 +1335,12 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 2
           },
           {
             "tier": 4,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 9
           },
           {
@@ -1370,7 +1382,7 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 4
           },
           {
@@ -1427,12 +1439,12 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 2
           },
           {
             "tier": 4,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 9
           },
           {
@@ -1492,7 +1504,7 @@ const FACTIONS = [
         "costs": [
           {
             "tier": 1,
-            "material": "Strerilized Biostripping",
+            "material": "Sterilized Biostripping",
             "amount": 9
           },
           {
@@ -1507,7 +1519,7 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 3
           },
           {
@@ -1537,7 +1549,7 @@ const FACTIONS = [
         "costs": [
           {
             "tier": 1,
-            "material": "Strerilized Biostripping",
+            "material": "Sterilized Biostripping",
             "amount": 10
           },
           {
@@ -1547,7 +1559,7 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 7
           },
           {
@@ -1582,12 +1594,12 @@ const FACTIONS = [
         "costs": [
           {
             "tier": 1,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 1
           },
           {
             "tier": 1,
-            "material": "Strerilized Biostripping",
+            "material": "Sterilized Biostripping",
             "amount": 18
           },
           {
@@ -1597,7 +1609,7 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 3
           },
           {
@@ -1803,7 +1815,7 @@ const FACTIONS = [
       },
       {
         "id": "traxus-vip-3",
-        "name": "VIP Node 3",
+        "name": "Prestige Mod",
         "x": 32.9,
         "y": 28.7,
         "w": 6.3,
@@ -1811,9 +1823,20 @@ const FACTIONS = [
         "maxTier": 1,
         "isVip": true,
         "tierLabels": {
-          "1": "VIP 3"
+          "1": "Prestige Mod"
         },
-        "costs": []
+        "costs": [
+          {
+            "tier": 1,
+            "material": "Alien Alloy",
+            "amount": 3
+          },
+          {
+            "tier": 1,
+            "material": "Ballistic Turbine",
+            "amount": 2
+          }
+        ]
       },
       {
         "id": "traxus-enhanced-chips",
@@ -2274,7 +2297,7 @@ const FACTIONS = [
         "costs": [
           {
             "tier": 1,
-            "material": "Volatile Compunds",
+            "material": "Volatile Compounds",
             "amount": 4
           },
           {
@@ -2320,7 +2343,7 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "material": "Volatile Compunds",
+            "material": "Volatile Compounds",
             "amount": 3
           },
           {
@@ -2507,7 +2530,7 @@ const FACTIONS = [
           },
           {
             "tier": 1,
-            "material": "Volatile Compunds",
+            "material": "Volatile Compounds",
             "amount": 5
           },
           {
@@ -2548,7 +2571,7 @@ const FACTIONS = [
         "costs": [
           {
             "tier": 1,
-            "material": "Volatile Compunds",
+            "material": "Volatile Compounds",
             "amount": 10
           },
           {
@@ -2599,7 +2622,7 @@ const FACTIONS = [
           },
           {
             "tier": 1,
-            "material": "Volatile Compunds",
+            "material": "Volatile Compounds",
             "amount": 15
           },
           {
@@ -2635,7 +2658,7 @@ const FACTIONS = [
               "costs": [
                       {
                               "tier": 1,
-                              "material": "Volatile Compunds",
+                              "material": "Volatile Compounds",
                               "amount": 6
                       },
                       {
@@ -2745,7 +2768,13 @@ const FACTIONS = [
                       },
                       {
                               "tier": 3,
-                              "vip": true
+                              "material": "Ballistic Turbine",
+                              "amount": 5
+                      },
+                      {
+                              "tier": 3,
+                              "material": "Biolens Seed",
+                              "amount": 2
                       }
               ]
       },
@@ -3784,7 +3813,7 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 3
           },
           {
@@ -3830,7 +3859,7 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 2
           }
         ],
@@ -3866,7 +3895,7 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 3
           },
           {
@@ -3901,7 +3930,7 @@ const FACTIONS = [
           },
           {
             "tier": 1,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 2
           }
         ]
@@ -3921,7 +3950,7 @@ const FACTIONS = [
         "costs": [
           {
             "tier": 1,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 7
           },
           {
@@ -3951,7 +3980,7 @@ const FACTIONS = [
           },
           {
             "tier": 1,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 2
           }
         ]
@@ -3982,7 +4011,7 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 4
           },
           {
@@ -4023,7 +4052,7 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 3
           },
           {
@@ -4038,7 +4067,7 @@ const FACTIONS = [
           },
           {
             "tier": 3,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 6
           }
         ],
@@ -4059,7 +4088,7 @@ const FACTIONS = [
         "costs": [
           {
             "tier": 1,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 1
           },
           {
@@ -4074,7 +4103,7 @@ const FACTIONS = [
           },
           {
             "tier": 2,
-            "material": "Nueral Insulation",
+            "material": "Neural Insulation",
             "amount": 4
           },
           {
@@ -4315,6 +4344,107 @@ function renderFactionList() {
   });
 }
 
+function ensureNodeHoverTooltip() {
+  let tooltip = document.getElementById("nodeHoverTooltip");
+  if (!tooltip) {
+    tooltip = document.createElement("div");
+    tooltip.id = "nodeHoverTooltip";
+    tooltip.className = "node-hover-tooltip";
+    tooltip.setAttribute("role", "tooltip");
+    document.body.appendChild(tooltip);
+  }
+  return tooltip;
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function getNextTierCostSummary(node, currentTier) {
+  const nextTier = Number(currentTier || 0) + 1;
+  if (!node || nextTier > Number(node.maxTier || 0)) {
+    return { nextTier, status: "maxed", costs: [] };
+  }
+
+  const costs = new Map();
+  (node.costs || [])
+    .filter(cost => Number(cost.tier) === nextTier && !cost.vip && cost.material)
+    .forEach(cost => {
+      const material = findMaterialRecordForRequirement(cost.material);
+      const label = material?.name || cost.material;
+      costs.set(label, Number(costs.get(label) || 0) + Number(cost.amount || 0));
+    });
+
+  const hasVipOnlyMarker = (node.costs || []).some(cost => Number(cost.tier) === nextTier && cost.vip);
+  return {
+    nextTier,
+    status: costs.size ? "known" : (hasVipOnlyMarker ? "unknown-vip" : "no-cost"),
+    costs: Array.from(costs.entries()).map(([material, amount]) => ({ material, amount }))
+  };
+}
+
+function buildNodeHoverTooltipHtml(node, currentTier) {
+  const summary = getNextTierCostSummary(node, currentTier);
+  const current = tierLabel(currentTier, node);
+  const next = summary.nextTier <= Number(node.maxTier || 0) ? tierLabel(summary.nextTier, node) : "Maxed";
+  let body;
+
+  if (summary.status === "maxed") {
+    body = `<div class="node-hover-empty">This node is already maxed.</div>`;
+  } else if (summary.costs.length) {
+    body = summary.costs.map(cost => `
+      <div class="node-hover-cost-row">
+        <span>${escapeHtml(cost.material)}</span>
+        <strong>${fmt(cost.amount)}</strong>
+      </div>`).join("");
+  } else if (summary.status === "unknown-vip") {
+    body = `<div class="node-hover-empty">Next VIP tier has no material cost entered yet.</div>`;
+  } else {
+    body = `<div class="node-hover-empty">Next tier has no material cost. Credits are ignored.</div>`;
+  }
+
+  return `
+    <div class="node-hover-name">${escapeHtml(node.name)}</div>
+    <div class="node-hover-meta">Current: ${escapeHtml(current)} · Next: ${escapeHtml(next)}</div>
+    <div class="node-hover-cost-title">Next tier cost</div>
+    ${body}
+  `;
+}
+
+function positionNodeHoverTooltip(event) {
+  const tooltip = document.getElementById("nodeHoverTooltip");
+  if (!tooltip || !tooltip.classList.contains("visible")) return;
+  const padding = 14;
+  const offset = 16;
+  const rect = tooltip.getBoundingClientRect();
+  let left = event.clientX + offset;
+  let top = event.clientY + offset;
+
+  if (left + rect.width + padding > window.innerWidth) left = event.clientX - rect.width - offset;
+  if (top + rect.height + padding > window.innerHeight) top = event.clientY - rect.height - offset;
+
+  tooltip.style.left = `${Math.max(padding, left)}px`;
+  tooltip.style.top = `${Math.max(padding, top)}px`;
+}
+
+function showNodeHoverTooltip(event, node, currentTier) {
+  const tooltip = ensureNodeHoverTooltip();
+  tooltip.innerHTML = buildNodeHoverTooltipHtml(node, currentTier);
+  tooltip.classList.add("visible");
+  positionNodeHoverTooltip(event);
+}
+
+function hideNodeHoverTooltip() {
+  const tooltip = document.getElementById("nodeHoverTooltip");
+  if (!tooltip) return;
+  tooltip.classList.remove("visible");
+}
+
 function renderTreeNodes() {
   const layer = document.getElementById("treeNodeLayer");
   const title = document.getElementById("activeFactionTitle");
@@ -4351,13 +4481,17 @@ function renderTreeNodes() {
       return `<i class="${isFilled ? "filled" : ""} ${isVipTier ? "vip-notch" : ""}" aria-hidden="true"></i>`;
     }).join("");
     button.innerHTML = `<span class="node-tier-label">${label}</span><div class="node-progress-bar">${notches}</div>`;
-    button.title = node.name;
+    button.addEventListener("mouseenter", event => showNodeHoverTooltip(event, node, currentTier));
+    button.addEventListener("mousemove", positionNodeHoverTooltip);
+    button.addEventListener("mouseleave", hideNodeHoverTooltip);
     button.addEventListener("click", event => {
       event.preventDefault();
+      hideNodeHoverTooltip();
       changeNodeTierByStep(node.id, 1);
     });
     button.addEventListener("contextmenu", event => {
       event.preventDefault();
+      hideNodeHoverTooltip();
       changeNodeTierByStep(node.id, -1);
     });
     layer.appendChild(button);
