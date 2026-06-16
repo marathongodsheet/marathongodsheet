@@ -63,7 +63,7 @@ button:hover, .import-label:hover { filter: brightness(1.08); }
 .compact { align-items: flex-start; display: block; }
 .compact p { margin-top: 5px; }
 .table-scroll { overflow-x: auto; }
-.excel-table { border-collapse: collapse; width: 100%; min-width: 940px; table-layout: fixed; }
+.excel-table { border-collapse: collapse; width: max-content; min-width: 100%; table-layout: auto; }
 .excel-table th, .excel-table td { border: 1px solid #263142; padding: 10px 12px; text-align: left; }
 .excel-table th { font-size: 14px; text-transform: uppercase; letter-spacing: .08em; color: #10131a; }
 .excel-table td { background: #121721; }
@@ -593,4 +593,428 @@ button:disabled {
 .node-hover-empty {
   color: #c0ccdd;
   font-size: 0.9rem;
+}
+
+/* Mobile tree scaling fix: keep the image and clickable overlay locked together. */
+@media (max-width: 780px) {
+  .topbar, .tabs, main {
+    width: min(100% - 16px, 1450px);
+  }
+
+  .tabs {
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+  }
+
+  .tab {
+    flex: 0 0 auto;
+  }
+
+  .upgrade-layout {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .faction-panel,
+  .tree-panel {
+    border-radius: 16px;
+  }
+
+  .faction-button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .faction-button {
+    text-align: center;
+    padding-inline: 10px;
+  }
+
+  .upgrade-action-panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .upgrade-action-panel button {
+    white-space: normal;
+    min-height: 44px;
+  }
+
+  .tree-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .tree-stats {
+    white-space: normal;
+  }
+
+  .tree-panel {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tree-stage {
+    width: 980px;
+    max-width: none;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .tree-stage img {
+    width: 980px;
+    max-width: none;
+  }
+
+  .tree-node-layer {
+    line-height: normal;
+  }
+
+  .tree-node span {
+    min-width: 24px;
+    height: 24px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 430px) {
+  .faction-button-grid,
+  .upgrade-action-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .tree-stage,
+  .tree-stage img {
+    width: 900px;
+  }
+}
+
+
+.material-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.material-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex: 0 0 40px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.08);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+.selected-material-name {
+  font-weight: 700;
+  margin-right: 0.35rem;
+}
+
+.selected-material-meta {
+  vertical-align: middle;
+}
+
+.material, .material-needed-name {
+  white-space: nowrap;
+}
+
+.readonly-material-pill, .vault-pill, .tier-cost-row, .node-hover-cost-row, .history-item > div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.readonly-material-pill > .material-inline,
+.vault-pill > .material-inline {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.node-hover-cost-row > span .material-inline,
+.tier-cost-row > span .material-inline {
+  vertical-align: middle;
+}
+
+@media (max-width: 640px) {
+  .material-icon {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+}
+
+
+/* Keep icon + material names from running into neighboring amount cells. */
+.excel-table {
+  min-width: 1650px;
+}
+
+.excel-table .material {
+  min-width: 245px;
+  max-width: none;
+  padding-right: 28px;
+}
+
+.excel-table .amount {
+  min-width: 78px;
+  width: 78px;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.excel-table .material .material-inline,
+.material-needed-name .material-inline {
+  max-width: none;
+}
+
+.excel-table .material .material-inline span,
+.material-needed-name .material-inline span {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+.material-inline span {
+  min-width: 0;
+  white-space: nowrap;
+}
+
+/* v72 dashboard table fit / no horizontal scroll */
+.table-scroll {
+  overflow-x: visible;
+}
+
+/* Let the main dashboard totals table stretch to fit the available panel width instead of forcing a scrollbar. */
+.excel-table {
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+}
+
+/* Keep amount columns compact so more room is available for names. */
+.excel-table .amount {
+  min-width: 64px;
+  width: 64px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Allow long material names to wrap cleanly inside their own cells. */
+.excel-table .material {
+  min-width: 0;
+  white-space: normal;
+  padding-right: 16px;
+  vertical-align: middle;
+}
+
+.excel-table .material .material-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+.excel-table .material .material-inline span {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
+  line-height: 1.15;
+}
+
+/* Slightly tighten header/body spacing so the full table fits better. */
+.excel-table th,
+.excel-table td {
+  padding: 9px 10px;
+}
+
+@media (max-width: 1024px) {
+  .table-scroll {
+    overflow-x: auto;
+  }
+  .excel-table {
+    min-width: 1080px;
+    table-layout: auto;
+  }
+}
+
+/* v73 dashboard table: keep material names on one line */
+#dashboardTab .table-scroll {
+  overflow-x: visible;
+  width: 100%;
+}
+
+#dashboardTab .excel-panel {
+  overflow: visible;
+}
+
+#dashboardTab .excel-table {
+  width: 100%;
+  min-width: 1320px;
+  table-layout: auto;
+}
+
+#dashboardTab .excel-table .material {
+  width: 18.2%;
+  min-width: 205px;
+  white-space: nowrap;
+  padding-left: 12px;
+  padding-right: 14px;
+}
+
+#dashboardTab .excel-table .amount {
+  width: 54px;
+  min-width: 54px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+#dashboardTab .excel-table .material .material-inline {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  width: auto;
+  max-width: none;
+  gap: 0.5rem;
+}
+
+#dashboardTab .excel-table .material .material-inline span {
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: normal;
+  word-break: normal;
+  line-height: 1;
+}
+
+#dashboardTab .excel-table th,
+#dashboardTab .excel-table td {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+@media (min-width: 1460px) {
+  #dashboardTab .excel-table {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 1360px) {
+  #dashboardTab .table-scroll {
+    overflow-x: auto;
+  }
+}
+
+
+/* v74: make blue rarity icons easier to see; they are wider rectangular items. */
+.material-inline.rarity-blue .material-icon,
+.material-icon.rarity-blue {
+  width: 56px;
+  height: 38px;
+  flex: 0 0 56px;
+  object-fit: contain;
+  padding: 1px 2px;
+}
+
+/* Keep dashboard names on one line while giving them more room. */
+#dashboardTab .excel-table {
+  min-width: 0;
+  table-layout: fixed;
+}
+
+#dashboardTab .excel-table .material {
+  width: 19%;
+  min-width: 0;
+}
+
+#dashboardTab .excel-table .amount {
+  width: 48px;
+  min-width: 48px;
+}
+
+#dashboardTab .excel-table .material .material-inline {
+  gap: 0.55rem;
+}
+
+#dashboardTab .excel-table .material .material-inline span {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .material-inline.rarity-blue .material-icon,
+  .material-icon.rarity-blue {
+    width: 48px;
+    height: 32px;
+    flex-basis: 48px;
+  }
+}
+
+
+/* v75: dashboard table should stay readable, even if horizontal scrolling is required. */
+#dashboardTab .table-scroll {
+  overflow-x: auto;
+  overflow-y: visible;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+#dashboardTab .excel-panel {
+  overflow: hidden;
+}
+
+#dashboardTab .excel-table {
+  width: max-content;
+  min-width: 1760px;
+  table-layout: auto;
+}
+
+#dashboardTab .excel-table .material {
+  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
+  white-space: nowrap;
+  padding-left: 14px;
+  padding-right: 18px;
+}
+
+#dashboardTab .excel-table .amount {
+  width: 70px;
+  min-width: 70px;
+  max-width: 70px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+#dashboardTab .excel-table .material .material-inline {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  gap: 0.7rem;
+  max-width: none;
+}
+
+#dashboardTab .excel-table .material .material-inline span {
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: normal;
+  word-break: normal;
+  line-height: 1;
+}
+
+#dashboardTab .excel-table th,
+#dashboardTab .excel-table td {
+  vertical-align: middle;
+}
+
+@media (max-width: 900px) {
+  #dashboardTab .excel-table {
+    min-width: 1680px;
+  }
 }

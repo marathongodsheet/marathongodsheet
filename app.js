@@ -8,6 +8,26 @@ const CATEGORIES = ["Grey", "Green", "Blue", "Purple", "Gold"];
 const rarityClass = { Grey: "grey", Green: "green", Blue: "blue", Purple: "purple", Gold: "gold" };
 const data = window.INITIAL_DATA;
 
+function slugifyMaterialName(name) {
+  return String(name || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function materialIconPath(name) {
+  return `assets/material-icons/${slugifyMaterialName(name)}.png`;
+}
+
+function materialLabelWithIconHtml(name, className = "") {
+  const material = findMaterialRecordForRequirement(name) || materials.find(item => item.name === name);
+  const label = material?.name || String(name || "");
+  const src = material?.icon || materialIconPath(label);
+  const extra = className ? ` ${className}` : "";
+  const rarityClass = material ? ` rarity-${String(material.category || "").toLowerCase()}` : "";
+  return `<span class="material-inline${extra}${rarityClass}"><img class="material-icon${rarityClass}" src="${src}" alt="" aria-hidden="true" loading="lazy"><span>${escapeHtml(label)}</span></span>`;
+}
+
 function idFor(category, name) {
   const normalizedCategory = String(category || "").toLowerCase().trim();
   const normalizedName = String(name || "").toLowerCase().replace(/\s+/g, " ").trim();
@@ -28,7 +48,8 @@ const materials = data.flatMap(group => group.items.map(item => ({
   id: idFor(group.category, item.name),
   category: group.category,
   name: item.name.trim(),
-  start: Number(item.total) || 0
+  start: Number(item.total) || 0,
+  icon: materialIconPath(item.name)
 })));
 
 const byId = Object.fromEntries(materials.map(item => [item.id, item]));
@@ -254,7 +275,7 @@ function renderTotalsTable() {
       const matCell = document.createElement("td");
       const amountCell = document.createElement("td");
       if (item) {
-        matCell.textContent = item.name;
+        matCell.innerHTML = materialLabelWithIconHtml(item.name);
         matCell.className = "material";
         const upgradeNeed = getUpgradeNeedForMaterial(item);
         const shownLeft = getDisplayedLeft(item);
@@ -304,7 +325,7 @@ function renderSelectedReadout() {
   const upgradeNeed = getUpgradeNeedForMaterial(item);
   const dashboardLeft = getDisplayedLeft(item);
   const alloc = getAllocatedUpgradeUseForMaterial(item.id);
-  selectedReadout.innerHTML = `<strong>${item.name}</strong> (${item.category}) — Starting: <strong>${fmt(record.start)}</strong>, Totals Left: <strong>${fmt(dashboardLeft)}</strong>, In Vault: <strong>${fmt(vault[item.id] || 0)}</strong>${upgradeNeed > 0 ? `, Selected Upgrades Spent: <strong>${fmt(upgradeNeed)}</strong> (${fmt(alloc.vault)} from vault, ${fmt(alloc.available)} from totals left)` : ""}`;
+  selectedReadout.innerHTML = `${materialLabelWithIconHtml(item.name, "selected-material-name")} <span class="selected-material-meta">(${item.category}) — Starting: <strong>${fmt(record.start)}</strong>, Totals Left: <strong>${fmt(dashboardLeft)}</strong>, In Vault: <strong>${fmt(vault[item.id] || 0)}</strong>${upgradeNeed > 0 ? `, Selected Upgrades Spent: <strong>${fmt(upgradeNeed)}</strong> (${fmt(alloc.vault)} from vault, ${fmt(alloc.available)} from totals left)` : ""}</span>`;
 }
 
 function renderRarityDropdowns() {
@@ -323,7 +344,7 @@ function renderRarityDropdowns() {
       pill.dataset.category = category;
       // These dropdown cards are a locked reference list from the backend data.
       // Users can change vault amounts, but raw material totals are only changed in data.js by site updates.
-      pill.innerHTML = `<span>${item.name}</span><span>${fmt(item.start)}</span>`;
+      pill.innerHTML = `${materialLabelWithIconHtml(item.name)}<span>${fmt(item.start)}</span>`;
       pill.title = `${item.category} material — locked backend total: ${fmt(item.start)}`;
       list.appendChild(pill);
     });
@@ -343,7 +364,7 @@ function renderVaultList() {
     return;
   }
   vaultList.innerHTML = `<div class="vault-title">Currently In Vault</div>` + entries.map(({ item, amount }) =>
-    `<button type="button" class="vault-pill ${rarityClass[item.category]}" data-id="${item.id}"><span>${item.name}</span><strong>${fmt(amount)}</strong></button>`
+    `<button type="button" class="vault-pill ${rarityClass[item.category]}" data-id="${item.id}">${materialLabelWithIconHtml(item.name)}<strong>${fmt(amount)}</strong></button>`
   ).join("");
   vaultList.querySelectorAll(".vault-pill").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -422,7 +443,7 @@ function renderHistory() {
     }[entry.kind] || { sign: "", label: entry.kind, suffix: `left ${fmt(entry.leftAfter)}` };
     return `<div class="history-item ${entry.kind}">
       <div class="time">${time}</div>
-      <div><strong>${entry.material}</strong> <span class="muted">${entry.category}</span> — ${meta.label}</div>
+      <div>${materialLabelWithIconHtml(entry.material, "history-material-name")} <span class="muted">${entry.category}</span> — ${meta.label}</div>
       <div class="change">${meta.sign}${fmt(entry.amount)} ${meta.suffix}</div>
     </div>`;
   }).join("");
@@ -4399,7 +4420,7 @@ function buildNodeHoverTooltipHtml(node, currentTier) {
   } else if (summary.costs.length) {
     body = summary.costs.map(cost => `
       <div class="node-hover-cost-row">
-        <span>${escapeHtml(cost.material)}</span>
+        <span>${materialLabelWithIconHtml(cost.material)}</span>
         <strong>${fmt(cost.amount)}</strong>
       </div>`).join("");
   } else if (summary.status === "unknown-vip") {
@@ -4566,7 +4587,7 @@ function renderTierCostPreview() {
     preview.innerHTML = `<strong>No selected material cost for this node.</strong><span>Either this selected tier has no known material requirement, or it is VIP-only.</span>`;
     return;
   }
-  preview.innerHTML = `<strong>Selected tier material cost</strong>` + remainingCosts.map(cost => `<div><span>${tierLabel(cost.tier, node)} — ${cost.material}</span><strong>${fmt(cost.amount)}</strong></div>`).join("");
+  preview.innerHTML = `<strong>Selected tier material cost</strong>` + remainingCosts.map(cost => `<div class="tier-cost-row"><span>${tierLabel(cost.tier, node)} — ${materialLabelWithIconHtml(cost.material)}</span><strong>${fmt(cost.amount)}</strong></div>`).join("");
 }
 
 function saveTierFromDialog(event) {
@@ -4669,7 +4690,7 @@ function renderDashboardUpgradeNeeded() {
 
       const materialTd = document.createElement("td");
       materialTd.className = "material-needed-name";
-      materialTd.textContent = entry.material;
+      materialTd.innerHTML = materialLabelWithIconHtml(entry.material);
 
       const neededTd = document.createElement("td");
       neededTd.className = "amount";
@@ -4715,7 +4736,7 @@ function renderUpgradeNeededList() {
 
   list.innerHTML = Array.from(needed.entries())
     .sort((a, b) => a[0].localeCompare(b[0]))
-    .map(([material, amount]) => `<div><span>${material}</span><strong>${fmt(amount)}</strong></div>`)
+    .map(([material, amount]) => `<div>${materialLabelWithIconHtml(material)}<strong>${fmt(amount)}</strong></div>`)
     .join("");
 }
 
