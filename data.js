@@ -65,7 +65,7 @@ window.INITIAL_DATA = [
       },
       {
         "name": "Drone Resin",
-        "total": 127
+        "total": 141
       },
       {
         "name": "Storage Drive",
@@ -114,7 +114,7 @@ window.INITIAL_DATA = [
       },
       {
         "name": "Biomata Node",
-        "total": 84
+        "total": 87
       },
       {
         "name": "Biomata Resin",
@@ -151,7 +151,7 @@ window.INITIAL_DATA = [
       },
       {
         "name": "Enzyme Replicator",
-        "total": 72
+        "total": 74
       },
       {
         "name": "Reflex Coil",

@@ -3454,6 +3454,11 @@ const FACTIONS = [
             "tier": 3,
             "material": "Hazard Capsule",
             "amount": 2
+          },
+          {
+            "tier": 3,
+            "material": "Enzyme Replicator",
+            "amount": 2
           }
         ]
       },
