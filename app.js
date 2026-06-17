@@ -1756,7 +1756,7 @@ const FACTIONS = [
               "y": 10.5,
               "w": 6.25,
               "h": 10.0,
-              "maxTier": 2,
+              "maxTier": 1,
               "costs": [
                       {
                               "tier": 1,
@@ -1767,21 +1767,10 @@ const FACTIONS = [
                               "tier": 1,
                               "material": "Deimosite Rods",
                               "amount": 11
-                      },
-                      {
-                              "tier": 2,
-                              "material": "Reflex Coil",
-                              "amount": 8
-                      },
-                      {
-                              "tier": 2,
-                              "material": "Ballistic Turbine",
-                              "amount": 3
                       }
               ],
               "tierLabels": {
-                      "1": "KKV-9SD",
-                      "2": "BART"
+                      "1": "KKV-9SD"
               }
       },
             {

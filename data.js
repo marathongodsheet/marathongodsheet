@@ -147,7 +147,7 @@ window.INITIAL_DATA = [
       },
       {
         "name": "Ballistic Turbine",
-        "total": 77
+        "total": 74
       },
       {
         "name": "Enzyme Replicator",
@@ -155,7 +155,7 @@ window.INITIAL_DATA = [
       },
       {
         "name": "Reflex Coil",
-        "total": 72
+        "total": 64
       }
     ]
   },
